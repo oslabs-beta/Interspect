@@ -12,7 +12,7 @@ function createWindow() {
     },
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(`file://${__dirname}/../../public/index.html`);
 
   mainWindow.on('closed', () => {
     mainWindow = null;
