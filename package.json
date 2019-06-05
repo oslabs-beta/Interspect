@@ -2,7 +2,7 @@
   "name": "apimocking",
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
-  "main": "main.js",
+  "main": "src/main/main.js",
   "scripts": {
     "test": "npm test",
     "start": "electron ."
