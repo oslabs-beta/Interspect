@@ -3,7 +3,6 @@ const { app, BrowserWindow } = require('electron');
 let mainWindow;
 
 function createWindow() {
-  // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -26,6 +25,5 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-
   if (mainWindow === null) createWindow();
 });
