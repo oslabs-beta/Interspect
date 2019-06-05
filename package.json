@@ -1,0 +1,27 @@
+{
+  "name": "apimocking",
+  "version": "1.0.0",
+  "description": "An tool to test communication between your microservices",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdcj-oslabs/apimocking.git"
+  },
+  "keywords": [
+    "microservices"
+  ],
+  "author": "Joe Pavlisko, Conor Sexton, Joel Riviera, Donald Blanc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdcj-oslabs/apimocking/issues"
+  },
+  "homepage": "https://github.com/jdcj-oslabs/apimocking#readme",
+  "dependencies": {
+    "electron": "^5.0.2",
+    "save-dev": "^2.0.0"
+  }
+}
