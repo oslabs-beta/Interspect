@@ -60,6 +60,8 @@ module.exports = {
   ],
   devServer: {
     contentBase: OUTPUT_DIR,
+    publicPath: '/dist/',
+    historyApiFallback: true,
     stats: {
       colors: true,
       chunks: false,
