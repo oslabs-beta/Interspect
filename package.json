@@ -5,9 +5,9 @@
   "main": "public/main.js",
   "scripts": {
     "test": "npm test",
-    "start": "electron .",
-    "build": "webpack",
-    "eDev": "webpack-dev-server --hot --config webpack.config.js --mode development"
+    "start": "ELECTRON_IS_DEV=0 electron .",
+    "build": "webpack  --mode production",
+    "dev": "webpack-dev-server --mode development"
   },
   "repository": {
     "type": "git",
