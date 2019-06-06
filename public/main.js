@@ -19,8 +19,7 @@ function createWindow() {
   });
 
   // mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${__dirname}/../../public/index.html`);
-  mainWindow.loadURL(`file://${__dirname}/../../public/index.html`);
-
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   mainWindow.on('closed', () => {
     mainWindow = null;
