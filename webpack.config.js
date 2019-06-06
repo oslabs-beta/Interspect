@@ -10,7 +10,7 @@ const { spawn } = require('child_process');
 
 module.exports = {
   // original: entry: SRC_DIR + '/index.js'
-  entry: `${SRC_DIR}/main/main.js`,
+  entry: `${SRC_DIR}/main/index.js`,
   output: {
     path: OUTPUT_DIR,
     publicPath: '/dist/',
@@ -26,7 +26,13 @@ module.exports = {
       },
       {
         test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader' }],
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread'],
+          },
+        }],
         include: defaultInclude,
       },
       {
@@ -42,6 +48,7 @@ module.exports = {
     ],
   },
   target: 'electron-renderer',
+  devtool: 'cheap-source-map',
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
@@ -61,7 +68,7 @@ module.exports = {
     before() {
       spawn(
         'electron',
-        ['./src/main/main.js'],
+        ['.'],
         { shell: true, env: process.env, stdio: 'inherit' },
       )
         .on('close', () => process.exit(0))
