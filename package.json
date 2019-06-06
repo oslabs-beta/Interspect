@@ -7,7 +7,7 @@
     "test": "npm test",
     "start": "ELECTRON_IS_DEV=0 electron .",
     "build": "webpack  --mode production",
-    "dev": "webpack-dev-server --mode development"
+    "dev": "webpack-dev-server --hot --mode development"
   },
   "repository": {
     "type": "git",
