@@ -7,12 +7,12 @@ const SourcePanel = () => {
   return (
     <section className='panel'>
     <p>Data source panel</p>
-      {/* 
+      {/*
         Request bar
         Data canvas
       */}
     </section>
-  )
+  );
 };
 
 export default SourcePanel;

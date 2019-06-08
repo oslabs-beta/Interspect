@@ -7,7 +7,7 @@ const TestPanel = (props) => {
     <section className='panel'>
       <p>Test panel</p>
     </section>
-  )
+  );
 };
 
 export default TestPanel;

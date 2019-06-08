@@ -13,7 +13,7 @@ module.exports = {
   entry: `${SRC_DIR}/main/index.js`,
   output: {
     path: OUTPUT_DIR,
-    publicPath: '/dist/',
+    publicPath: '../dist/',
     filename: 'bundle.js',
   },
 
@@ -46,6 +46,12 @@ module.exports = {
         include: defaultInclude,
       },
     ],
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   target: 'electron-renderer',
   devtool: 'cheap-source-map',
