@@ -8,7 +8,7 @@ const DestinationPanel = () => {
     <section className='panel'>
     <p>Data destination panel</p>
     </section>
-  )
+  );
 };
 
 export default DestinationPanel;
