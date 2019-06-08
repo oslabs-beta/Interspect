@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 
-const UrlBar = (props) => {
-  const method = (props.AorB === 'B' ? 'POST' : 'GET')
+const RequestBar = (props) => {
+  const method = (props.SourceOrDest === 'dest' ? 'POST' : 'GET')
   const [selected, setSelected] = useState(method);
 
-  function sendFetch () {
+  function sendFetch (e) {
+    e.preventDefault();
     const sendingObj = { method: selected, mode: 'cors' };
     if (props.SourceOrDest === 'dest') sendingObj.body = JSON.stringify(props.requestBody);
 
-    // console.log('hello;', document.querySelector('#urlInput').value);
-
     fetch(document.querySelector('#urlInput').value, sendingObj)
-      //.then(r => r.json())
-      .then(r1 => console.log(r1));
+      .then(r => console.log(r));
   }
 
   console.log(props)
@@ -20,7 +18,7 @@ const UrlBar = (props) => {
   return (
     <div>
 
-      <div > {/* onSubmit={sendFetch} */}
+      <form onSubmit={sendFetch} >
         {
           (props.SourceOrDest === 'source') &&
           <select id='fetchTypeInput' multiple={false} value={selected}
@@ -37,17 +35,12 @@ const UrlBar = (props) => {
             <option value="PUT">PUT</option>
           </select>
         }
-        <input id="urlInput"></input>
-        <input type="submit" value="Submit" onClick={sendFetch} />
-      </div>
-
-      {/* <select value={optionsState}>
-        <option selected value="get">GET</option>
-        <option value="post">POST</option>
-      </select> */}
+        <input id="urlInput" type="url"></input>
+        <input type="submit" value="Submit" />
+      </form>
 
     </div>
   );
 }
 
-export default UrlBar;
+export default RequestBar;

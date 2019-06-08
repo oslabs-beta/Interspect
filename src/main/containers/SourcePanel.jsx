@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UrlBar from './../components/urlBar.jsx';
+import RequestBar from './../components/RequestBar.jsx';
 
 const SourcePanel = () => {
   const [isLoading, setLoading] = useState(false);
@@ -12,7 +12,7 @@ const SourcePanel = () => {
         Request bar
         Data canvas
       */}
-    <UrlBar SourceOrDest="source" requestBody='' />
+    <RequestBar SourceOrDest="source" requestBody='' />
     </section>
   );
 };
