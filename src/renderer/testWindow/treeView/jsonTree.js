@@ -9,17 +9,16 @@
 const jsonTree = (() => {
 /* ---------- Utilities ---------- */
   const utils = {
-        /*
-         * Returns js-"class" of value
-         * 
-         * @param val {any type} - value
-         * @returns {string} - for example, "[object Function]"
-         */
-        getClass : function(val) {
-            return Object.prototype.toString.call(val);
-        },
-        
-        /**
+    /*
+     * Returns js-"class" of value
+     *
+     * @param val {any type} - value
+     * @returns {string} - for example, "[object Function]"
+     */
+    getClass: (val) => {
+      return Object.prototype.toString.call(val);
+    },
+     /**
          * Checks for a type of value (for valid JSON data types).
          * In other cases - throws an exception
          * 
