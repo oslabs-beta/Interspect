@@ -10,7 +10,7 @@ const Panels = () => {
     <section>
       <SourcePanel/>
       <TestPanel/>
-      <DestinationPanel/>
+      <DestinationPanel />
     </section>
   );
 };
