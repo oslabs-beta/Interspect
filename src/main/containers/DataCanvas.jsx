@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../components/Button';
+import DataTree from '../components/DataTree';
 
 const DataCanvas = (props) => {
   const { data } = props;
@@ -14,7 +15,7 @@ const DataCanvas = (props) => {
     )
   }
   return (
-    <p>Looks like you have data: {data}</p>
+    <DataTree data={data}/>
   )
 }
 

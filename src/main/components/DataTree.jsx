@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import JsonTree from '../lib/treeView/jsonTree';
 import '../lib/treeView/jsonTree.css';
 
-const ViewTest = (props) => {
-  const [setLoading] = useState(false);
-  // const [data, setData] = useState({});
+const DataTree = (props) => {
 
-  const renderTree = (htmlElm) => {
-    const tree = JsonTree.create(props.testdata, htmlElm);
+  const renderTree = (htmlElement) => {
+    const tree = JsonTree.create(props.data, htmlElement);
   };
 
   useEffect(() => {
@@ -16,14 +14,10 @@ const ViewTest = (props) => {
   });
 
   return (
-    <section className='wrapper' id='tree'style= {{ maxHeight: '250px', overflow: 'auto' }} >
-      <p>TEST VIEWS</p>
-      {/*
-        Request bar
-        Data canvas
-      */}
+    <section className='wrapper' id='tree' style= {{ maxHeight: '250px', overflow: 'auto' }} >
+      {/* Tree gets rendered here after component mounts */}
     </section>
   );
 };
 
-export default ViewTest;
+export default DataTree;
