@@ -7,8 +7,6 @@ const ViewTest = (props) => {
   // const [data, setData] = useState({});
 
   const renderTree = (htmlElm) => {
-  // to test large and small data sets, use largeData, smallData
-  // in first parameter in JsonTree.create
     const tree = JsonTree.create(props.testdata, htmlElm);
   };
 
