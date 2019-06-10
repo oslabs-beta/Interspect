@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RequestBar from '../components/RequestBar.jsx';
 
 const SourcePanel = () => {
   const [isLoading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ const SourcePanel = () => {
         Request bar
         Data canvas
       */}
+    <RequestBar SourceOrDest='source' requestBody='' />
     </section>
   );
 };
