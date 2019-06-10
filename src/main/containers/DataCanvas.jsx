@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '../components/Button';
 import DataTree from '../components/DataTree';
 
 const DataCanvas = (props) => {
-  const { data } = props;
+  const { data, treeCount, updateTreeCount } = props;
   // Display empty state for no data
   if (!data) {
     return (
@@ -14,8 +14,10 @@ const DataCanvas = (props) => {
       </section>
     )
   }
+  // Increment tree count and render data
+  if (!treeCount) updateTreeCount(treeCount + 1);
   return (
-    <DataTree data={data}/>
+    <DataTree treeCount={treeCount} data={data}/>
   )
 }
 
