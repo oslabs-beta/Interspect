@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * JSON Tree library (a part of jsonTreeViewer)
  * http://github.com/summerstyle/jsonTreeViewer
@@ -5,6 +7,7 @@
  * Copyright 2017 Vera Lobacheva (http://iamvera.com)
  * Released under the MIT license (LICENSE.txt)
  */
+
 
 const jsonTree = (() => {
   /* ---------- Utilities ---------- */
