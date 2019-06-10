@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Button from '../components/Button';
 
 const DataCanvas = (props) => {
   const { data } = props;
@@ -8,6 +9,7 @@ const DataCanvas = (props) => {
       <section>
         <h2>Let’s get some data</h2>
         <p>To get started, send a request to any of your microservices—or open a data mockup</p>
+        <Button title='Not yet functional'>Open Mockup</Button>
       </section>
     )
   }

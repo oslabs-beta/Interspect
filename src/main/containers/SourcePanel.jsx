@@ -9,7 +9,7 @@ const SourcePanel = () => {
     <section className='panel'>
       <h1>Data source panel</h1>
       {/* Request bar will go here */}
-      <DataCanvas data={undefined}/>
+      <DataCanvas data={1}/>
     </section>
   );
 };
