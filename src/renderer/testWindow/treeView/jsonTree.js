@@ -666,7 +666,6 @@ const jsonTree = (() => {
   }
   utils.inherits(NodeArray, _NodeComplex);
 
-
   /* ---------- The tree constructor ---------- */
 
   /*
