@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ViewTest from '../../renderer/testWindow/formatedView/ViewTest.jsx';
 
-// will need to get data from the get request to pass to the formated view
+// will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
   const [mockups, setData] = useState([props.data]);
