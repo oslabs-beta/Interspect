@@ -119,13 +119,13 @@ const jsonTree = (() => {
     /**
      * Extends some object
      */
-    extend: function (targetObj, sourceObj) {
+    extend: (targetObj, sourceObj) => {
       for (let prop in sourceObj) {
         if (sourceObj.hasOwnProperty(prop)) {
           targetObj[prop] = sourceObj[prop];
         }
       }
-    }
+    },
   };
 
 
@@ -159,26 +159,25 @@ const jsonTree = (() => {
    * @param label {string} - key name
    * @param val {Object | Array | string | number | boolean | null} - a value of node
    * @param isLast {boolean} - true if node is last in list of siblings
-   * 
+   *
    * @return {Node}
    */
   function Node(label, val, isLast) {
-    let nodeType = utils.getType(val);
+    const nodeType = utils.getType(val);
 
     if (nodeType in Node.CONSTRUCTORS) {
       return new Node.CONSTRUCTORS[nodeType](label, val, isLast);
-    } else {
-      throw new Error('Bad type: ' + utils.getClass(val));
     }
+    throw new Error(`Bad type: ' ${utils.getClass(val)}`);
   }
 
   Node.CONSTRUCTORS = {
-    'boolean': NodeBoolean,
-    'number': NodeNumber,
-    'string': NodeString,
-    'null': NodeNull,
-    'object': NodeObject,
-    'array': NodeArray
+    boolean: NodeBoolean,
+    number: NodeNumber,
+    string: NodeString,
+    null: NodeNull,
+    object: NodeObject,
+    array: NodeArray
   };
 
 
@@ -330,7 +329,7 @@ const jsonTree = (() => {
    * @param isLast {boolean} - true if node is last in list of parent childNodes
    */
   function NodeBoolean(label, val, isLast) {
-    this.type = "boolean";
+    this.type = 'boolean';
 
     _NodeSimple.call(this, label, val, isLast);
   }
@@ -661,7 +660,7 @@ const jsonTree = (() => {
    */
   function NodeArray(label, val, isLast) {
     this.sym = ['[', ']'];
-    this.type = "array";
+    this.type = 'array';
 
     _NodeComplex.call(this, label, val, isLast);
   }
@@ -804,9 +803,8 @@ const jsonTree = (() => {
      * @param domEl {DOMElement} - the wrapper element
      * @returns {Tree}
      */
-    create: function (jsonObj, domEl) {
-      return new Tree(jsonObj, domEl);
-    }
+    create: (jsonObj, domEl) => new Tree(jsonObj, domEl),
+
   };
 })();
 
