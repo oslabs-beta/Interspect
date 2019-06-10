@@ -233,7 +233,6 @@ const ViewTest = (props) => {
       favoriteFruit: 'banana',
     },
   ];
-  console.log(props);
   const renderTree = (div) => {
     const tree = JsonTree.create(data, div);
   };
