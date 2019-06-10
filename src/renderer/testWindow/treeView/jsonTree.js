@@ -18,26 +18,26 @@ const jsonTree = (() => {
     getClass: (val) => {
       return Object.prototype.toString.call(val);
     },
-     /**
+    /**
          * Checks for a type of value (for valid JSON data types).
          * In other cases - throws an exception
-         * 
+         *
          * @param val {any type} - the value for new node
          * @returns {string} ("object" | "array" | "null" | "boolean" | "number" | "string")
          */
-        getType : function(val) {
-            if (val === null) {
-                return 'null';
-            }
-            
-            switch (typeof val) {
-                case 'number':
-                    return 'number';
-                
-                case 'string':
-                    return 'string';
-                
-                case 'boolean':
+    getType: (val) => {
+      if (val === null) {
+        return 'null';
+      }
+
+        switch (typeof val) {
+            case 'number':
+                return 'number';
+
+            case 'string':
+                return 'string';
+
+            case 'boolean':
                     return 'boolean';
             }
             
