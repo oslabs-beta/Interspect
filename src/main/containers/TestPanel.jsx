@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ViewTest from '../../renderer/testWindow/formatedView/ViewTest.jsx';
+import ViewTest from '../components/ViewTest.jsx';
+
 
 // will need to get data from the get request to pass to the formatted view
 
@@ -16,9 +17,9 @@ const TestPanel = (props) => {
   };
 
   return (
-    <section className='panel'style= {{ maxHeight: '400px', overflow: 'auto' }} >
+    <section className='panel' >
       <p>Test panel</p>
-      <ViewTest testdata={data}/>
+      <ViewTest testdata={data} style= {{ maxHeight: '400px', overflow: 'auto' }}/>
     </section>
   );
 };
