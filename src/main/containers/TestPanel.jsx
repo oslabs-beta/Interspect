@@ -15,7 +15,6 @@ const TestPanel = (props) => {
     ],
   };
 
-
   return (
     <section className='panel'style= {{ maxHeight: '400px', overflow: 'auto' }} >
       <p>Test panel</p>
