@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RequestBar from './../components/RequestBar.jsx';
+import RequestBar from '../components/RequestBar.jsx';
 
 const DestinationPanel = () => {
   const [isLoading, setLoading] = useState(false);
