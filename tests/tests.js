@@ -15,17 +15,17 @@ global.before(() => {
   chai.use(chaiAsPromised);
 });
 
-describe('Test Example', () => {
-  beforeEach(() => app.start());
+// describe('Test Example', () => {
+//   beforeEach(() => app.start());
 
-  afterEach(() => app.stop());
+//   afterEach(() => app.stop());
 
-  it('opens a window', () => app.client.waitUntilWindowLoaded()
-    .getWindowCount().should.eventually.equal(1));
+//   it('opens a window', () => app.client.waitUntilWindowLoaded()
+//     .getWindowCount().should.eventually.equal(1));
 
-  it('tests the title', () => app.client.waitUntilWindowLoaded()
-    .getTitle().should.eventually.equal('Hello World!'));
-});
+//   it('tests the title', () => app.client.waitUntilWindowLoaded()
+//     .getTitle().should.eventually.equal('Hello World!'));
+// });
 
 // Should have ability to enter a valid URI
 // Expect (endpoint request Bar) to equal (valid URI)
