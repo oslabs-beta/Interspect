@@ -6,7 +6,7 @@ const ResponseComponent = (props) => {
   let checkmark = '⊚';
   if (status >= 200 && status < 300) {
     checkmark = '✓';
-  } else if (status >= 300) status = '✗';
+  } else if (status >= 300) checkmark = '✗';
 
   return (
     <div>

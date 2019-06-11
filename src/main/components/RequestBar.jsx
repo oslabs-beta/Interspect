@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const RequestBar = (props) => {
-  const { SourceOrDest , setData, tests, setTests } = props;
+  const { SourceOrDest , setData, tests, setStatuses, statuses } = props;
   
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
@@ -16,6 +16,7 @@ const RequestBar = (props) => {
 
   function sendFetch(e) {
     e.preventDefault();
+    console.log('in sendFetch')
 
     if (SourceOrDest === 'source') {
       const sendingObj = { method: selected, mode: 'cors' };
@@ -25,20 +26,22 @@ const RequestBar = (props) => {
         .then(res => setData(res));
     }
     else if (SourceOrDest === 'dest') {
-      const testsClone = [...tests];
+      console.log('dest')
+      const statusesClone = [...statuses];
       const sendingObj = { method: selected, mode: 'cors' };
-      for (let i = 0; i < tests.length; i++) {
-        sendingObj.body = JSON.stringify(tests[i].payload);
+      for (let i = 0; i < statuses.length; i++) {
+        sendingObj.body = tests[i];
   
         fetch(uri, sendingObj)
           .then(response => {
-            testsClone[i] = { payload: testsClone[i].payload,
-                              status: response.status };
-            setTests(testsClone);
+            console.log('THE RESPONSE HERE', response);
+            statusesClone[i] = response.status;
+            console.log('THE statusesClone HERE', statusesClone[i]);
+            setStatuses(statusesClone);
           })
           .catch(error => console.log(error));
       }
-    }
+    } else {console.log('incorrect SourceOrDest!')}
   }
 
   return (

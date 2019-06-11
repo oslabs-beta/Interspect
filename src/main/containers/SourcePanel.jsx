@@ -4,8 +4,6 @@ import RequestBar from '../components/RequestBar.jsx';
 import { smallData } from '../dummyData';
 
 const SourcePanel = (props) => {
-  const [isLoading, setLoading] = useState(false);
-
   const { treeCount, updateTreeCount, data, setData } = props;
 
   return (
