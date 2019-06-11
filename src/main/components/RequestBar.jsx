@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const RequestBar = (props) => {
   const { SourceOrDest, requestBody, setData } = props;
-  
+
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
   const [uri, setUri] = useState('');
