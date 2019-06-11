@@ -18,7 +18,7 @@ const DataCanvas = (props) => {
   if (!treeCount) updateTreeCount(treeCount + 1);
   return (
     <DataTree treeCount={treeCount} data={data}/>
-  )
+  );
 }
 
 export default DataCanvas;
