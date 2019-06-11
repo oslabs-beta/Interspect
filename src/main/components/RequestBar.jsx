@@ -19,9 +19,12 @@ const RequestBar = (props) => {
     const sendingObj = { method: selected, mode: 'cors' };
     sendingObj.headers = {
       'Content-Type': 'application/json',
-      token_type: 'Bearer',
       Authorization: 'Bearer RCHzqJmqDK-BgGQYiNjqjV5f0GuhOybwvvkSJGkWDKTdX03BXU3aT83MMKNmdoKvs3_sy4vWgj-60sDtbYb_WkLs0jvYoyzWyPZXiqNAs4JoN7J2vQ626rcQI4DkXHYx',
     };
+    // sendingObj.params = {
+    //   term: 'tacos',
+    //   location: 'main 123st',
+    // };
     console.log(sendingObj);
 
     if (SourceOrDest === 'dest') sendingObj.body = JSON.stringify(requestBody);
