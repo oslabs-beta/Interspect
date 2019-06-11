@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RequestBar from '../components/RequestBar.jsx';
 
 const DestinationPanel = () => {
   const [isLoading, setLoading] = useState(false);
@@ -7,6 +8,7 @@ const DestinationPanel = () => {
   return (
     <section className='panel'>
     <p>Data destination panel</p>
+    <RequestBar SourceOrDest='dest' requestBody='' />
     </section>
   );
 };
