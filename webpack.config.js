@@ -10,7 +10,7 @@ const { spawn } = require('child_process');
 
 module.exports = {
   // original: entry: SRC_DIR + '/index.js'
-  entry: `${SRC_DIR}/main/index.js`,
+  entry: `${SRC_DIR}/public/main.js`,
   output: {
     path: OUTPUT_DIR,
     publicPath: '../dist/',
