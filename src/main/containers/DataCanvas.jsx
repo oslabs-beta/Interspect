@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../components/Button';
-import DataTree from '../components/DataTree';
+import Button from '../components/Button.jsx';
+import DataTree from '../components/DataTree.jsx';
 
 const DataCanvas = (props) => {
   const { data, treeCount, updateTreeCount } = props;
