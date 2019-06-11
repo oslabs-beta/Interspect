@@ -5,8 +5,5 @@
   ],
   "plugins": [
     "react-hot-loader/babel"
-  ],
-  "scripts": {
-    "test": "mocha"
-  }
+  ]
 }
