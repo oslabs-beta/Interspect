@@ -27,14 +27,17 @@ const RequestBar = (props) => {
     else if (SourceOrDest === 'dest') {
       let testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
+      let counter = 0;
       for (let i = 0; i < testsClone.length; i++) {
         sendingObj.body = JSON.stringify(testsClone[i].payload);
   
         fetch(uri, sendingObj)
           .then(response => {
+            counter += 1;
             testsClone[i].status = response.status;
             console.log('THE testsClone HERE', testsClone[i]);
-            setTests(testsClone);
+            if (counter === testsClone.length)
+              setTests(testsClone);
             console.log('THE testsClone HERE', testsClone);
           })
           .catch(error => console.log(error));
