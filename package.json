@@ -24,7 +24,9 @@
   "homepage": "https://github.com/jdcj-oslabs/apimocking#readme",
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-json-view": "^1.19.1",
+    "styled-components": "^4.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
