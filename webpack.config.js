@@ -10,7 +10,7 @@ const { spawn } = require('child_process');
 
 module.exports = {
   // original: entry: SRC_DIR + '/index.js'
-  entry: `${SRC_DIR}/public/main.js`,
+  entry: `${SRC_DIR}/main/index.js`,
   output: {
     path: OUTPUT_DIR,
     publicPath: '../dist/',
@@ -44,6 +44,11 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude,
+      },
+      {
+        test: /test\.jsx?$/,
+        use: 'mocha-loader',
+        exclude: /node_modules/,
       },
     ],
   },
