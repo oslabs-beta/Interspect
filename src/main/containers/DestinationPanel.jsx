@@ -3,18 +3,18 @@ import RequestBar from './../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 
 const DestinationPanel = (props) => {
-  const { tests, setStatuses, statuses } = props;
+  const { tests, setTests } = props;
 
   // will be props.testBodies but not connected yet :D
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i++) {
     responseComponentsList.push(
       <ResponseComponent
-        status={statuses[i]}
-        payload={tests[i]}
+        status={tests[i].status}
+        payload={tests[i].payload}
 
         // fix later
-        key={tests[i]}
+        key={tests[i].payload}
       />
     );
   };
@@ -25,8 +25,7 @@ const DestinationPanel = (props) => {
       <RequestBar
         SourceOrDest='dest'
         tests={tests}
-        setStatuses={setStatuses}
-        statuses={statuses}
+        setTests={setTests}
       />
 
       {responseComponentsList}
