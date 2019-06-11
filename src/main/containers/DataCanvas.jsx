@@ -12,13 +12,13 @@ const DataCanvas = (props) => {
         <p>To get started, send a request to any of your microservices—or open a data mockup</p>
         <Button title='Not yet functional'>Open Mockup</Button>
       </section>
-    )
+    );
   }
   // Increment tree count and render data
   if (!treeCount) updateTreeCount(treeCount + 1);
   return (
     <DataTree treeCount={treeCount} data={data}/>
-  )
-}
+  );
+};
 
 export default DataCanvas;

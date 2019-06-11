@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DataCanvas from './DataCanvas.jsx';
 import RequestBar from '../components/RequestBar.jsx';
-import { smallData } from '../dummyData.js';
+import { smallData } from '../dummyData';
 
 const SourcePanel = (props) => {
   const [isLoading, setLoading] = useState(false);
