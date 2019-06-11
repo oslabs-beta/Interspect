@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 
 const RequestBar = (props) => {
-  const method = (props.SourceOrDest === 'dest' ? 'POST' : 'GET');
+  const { SourceOrDest, requestBody, setData } = props;
+  
+  const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
   const [uri, setUri] = useState('');
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,25 +17,25 @@ const RequestBar = (props) => {
   function sendFetch(e) {
     e.preventDefault();
     const sendingObj = { method: selected, mode: 'cors' };
-    if (props.SourceOrDest === 'dest') sendingObj.body = JSON.stringify(props.requestBody);
+    if (SourceOrDest === 'dest') sendingObj.body = JSON.stringify(requestBody);
 
     fetch(uri, sendingObj)
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => setData(res));
   }
 
   return (
     <div>
       <form onSubmit={sendFetch} >
         {
-          (props.SourceOrDest === 'source')
+          (SourceOrDest === 'source')
           && <select name='method' id='fetchTypeInput' multiple={false} value={selected}
             onChange={handleChange} >
             <option value='GET'>GET</option>
           </select>
         }
         {
-          (props.SourceOrDest === 'dest')
+          (SourceOrDest === 'dest')
           && <select name='method' id='fetchTypeInput' multiple={false} value={selected}
             onChange={handleChange} >
             <option value='POST'>POST</option>
@@ -41,7 +44,7 @@ const RequestBar = (props) => {
           </select>
         }
         <input name='uri' id='urlInput' type='url' onChange={handleChange}></input>
-        <input type='submit' value='Submit' />
+        <button type='submit' value='Submit'>Submit</button>
       </form>
     </div>
   );
