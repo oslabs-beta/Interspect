@@ -1,40 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 const ResponseComponent = (props) => {
-  const [statusCode, setStatusCode] = useState('');
-
-  const dataObj = {
-    method: document.querySelector('#fetchTypeInput2').value,
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: props.testBody
-  };
-
-  useEffect(() => {
-    if (props.url !== '') {
-      fetch(props.url, dataObj)
-      .then(response => {
-        setStatusCode(response.status);
-      })
-      .catch(error => {
-        console.log(error);
-        setStatusCode(400);
-      });
-    }
-  });
+  const {status, payload} = props;
 
   let checkmark = '⊚';
-  if (statusCode >= 200 && statusCode < 300) {
+  if (status >= 200 && status < 300) {
     checkmark = '✓';
-  } else if (statusCode >= 300) checkmark = '✗';
+  } else if (status >= 300) status = '✗';
 
   return (
     <div>
-      <p>{checkmark + ' - ' + statusCode}</p>
+      <p>{checkmark + ' - ' + status}</p>
       <textarea cols='50' rows='5'>
-        {JSON.stringify(props.testBody)}
+        {payload}
       </textarea>
     </div>
   );
