@@ -19,6 +19,6 @@ const DataCanvas = (props) => {
   return (
     <DataTree treeCount={treeCount} data={data}/>
   );
-}
+};
 
 export default DataCanvas;
