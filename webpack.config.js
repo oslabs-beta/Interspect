@@ -45,6 +45,11 @@ module.exports = {
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
         include: defaultInclude,
       },
+      {
+        test: /test\.jsx?$/,
+        use: 'mocha-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {
