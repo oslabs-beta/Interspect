@@ -17,6 +17,13 @@ const RequestBar = (props) => {
   function sendFetch(e) {
     e.preventDefault();
     const sendingObj = { method: selected, mode: 'cors' };
+    sendingObj.headers = {
+      'Content-Type': 'application/json',
+      token_type: 'Bearer',
+      Authorization: 'Bearer RCHzqJmqDK-BgGQYiNjqjV5f0GuhOybwvvkSJGkWDKTdX03BXU3aT83MMKNmdoKvs3_sy4vWgj-60sDtbYb_WkLs0jvYoyzWyPZXiqNAs4JoN7J2vQ626rcQI4DkXHYx',
+    };
+    console.log(sendingObj);
+
     if (SourceOrDest === 'dest') sendingObj.body = JSON.stringify(requestBody);
 
     fetch(uri, sendingObj)
