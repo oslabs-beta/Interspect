@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import HeaderBar from './HeaderBar.jsx';
+
 
 const RequestBar = (props) => {
   const {
@@ -68,6 +70,7 @@ const RequestBar = (props) => {
         <input name='uri' id='urlInput' type='url' onChange={handleChange}></input>
         <button type='submit' value='Submit'>Submit</button>
       </form>
+      <HeaderBar />
     </div>
   );
 };
