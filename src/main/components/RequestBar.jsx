@@ -36,9 +36,7 @@ const RequestBar = (props) => {
           .then((response) => {
             counter += 1;
             testsClone[i].status = response.status;
-            console.log('THE testsClone HERE', testsClone[i]);
             if (counter === testsClone.length) setTests(testsClone);
-            console.log('THE testsClone HERE', testsClone);
           })
           .catch(error => console.log(error));
       }
