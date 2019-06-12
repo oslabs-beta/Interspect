@@ -4,7 +4,8 @@ import JsonTree from '../lib/treeView/jsonTree';
 import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
-  const { treeCount, data } = props;
+  const { treeCount, data, options } = props;
+  const { onAdd, onEdit, onDelete, enableClipboard } = options;
 
   const renderTree = (htmlElement) => {
     const tree = JsonTree.create(data, htmlElement);
@@ -16,14 +17,20 @@ const DataTree = (props) => {
 
   useEffect(() => {
     const test = document.getElementById(`tree-${treeCount}`);
-    // renderTree(test);
   });
 
   return (
     <section className='wrapper' id={`tree-${treeCount}`} style= {{ maxHeight: '350px', overflow: 'auto' }} >
       {/* Tree gets rendered here after component mounts */}
-      <ReactJson src={data} theme='bright:inverted' iconStyle='square'
-        onEdit={changeObject} onAdd={changeObject} onDelete={changeObject}/>
+      <ReactJson 
+        src={data} 
+        theme='bright:inverted'
+        iconStyle='square'
+        onAdd={onAdd}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        enableClipboard={enableClipboard}
+        />
     </section>
   );
 };
