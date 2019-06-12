@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
+import { smallData } from '../dummyData';
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
-  const [dataTreeCount, setDataTreeCount] = useState(0);
+  const [treeCount, setDataTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
   // Tests are objects with
   // { payload: JSON that represents test,
@@ -28,16 +29,16 @@ const Panels = () => {
       status: '',
     }],
   );
-
   return (
     <section>
-      <SourcePanel treeCount={dataTreeCount}
+      <SourcePanel treeCount={treeCount}
                    updateTreeCount={setDataTreeCount}
                    data={data}
                    setData={setData}/>
-      <TestPanel treeCount={dataTreeCount}
+      <TestPanel treeCount={treeCount}
                  updateTreeCount={setDataTreeCount}
-                 setData={setData} />
+                 setData={setData}
+                 data={data} />
       <DestinationPanel tests={tests} setTests={setTests} />
     </section>
   );
