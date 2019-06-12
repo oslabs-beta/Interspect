@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
-import styled from 'styled-components';
 import { smallData } from '../dummyData';
 
 const Panels = () => {
