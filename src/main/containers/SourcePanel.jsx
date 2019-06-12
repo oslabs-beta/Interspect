@@ -6,7 +6,7 @@ const SourcePanel = (props) => {
   const {
     treeCount, updateTreeCount, data, setData,
   } = props;
-  
+
   const dataTreeOptions = {
     onAdd: false,
     onEdit: false,
@@ -17,10 +17,10 @@ const SourcePanel = (props) => {
   return (
     <section className='panel'>
       <h1>Data source panel</h1>
-      <RequestBar SourceOrDest='source' setData={setData}/>
-      <DataCanvas 
-        treeCount={treeCount} 
-        updateTreeCount={updateTreeCount} 
+      <RequestBar SourceOrDest='source' setData={setData} />
+      <DataCanvas
+        treeCount={treeCount}
+        updateTreeCount={updateTreeCount}
         data={data}
         options={dataTreeOptions}
       />

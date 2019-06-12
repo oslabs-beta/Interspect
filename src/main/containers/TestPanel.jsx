@@ -8,13 +8,20 @@ import DataCanvas from './DataCanvas.jsx';
 // will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
-  const {treeCount, updateTreeCount, data, setTests, tests} = props;
+  const { treeCount, updateTreeCount, data, setTests, tests } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
-    onAdd: true,
+    onAdd: false,
     onEdit: true,
     onDelete: true,
     enableClipboard: false,
+  };
+
+  function saveUpdatedTree (newData, arrayPosition) {
+    const testsClone = [...tests];
+    console.log('newData', newData);
+    testsClone[arrayPosition].payload = newData;
+    setTests(testsClone);
   };
 
   const testsList = [];
@@ -33,9 +40,10 @@ const TestPanel = (props) => {
 
       <DataTree
         treeCount={i}
-        key={i}
+        key={'TestPanelDataTree' + i}
         data={data}
         options={dataTreeOptions}
+        saveUpdatedTree={saveUpdatedTree}
       />
 
     );
@@ -48,10 +56,10 @@ const TestPanel = (props) => {
     setTests(testsClone);
   };
 
-  function createNewTest() {
+  function createNewTest () {
     const testsClone = [...tests];
     console.log('datahere', data);
-    testsClone.push( { 'payload': data, status: '' } );
+    testsClone.push({ 'payload': data, status: '' });
 
     // the ID of the TestComponent will be 
     // the same as the position in the array 
@@ -64,11 +72,11 @@ const TestPanel = (props) => {
       <p>Test panel</p>
       <div>
         <p>Server Response:</p>
-      <DataCanvas 
-        data={data} 
-        updateTreeCount={updateTreeCount} 
-        options={dataTreeOptions}
-      />
+        <DataCanvas
+          data={data}
+          updateTreeCount={updateTreeCount}
+          options={dataTreeOptions}
+        />
         {/* <p>{((data) ? data.slice(150) : '')}</p> */}
         <button onClick={createNewTest}> New Test </button>
       </div>

@@ -4,7 +4,7 @@ import JsonTree from '../lib/treeView/jsonTree';
 import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
-  const { treeCount, data, options } = props;
+  const { treeCount, data, options, saveUpdatedTree } = props;
   const {
     onAdd, onEdit, onDelete, enableClipboard,
   } = options;
@@ -18,14 +18,17 @@ const DataTree = (props) => {
   };
 
   return (
-    <section className='wrapper' id={`tree-${treeCount}`} style= {{ maxHeight: '350px', overflow: 'auto' }} >
+    <section className='wrapper' id={`tree-${treeCount}`} style={{ maxHeight: '350px', overflow: 'auto' }} >
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}
         theme='bright:inverted'
         iconStyle='square'
         onAdd={onAdd}
-        onEdit={onEdit}
+        onEdit={(onEdit) ? (src) => {
+          console.log('src', src);
+          saveUpdatedTree(src.updated_src, treeCount) }
+          : false}
         onDelete={onDelete}
         enableClipboard={enableClipboard}
       />
