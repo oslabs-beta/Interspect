@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
 
 const TestComponent = (props) => {
-  const {data, main, key} = props;
-  const [json, setJson] = useState(data);
+  // data is the data response from msA 
+  // key is the unique ID for this test component-- maps to tests[i]
+  const {data, key, saveTest} = props;
 
-  if (main) {
-    data
-  }
+  // Look at that, CS.  Looks like I might've been wrong :)
+  // Setting this component's initial state to a prop 
+  // because it will be the same `data` every time one is
+  // created but each one is unique and can be changed.
+  const [json, setJson] = useState(JSON.stringify(data));
 
   const handleChange = (e) => {
-    console.log(typeof e.target.id, e.target.id);
-
-    setData(e.target.value);
+    // console.log(typeof e.target.id, e.target.id);
+    setJson(e.target.value);
   }
 
   return (
     <div>
-      <p>Here's a test!</p>
+      <p> Here's a test! </p>
       <input
         type='text'
-        id={'testInput' + key} 
-        value={data}
+        id={'testInput' + key}
+        value={json}
         onChange={handleChange}
       />
-      <button onClick={saveTest}>Save</button>
+      <button
+        id={'saveTest'+key}
+        onClick={() => saveTest(data,key)}
+      >Save Test</button>
     </div>
   );
 }

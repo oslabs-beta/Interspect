@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DataTree from '../components/DataTree.jsx';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 import { largeData, smallData } from '../dummyData';
+import TestComponent from '../components/TestComponent.jsx'
 
 // will need to get data from the get request to pass to the formatted view
 
@@ -14,16 +15,17 @@ const TestPanel = (props) => {
     testsList.push( <TestComponent data={test} /> );
   });
 
-  function saveTest () {
+  function saveTest (newData, arrayPosition) {
     const testsClone = [...tests];
-    const arrayPosition = Number(e.target.id.slice(9));
-    setTests();
+    testsClone[arrayPosition] = newData;
+    setTests(testsClone);
   };
 
   function createNewTest() {
     testsList.push(
       <TestComponent
         data={data}
+        // binding may be necessary 
         saveTest={saveTest}
         key={testsListCounter}
       />
@@ -38,7 +40,7 @@ const TestPanel = (props) => {
   return (
     <section className='panel' >
       <p>Test panel</p>
-      <TestComponent data={data} main={true} />
+      {/* <TestComponent data={data} main={true} /> */}
       <button onClick={createNewTest}> New Test </button>
       {testsList}
       {/* <DataTree data={largeData}/> */}
