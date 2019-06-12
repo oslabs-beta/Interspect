@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 const RequestBar = (props) => {
-  const { SourceOrDest, requestBody, setData } = props;
+  const {
+    SourceOrDest, setData, tests, setTests,
+  } = props;
 
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
@@ -16,14 +18,29 @@ const RequestBar = (props) => {
 
   function sendFetch(e) {
     e.preventDefault();
-    const sendingObj = { method: selected, mode: 'cors' };
 
+    if (SourceOrDest === 'source') {
+      const sendingObj = { method: selected, mode: 'cors' };
 
-    if (SourceOrDest === 'dest') sendingObj.body = JSON.stringify(requestBody);
+      fetch(uri, sendingObj)
+        .then(res => res.json())
+        .then(res => setData(res));
+    } else if (SourceOrDest === 'dest') {
+      const testsClone = [...tests];
+      const sendingObj = { method: selected, mode: 'cors' };
+      let counter = 0;
+      for (let i = 0; i < testsClone.length; i += 1) {
+        sendingObj.body = JSON.stringify(testsClone[i].payload);
 
-    fetch(uri, sendingObj)
-      .then(res => res.json())
-      .then(res => setData(res));
+        fetch(uri, sendingObj)
+          .then((response) => {
+            counter += 1;
+            testsClone[i].status = response.status;
+            if (counter === testsClone.length) setTests(testsClone);
+          })
+          .catch(error => console.log(error));
+      }
+    }
   }
 
   return (
