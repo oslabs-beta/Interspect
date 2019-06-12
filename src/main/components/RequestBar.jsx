@@ -16,6 +16,16 @@ const RequestBar = (props) => {
     else if (name === 'uri') setUri(value);
   };
 
+  const runTest = (link, sendingObj, testsClone, i) => {
+    const test = testsClone;
+    fetch(link, sendingObj)
+      .then((response) => {
+        test[i].status = response.status;
+        if (i === test.length - 1) setTests(test);
+      })
+      .catch(error => console.log(error));
+  };
+
   function sendFetch(e) {
     e.preventDefault();
 
@@ -28,17 +38,10 @@ const RequestBar = (props) => {
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
-      let counter = 0;
+
       for (let i = 0; i < testsClone.length; i += 1) {
         sendingObj.body = JSON.stringify(testsClone[i].payload);
-
-        fetch(uri, sendingObj)
-          .then((response) => {
-            counter += 1;
-            testsClone[i].status = response.status;
-            if (counter === testsClone.length) setTests(testsClone);
-          })
-          .catch(error => console.log(error));
+        runTest(uri, sendingObj, testsClone, i);
       }
     }
   }
