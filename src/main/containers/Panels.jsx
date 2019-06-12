@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
+import styled from 'styled-components';
 import { smallData } from '../dummyData';
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [treeCount, setDataTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
+
+  const PanelsWrapper = styled.section`
+    display: flex;
+  `;
   // Tests are objects with
   // { payload: JSON that represents test,
   //   status: initial value of '' };
@@ -30,7 +35,7 @@ const Panels = () => {
     }],
   );
   return (
-    <section>
+    <PanelsWrapper>
       <SourcePanel treeCount={treeCount}
                    updateTreeCount={setDataTreeCount}
                    data={data}
@@ -40,7 +45,7 @@ const Panels = () => {
                  setData={setData}
                  data={data} />
       <DestinationPanel tests={tests} setTests={setTests} />
-    </section>
+    </PanelsWrapper>
   );
 };
 
