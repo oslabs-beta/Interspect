@@ -21,7 +21,7 @@ const DataTree = (props) => {
     <section className='wrapper' id={`tree-${treeCount}`} style= {{ maxHeight: '350px', overflow: 'auto' }} >
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
-        src={data} 
+        src={data}
         theme='bright:inverted'
         iconStyle='square'
         onAdd={onAdd}
