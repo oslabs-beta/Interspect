@@ -3,10 +3,11 @@ import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 // import { testsData } from '../dummyData';
+// import { smallData } from '../dummyData';
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
-  const [dataTreeCount, setDataTreeCount] = useState(0);
+  const [treeCount, setTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
 
   // Tests are objects with 
@@ -16,12 +17,12 @@ const Panels = () => {
 
   return (
     <section>
-      <SourcePanel treeCount={dataTreeCount}
-                   updateTreeCount={setDataTreeCount}
+      <SourcePanel treeCount={treeCount}
+                   updateTreeCount={setTreeCount}
                    data={data}
                    setData={setData} />
-      <TestPanel treeCount={dataTreeCount}
-                 updateTreeCount={setDataTreeCount}
+      <TestPanel treeCount={treeCount}
+                 updateTreeCount={setTreeCount}
                  data={data}
                  setTests={setTests}
                  tests={tests} />

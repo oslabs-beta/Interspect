@@ -3,12 +3,19 @@ import DataTree from '../components/DataTree.jsx';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 import { largeData, smallData } from '../dummyData';
 import TestComponent from '../components/TestComponent.jsx'
+import DataCanvas from './DataCanvas.jsx';
 
 // will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
   const {treeCount, updateTreeCount, data, setTests, tests} = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
+  const dataTreeOptions = {
+    onAdd: false,
+    onEdit: false,
+    onDelete: false,
+    enableClipboard: false,
+  };
 
   const testsList = [];
   let i = 0;
@@ -28,7 +35,7 @@ const TestPanel = (props) => {
 
   function saveTest (newData, arrayPosition) {
     const testsClone = [...tests];
-    testsClone[arrayPosition].payload = newData;
+    testsClone[arrayPosition].payload = JSON.parse(newData);
     setTests(testsClone);
   };
 
@@ -48,6 +55,11 @@ const TestPanel = (props) => {
       <p>Test panel</p>
       <div>
         <p>Server Response:</p>
+      <DataCanvas 
+        data={data} 
+        updateTreeCount={updateTreeCount} 
+        options={dataTreeOptions}
+      />
         {/* <p>{((data) ? data.slice(150) : '')}</p> */}
         <button onClick={createNewTest}> New Test </button>
       </div>
@@ -55,6 +67,7 @@ const TestPanel = (props) => {
 
       {testsList}
       {/* <DataTree data={largeData}/> */}
+
     </section>
   );
 };
