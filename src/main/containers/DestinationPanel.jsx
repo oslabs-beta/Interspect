@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RequestBar from './../components/RequestBar.jsx';
+import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 
 const DestinationPanel = (props) => {
@@ -7,7 +7,7 @@ const DestinationPanel = (props) => {
 
   // will be props.testBodies but not connected yet :D
   const responseComponentsList = [];
-  for (let i = 0; i < tests.length; i++) {
+  for (let i = 0; i < tests.length; i += 1) {
     responseComponentsList.push(
       <ResponseComponent
         status={tests[i].status}
@@ -15,9 +15,9 @@ const DestinationPanel = (props) => {
 
         // fix later
         key={tests[i].payload}
-      />
+      />,
     );
-  };
+  }
 
   return (
     <section className='panel'>
