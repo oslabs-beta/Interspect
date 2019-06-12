@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const ResponseComponent = (props) => {
-  const {status, payload} = props;
+  const { status, payload } = props;
 
   let checkmark = '⊚';
   if (status >= 200 && status < 300) {
@@ -10,7 +10,7 @@ const ResponseComponent = (props) => {
 
   return (
     <div>
-      <p>{checkmark + ' - ' + status}</p>
+      <p>{`${checkmark} ' - ' ${status}`}</p>
       <textarea cols='50' rows='5'>
         {payload}
       </textarea>

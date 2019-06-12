@@ -4,7 +4,9 @@ import RequestBar from '../components/RequestBar.jsx';
 import { smallData } from '../dummyData';
 
 const SourcePanel = (props) => {
-  const { treeCount, updateTreeCount, data, setData } = props;
+  const {
+    treeCount, updateTreeCount, data, setData,
+  } = props;
 
   return (
     <section className='panel'>

@@ -27,6 +27,6 @@ const Button = styled.button`
     outline: 0;
     box-shadow: 0 0 1px 2px #96C1E9;
   }
-`
+`;
 
 export default Button;
