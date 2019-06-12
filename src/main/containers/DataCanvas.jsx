@@ -3,7 +3,9 @@ import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
 
 const DataCanvas = (props) => {
-  const { data, treeCount, updateTreeCount, options } = props;
+  const {
+    data, treeCount, updateTreeCount, options,
+  } = props;
   // const { onAdd, onEdit, onDelete, enableClipboard } = options;
   // Display empty state for no data
   if (!data) {
@@ -18,7 +20,7 @@ const DataCanvas = (props) => {
   // Increment tree count and render data
   if (!treeCount) updateTreeCount(1);
   return (
-    <DataTree 
+    <DataTree
       treeCount={treeCount}
       data={data}
       options={options}
