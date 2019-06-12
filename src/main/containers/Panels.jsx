@@ -7,6 +7,7 @@ const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [dataTreeCount, setDataTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
+
   // Tests are objects with 
   // { payload: JSON that represents test,
   //   status: initial value of '' };
@@ -29,8 +30,13 @@ const Panels = () => {
                    setData={setData}/>
       <TestPanel treeCount={dataTreeCount}
                  updateTreeCount={setDataTreeCount}
-                 setData={setData} />
-      <DestinationPanel tests={tests} setTests={setTests} />
+                 data={data}
+                 setTests={setTests}
+                 tests={tests} />
+      <DestinationPanel
+                 tests={tests}
+                 setTests={setTests}
+      />
     </section>
   );
 };
