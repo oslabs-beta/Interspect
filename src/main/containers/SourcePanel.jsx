@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DataCanvas from './DataCanvas.jsx';
 import RequestBar from '../components/RequestBar.jsx';
+import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
@@ -15,7 +16,7 @@ const SourcePanel = (props) => {
   };
 
   return (
-    <section className='panel'>
+    <StyledPanel>
       <h1>Data source panel</h1>
       <RequestBar SourceOrDest='source' setData={setData}/>
       <DataCanvas 
@@ -24,7 +25,7 @@ const SourcePanel = (props) => {
         data={data}
         options={dataTreeOptions}
       />
-    </section>
+    </StyledPanel>
   );
 };
 

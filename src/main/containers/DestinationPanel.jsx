@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
+import StyledPanel from './StyledPanel.jsx';
 
 const DestinationPanel = (props) => {
   const { tests, setTests } = props;
@@ -20,7 +21,7 @@ const DestinationPanel = (props) => {
   }
 
   return (
-    <section className='panel'>
+    <StyledPanel>
       <p> Data destination panel </p>
       <RequestBar
         SourceOrDest='dest'
@@ -29,7 +30,7 @@ const DestinationPanel = (props) => {
       />
 
       {responseComponentsList}
-    </section>
+    </StyledPanel>
   );
 };
 
