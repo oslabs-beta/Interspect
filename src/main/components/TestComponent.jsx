@@ -3,7 +3,10 @@ import React, { useState } from 'react';
 const TestComponent = (props) => {
   // data is the data response from msA 
   // key is the unique ID for this test component-- maps to tests[i]
-  const {data, key, saveTest} = props;
+  const { data, listPosition, saveTest } = props;
+  console.log('Test Component listPosition:', listPosition);
+  console.log('Test Component data:', data);
+  console.log('Test Component saveTest:', saveTest);
 
   // Look at that, CS.  Looks like I might've been wrong :)
   // Setting this component's initial state to a prop 
@@ -19,15 +22,14 @@ const TestComponent = (props) => {
   return (
     <div>
       <p> Here's a test! </p>
-      <input
-        type='text'
-        id={'testInput' + key}
+      <textarea
+        id={'testInput' + listPosition}
         value={json}
         onChange={handleChange}
       />
       <button
-        id={'saveTest'+key}
-        onClick={() => saveTest(data,key)}
+        id={'saveTest' + listPosition}
+        onClick={() => saveTest(json, listPosition)}
       >Save Test</button>
     </div>
   );

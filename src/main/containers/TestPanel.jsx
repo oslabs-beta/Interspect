@@ -8,40 +8,51 @@ import TestComponent from '../components/TestComponent.jsx'
 
 const TestPanel = (props) => {
   const {treeCount, updateTreeCount, data, setTests, tests} = props;
-  let testsListCounter = 0;
+  const [testsListCounter, setTestsListCounter] = useState(0);
 
   const testsList = [];
+  let i = 0;
   tests.forEach((test) => {
-    testsList.push( <TestComponent data={test} /> );
+    console.log('yo test here:', test);
+    testsList.push(
+      <TestComponent
+        data={test.payload}
+        // binding may be necessary 
+        saveTest={saveTest}
+        listPosition={i}
+        key={i}
+      />
+    );
+    i += 1;
   });
 
   function saveTest (newData, arrayPosition) {
     const testsClone = [...tests];
-    testsClone[arrayPosition] = newData;
+    testsClone[arrayPosition].payload = newData;
     setTests(testsClone);
   };
 
   function createNewTest() {
-    testsList.push(
-      <TestComponent
-        data={data}
-        // binding may be necessary 
-        saveTest={saveTest}
-        key={testsListCounter}
-      />
-    );
+    const testsClone = [...tests];
+    console.log('datahere', data);
+    testsClone.push( { 'payload': data, status: '' } );
 
     // the ID of the TestComponent will be 
     // the same as the position in the array 
-    testsListCounter += 1;
-    setTests(testsList);
+    setTestsListCounter(testsListCounter + 1);
+    setTests(testsClone);
   };
 
   return (
     <section className='panel' >
       <p>Test panel</p>
+      <div>
+        <p>Server Response:</p>
+        {/* <p>{((data) ? data.slice(150) : '')}</p> */}
+        <button onClick={createNewTest}> New Test </button>
+      </div>
       {/* <TestComponent data={data} main={true} /> */}
-      <button onClick={createNewTest}> New Test </button>
+
       {testsList}
       {/* <DataTree data={largeData}/> */}
     </section>
