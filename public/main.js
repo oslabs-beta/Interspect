@@ -1,5 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
+const path = require('path');
+const os = require('os');
 
 if (isDev) {
   console.log('Running in development');
@@ -21,13 +23,12 @@ function createWindow() {
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
 
-  const path = require('path')
-  const os = require('os')
 
-  BrowserWindow.addDevToolsExtension(
-    path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0'),
-  );
-
+  if (isDev) {
+    BrowserWindow.addDevToolsExtension(
+      path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0'),
+    );
+  }
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
