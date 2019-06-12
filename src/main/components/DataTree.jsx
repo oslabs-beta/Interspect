@@ -28,7 +28,7 @@ const DataTree = (props) => {
         onEdit={onEdit}
         onDelete={onDelete}
         enableClipboard={enableClipboard}
-        />
+      />
     </section>
   );
 };

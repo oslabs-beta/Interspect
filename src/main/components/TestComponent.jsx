@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DataTree from '../components/DataTree.jsx';
 
 const TestComponent = (props) => {
   // data is the data response from msA 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import DataTree from '../components/DataTree.jsx';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 import { largeData, smallData } from '../dummyData';
-import TestComponent from '../components/TestComponent.jsx'
+import TestComponent from '../components/TestComponent.jsx';
+import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
 
 // will need to get data from the get request to pass to the formatted view
@@ -11,9 +11,9 @@ const TestPanel = (props) => {
   const {treeCount, updateTreeCount, data, setTests, tests} = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
-    onAdd: false,
-    onEdit: false,
-    onDelete: false,
+    onAdd: true,
+    onEdit: true,
+    onDelete: true,
     enableClipboard: false,
   };
 
@@ -22,13 +22,22 @@ const TestPanel = (props) => {
   tests.forEach((test) => {
     console.log('yo test here:', test);
     testsList.push(
-      <TestComponent
-        data={test.payload}
-        // binding may be necessary 
-        saveTest={saveTest}
-        listPosition={i}
+
+      // <TestComponent
+      //   data={test.payload}
+      //   // binding may be necessary 
+      //   saveTest={saveTest}
+      //   listPosition={i}
+      //   key={i}
+      // />
+
+      <DataTree
+        treeCount={i}
         key={i}
+        data={data}
+        options={dataTreeOptions}
       />
+
     );
     i += 1;
   });
