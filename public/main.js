@@ -21,6 +21,13 @@ function createWindow() {
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
 
+  const path = require('path')
+  const os = require('os')
+
+  BrowserWindow.addDevToolsExtension(
+    path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0'),
+  );
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
