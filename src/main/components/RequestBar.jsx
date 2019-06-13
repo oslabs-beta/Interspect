@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HeaderBar from './HeaderBar.jsx';
 import Button from './Button.jsx';
 import Input from './InlineInput.jsx';
+import Form from './InlineForm.jsx';
 
 const RequestBar = (props) => {
   const {
@@ -62,7 +63,7 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <form onSubmit={sendFetch} >
+      <Form onSubmit={sendFetch} >
         {
           (SourceOrDest === 'source')
           && <select name='method' id='fetchTypeInput' multiple={false} value={selected}
@@ -79,10 +80,10 @@ const RequestBar = (props) => {
             <option value='PUT'>PUT</option>
           </select>
         }
-        <Input name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
+        <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button type='submit' value='Submit' variation={'positive'}>Send</Button>
         {/* <button type='submit' value='Submit'>Submit</button> */}
-      </form>
+      </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
     </div>
   );

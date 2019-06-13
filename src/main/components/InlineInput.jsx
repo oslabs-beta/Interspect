@@ -10,6 +10,10 @@ const InlineInput = styled.input`
   &:focus {
     outline: none;
   }
+  &::placeholder {
+    color: #BCC1C2;
+    font-size: 0.9em;
+  }
 `;
 
 export default InlineInput;
