@@ -8,7 +8,9 @@ import StyledPanel from './StyledPanel.jsx';
 // will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
-  const { treeCount, updateTreeCount, data, setTests, tests } = props;
+  const { 
+  treeCount, updateTreeCount, data, setTests, tests 
+  } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
     onAdd: true,
