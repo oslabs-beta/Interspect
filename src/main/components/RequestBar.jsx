@@ -43,8 +43,6 @@ const RequestBar = (props) => {
       const sendingObj = { method: selected, mode: 'cors' };
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
-      console.log('val of obj', sendingObj);
-
       fetch(uri, sendingObj)
         .then(res => res.json())
         .then(res => setData(res));
