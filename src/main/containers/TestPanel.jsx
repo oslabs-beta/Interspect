@@ -10,7 +10,7 @@ import DataTree from '../components/DataTree.jsx';
 
 const TestPanel = (props) => {
   const {
-    tests, active, treeCount, updateTreeCount, data, setTests, onClickFunction
+    tests, active, treeCount, updateTreeCount, data, setTests, onClickFunction, setTestsDiff, testsDiff, setCursor
   } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
@@ -20,41 +20,53 @@ const TestPanel = (props) => {
     enableClipboard: false,
   };
   
-  
-  function saveUpdatedTree(newData, arrayPosition) {
+  function saveUpdatedTree(newData, arrayPosition, newValue, name, namespace) {
     const testsClone = [...tests];
+    const testsDiffClone = [...testsDiff];
     testsClone[arrayPosition].payload = newData;
+    console.log('testsDiffClone', testsDiffClone);
+    console.log('testsDiffClone[arrayPosition]', testsDiffClone[arrayPosition]);
+
+    if (!testsDiffClone[arrayPosition][namespace]) {
+      testsDiffClone[arrayPosition][namespace] = {};
+    }
+    testsDiffClone[arrayPosition][namespace][name] = newValue;
+
     setTests(testsClone);
+    setTestsDiff(testsDiffClone);
   }
-    
+
   const testsList = [];
   let i = 0;
   tests.forEach((test) => {
 
     testsList.push(
       <DataTree
-          treeCount={i}
-          key={`TestPanelDataTree ${i}`}
-          data={test.payload}
-          options={dataTreeOptions}
-          saveUpdatedTree={saveUpdatedTree}
+        treeCount={i}
+        key={`TestPanelDataTree ${i}`}
+        data={test.payload}
+        options={dataTreeOptions}
+        saveUpdatedTree={saveUpdatedTree}
       />,
     );
     i += 1;
   });
 
   function createNewTest() {
-  const testsClone = [...tests];
+    const testsClone = [...tests];
+    const testsDiffClone = [...testsDiff];
     testsClone.push({ payload: data, status: '' });
+    testsDiffClone.push({});
   
-  // the ID of the test will be the same as the position in the array
-  setTestsListCounter(testsListCounter + 1);
-  setTests(testsClone);
+    // the ID of the test will be the same as the position in the array
+    setTestsListCounter(testsListCounter + 1);
+    setTests(testsClone);
+    setTestsDiff(testsDiffClone);
   }
 
   if (active) {
     return (
-        <StyledPanel active={active}>
+        <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
           <div>
             {data && <h3>Server Response</h3>}
             <DataCanvas
@@ -71,11 +83,13 @@ const TestPanel = (props) => {
   }
 
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
-      <h1>Test</h1>
+    <StyledPanel
+      onClick={onClickFunction}
+      active={active}
+      onMouseOver={() => setCursor('pointer')} >
+        <h1>Test</h1>
     </StyledPanel>
   )
-
 };
 
 export default TestPanel;

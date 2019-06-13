@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction
+    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor
   } = props;
 
   const dataTreeOptions = {
@@ -17,7 +17,7 @@ const SourcePanel = (props) => {
 
   if (active) {
     return (
-      <StyledPanel active={active}>
+      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
         <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
         <DataCanvas
           treeCount={treeCount}
@@ -30,7 +30,11 @@ const SourcePanel = (props) => {
   }
 
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
+    <StyledPanel
+      onClick={onClickFunction}
+      active={active}
+      onMouseOver={() => setCursor('pointer')} 
+    >
       <h1>Source</h1>
     </StyledPanel>
   );

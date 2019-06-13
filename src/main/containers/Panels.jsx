@@ -10,15 +10,18 @@ const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [treeCount, setTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
+  const [tests, setTests] = useState([]);
+  const [testsDiff, setTestsDiff] = useState([ {} ]);
+  const [cursor, setCursor] = useState('default');
 
   const PanelsWrapper = styled.section`
     display: flex;
     height: 80vh;
+    cursor: ${cursor};
   `;
   // Tests are objects with
   // { payload: JSON that represents test,
   //   status: initial value of '' };
-  const [tests, setTests] = useState([]);
 
   return (
     <PanelsWrapper>
@@ -29,7 +32,9 @@ const Panels = () => {
         data={data}
         setData={setData}
         setTests={setTests}
-        active={(activePanel === 'source')} />
+        active={(activePanel === 'source')}
+        setCursor={setCursor} />
+
       <TestPanel 
         onClickFunction={() => setActivePanel('test')}
         treeCount={treeCount}
@@ -37,12 +42,19 @@ const Panels = () => {
         data={data}
         setTests={setTests}
         tests={tests}
-        active={(activePanel === 'test')} />
+        active={(activePanel === 'test')}
+        setCursor={setCursor}
+        testsDiff={testsDiff}
+        setTestsDiff={setTestsDiff} />
+
       <DestinationPanel 
         onClickFunction={() => setActivePanel('dest')}
         tests={tests}
         setTests={setTests}
-        active={(activePanel === 'dest')} />
+        active={(activePanel === 'dest')}
+        setCursor={setCursor}
+        testsDiff={testsDiff} />
+
     </PanelsWrapper>
   );
 };
