@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 import DataCanvas from './DataCanvas.jsx';
 import RequestBar from '../components/RequestBar.jsx';
-import { smallData } from '../dummyData';
+import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
-  const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState(undefined);
-
-  const { treeCount, updateTreeCount } = props;
+  const {
+    treeCount, updateTreeCount, data, setData,
+  } = props;
+  
+  const dataTreeOptions = {
+    onAdd: false,
+    onEdit: false,
+    onDelete: false,
+    enableClipboard: false,
+  };
 
   return (
-    <section className='panel'>
+    <StyledPanel>
       <h1>Data source panel</h1>
       <RequestBar SourceOrDest='source' setData={setData}/>
-      <DataCanvas treeCount={treeCount} updateTreeCount={updateTreeCount} data={data}/>
-    </section>
+      <DataCanvas 
+        treeCount={treeCount} 
+        updateTreeCount={updateTreeCount} 
+        data={data}
+        options={dataTreeOptions}
+      />
+    </StyledPanel>
   );
 };
 

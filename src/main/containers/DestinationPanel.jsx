@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
+import ResponseComponent from '../components/ResponseComponent.jsx';
+import StyledPanel from './StyledPanel.jsx';
 
-const DestinationPanel = () => {
-  const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState({});
+const DestinationPanel = (props) => {
+  const { tests, setTests } = props;
+
+  // will be props.testBodies but not connected yet :D
+  const responseComponentsList = [];
+  for (let i = 0; i < tests.length; i += 1) {
+    responseComponentsList.push(
+      <ResponseComponent
+        status={tests[i].status}
+        payload={tests[i].payload}
+
+        // fix later
+        key={tests[i].payload}
+      />,
+    );
+  }
 
   return (
-    <section className='panel'>
-    <p>Data destination panel</p>
-    <RequestBar SourceOrDest='dest' requestBody='' />
-    </section>
+    <StyledPanel>
+      <p> Data destination panel </p>
+      <RequestBar
+        SourceOrDest='dest'
+        tests={tests}
+        setTests={setTests}
+      />
+
+      {responseComponentsList}
+    </StyledPanel>
   );
 };
 
