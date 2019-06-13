@@ -60,6 +60,7 @@ const TestPanel = (props) => {
     // the ID of the test will be the same as the position in the array
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
+    setTestsDiff(testsDiffClone);
   }
 
   if (active) {
