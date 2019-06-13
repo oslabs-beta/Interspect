@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import HeaderBar from './HeaderBar.jsx';
+import Form from './InlineForm.jsx';
+import Select from './InlineSelect.jsx';
+import Input from './InlineInput.jsx';
+import Button from './Button.jsx';
 
 const RequestBar = (props) => {
   const {
@@ -9,6 +13,7 @@ const RequestBar = (props) => {
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
   const [uri, setUri] = useState('');
+  const [valid, setValid] = useState(false);
 
   // header info
   const [headerType, setHeaderType] = useState('Authorization');
@@ -20,10 +25,15 @@ const RequestBar = (props) => {
     if (name === 'method') setSelected(value);
     else if (name === 'uri') setUri(value);
 
-    // header info
+    // Header info
     if (name === 'Authentication') setHeaderType(value);
     if (name === 'headerKey') setHeaderKey(`Bearer ${value}`);
 
+    setValid(e.target.parentElement.reportValidity());
+  };
+
+  const handleInvalid = (e) => {
+    e.preventDefault();
   };
 
   const runTest = (link, sendingObj, testsClone, i) => {
@@ -36,8 +46,9 @@ const RequestBar = (props) => {
       .catch(error => console.log(error));
   };
 
-  function sendFetch(e) {
+  const sendFetch = (e) => {
     e.preventDefault();
+    if (!valid) return alert('Enter a valid URI');
 
     if (SourceOrDest === 'source') {
       const sendingObj = { method: selected, mode: 'cors' };
@@ -45,7 +56,10 @@ const RequestBar = (props) => {
 
       fetch(uri, sendingObj)
         .then(res => res.json())
-        .then(res => setData(res));
+        .then((res) => {
+          setTests([{ payload: res, status: '' }]);
+          setData(res);
+        });
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
@@ -56,30 +70,30 @@ const RequestBar = (props) => {
         runTest(uri, sendingObj, testsClone, i);
       }
     }
-  }
+  };
 
   return (
     <div>
-      <form onSubmit={sendFetch} >
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid}>
         {
           (SourceOrDest === 'source')
-          && <select name='method' id='fetchTypeInput' multiple={false} value={selected}
+          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
             onChange={handleChange} >
             <option value='GET'>GET</option>
-          </select>
+          </Select>
         }
         {
           (SourceOrDest === 'dest')
-          && <select name='method' id='fetchTypeInput' multiple={false} value={selected}
+          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
             onChange={handleChange} >
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
             <option value='PUT'>PUT</option>
-          </select>
+          </Select>
         }
-        <input name='uri' id='urlInput' type='url' onChange={handleChange}></input>
-        <button type='submit' value='Submit'>Submit</button>
-      </form>
+        <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
+        <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
+      </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
     </div>
   );

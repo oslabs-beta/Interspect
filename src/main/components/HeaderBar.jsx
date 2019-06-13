@@ -5,7 +5,6 @@ const HeaderBar = (props) => {
     header, authType, handleChange,
   } = props;
 
-  console.log(authType);
   return (
     <div>
       <p>Headers</p>
@@ -23,7 +22,6 @@ const HeaderBar = (props) => {
       </form>
     </div>
   );
-
 };
 
 export default HeaderBar;
