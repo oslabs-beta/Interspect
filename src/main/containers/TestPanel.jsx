@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 // import { largeData, smallData } from '../dummyData';
-import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import Button from '../components/Button.jsx';
+import DataTree from '../components/DataTree.jsx';
 
 // will need to get data from the get request to pass to the formatted view
 
@@ -63,7 +64,7 @@ const TestPanel = (props) => {
               updateTreeCount={updateTreeCount}
               options={dataTreeOptions}
             />
-            <button onClick={createNewTest}> New Test </button>
+            {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
           </div>
           
           {testsList}
