@@ -5,11 +5,12 @@ const HeaderBar = (props) => {
     header, authType, handleChange,
   } = props;
 
+  console.log(authType);
   return (
     <div>
       <p>Headers</p>
       <form>
-      <select name='header' id='headerTypeInput' multiple={false} value={header}
+      <select name='Authentication' id='headerTypeInput' multiple={false} value={header}
             onChange={handleChange} >
             <option value='Authorization'>Authorization</option>
             <option value='NONE'>none</option>
