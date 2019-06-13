@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData,
+    treeCount, updateTreeCount, data, setData, setTests,
   } = props;
 
   const dataTreeOptions = {
@@ -18,7 +18,7 @@ const SourcePanel = (props) => {
   return (
     <StyledPanel>
       <h1>Data source panel</h1>
-      <RequestBar SourceOrDest='source' setData={setData}/>
+      <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
       <DataCanvas
         treeCount={treeCount}
         updateTreeCount={updateTreeCount}
