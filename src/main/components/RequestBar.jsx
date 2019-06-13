@@ -21,7 +21,7 @@ const RequestBar = (props) => {
     else if (name === 'uri') setUri(value);
 
     // header info
-    if (name === 'header') setHeaderType(value);
+    if (name === 'Authentication') setHeaderType(value);
     if (name === 'headerKey') setHeaderKey(`Bearer ${value}`);
 
   };
