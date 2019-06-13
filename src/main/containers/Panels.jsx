@@ -13,6 +13,7 @@ const Panels = () => {
 
   const PanelsWrapper = styled.section`
     display: flex;
+    height: 80vh;
   `;
   // Tests are objects with
   // { payload: JSON that represents test,
