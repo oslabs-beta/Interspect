@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderBar from './HeaderBar.jsx';
+import Button from '../components/Button.jsx';
 
 const RequestBar = (props) => {
   const {
@@ -36,7 +37,7 @@ const RequestBar = (props) => {
       .catch(error => console.log(error));
   };
 
-  function sendFetch(e) {
+  const sendFetch = (e) => {
     e.preventDefault();
 
     if (SourceOrDest === 'source') {
@@ -78,7 +79,8 @@ const RequestBar = (props) => {
           </select>
         }
         <input name='uri' id='urlInput' type='url' onChange={handleChange}></input>
-        <button type='submit' value='Submit'>Submit</button>
+        <Button type='submit' value='Submit' variation={'positive'}>Send</Button>
+        {/* <button type='submit' value='Submit'>Submit</button> */}
       </form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
     </div>
