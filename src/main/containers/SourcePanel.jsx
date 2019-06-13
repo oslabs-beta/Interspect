@@ -18,7 +18,6 @@ const SourcePanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active}>
-        <h1>Data source panel</h1>
         <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
         <DataCanvas
           treeCount={treeCount}
@@ -32,7 +31,7 @@ const SourcePanel = (props) => {
 
   return (
     <StyledPanel onClick={onClickFunction} active={active}>
-      <h1>Data source panel</h1>
+      <h1>Source</h1>
     </StyledPanel>
   );
 };

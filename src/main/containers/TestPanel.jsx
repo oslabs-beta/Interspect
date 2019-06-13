@@ -54,11 +54,9 @@ const TestPanel = (props) => {
 
   if (active) {
     return (
-      
         <StyledPanel active={active}>
-          <h1>Test panel</h1>
           <div>
-            <p>Server Response:</p>
+            {data && <h3>Server Response</h3>}
             <DataCanvas
               data={data}
               updateTreeCount={updateTreeCount}
@@ -69,14 +67,12 @@ const TestPanel = (props) => {
           
           {testsList}
         </StyledPanel>
-      
-
     )
   }
 
   return (
     <StyledPanel onClick={onClickFunction} active={active}>
-      <h1>Test panel</h1>
+      <h1>Test</h1>
     </StyledPanel>
   )
 
