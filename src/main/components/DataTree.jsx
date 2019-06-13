@@ -3,7 +3,9 @@ import ReactJson from 'react-json-view';
 import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
-  const { treeCount, data, options, saveUpdatedTree } = props;
+  const { 
+  treeCount, data, options, saveUpdatedTree 
+  } = props;
   const {
     onAdd, onEdit, onDelete, enableClipboard,
   } = options;
