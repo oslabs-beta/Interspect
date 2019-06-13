@@ -21,19 +21,27 @@ const Panels = () => {
 
   return (
     <PanelsWrapper>
-      <SourcePanel treeCount={treeCount}
-                   updateTreeCount={setTreeCount}
-                   data={data}
-                   setData={setData}
-                   setTests={setTests} />
-      <TestPanel treeCount={treeCount}
-                 updateTreeCount={setTreeCount}
-                 data={data}
-                 setTests={setTests}
-                 tests={tests} />
-      <DestinationPanel
-                 tests={tests}
-                 setTests={setTests} />
+      <SourcePanel
+        onClickFunction={() => setActivePanel('source')}
+        treeCount={treeCount}
+        updateTreeCount={setTreeCount}
+        data={data}
+        setData={setData}
+        setTests={setTests}
+        active={(activePanel === 'source')} />
+      <TestPanel 
+        onClickFunction={() => setActivePanel('test')}
+        treeCount={treeCount}
+        updateTreeCount={setTreeCount}
+        data={data}
+        setTests={setTests}
+        tests={tests}
+        active={(activePanel === 'test')} />
+      <DestinationPanel 
+        onClickFunction={() => setActivePanel('dest')}
+        tests={tests}
+        setTests={setTests}
+        active={(activePanel === 'dest')} />
     </PanelsWrapper>
   );
 };
