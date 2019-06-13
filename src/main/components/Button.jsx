@@ -1,20 +1,30 @@
 import styled from 'styled-components';
 
+let backgroundColor;
+
 const Button = styled.button`
-  background-color: #80C1FF;
+  background-color: ${(props) => {
+    if (props.variation === 'positive') return '#49893E';
+    return '#1F4E7A';
+  }};
   border: none;
-  color: #0D273F;
-  border-radius: 5px;
+  color: ${(props) => {
+    if (props.variation === 'positive') return '#DEF0DB';
+    return '#D9EDF2';
+  }};
+  border-radius: 3px;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   font-size: 1em;
   font-weight: 500;
-  padding: 0.5em 1em;
+  padding: 0.25em 1em;
   transition: all 0.15s ease-in-out;
 
   :hover {
-    color: #D4E6F7;
+    background-color: ${(props) => {
+    if (props.variation === 'positive') return '#35612E';
+    return '#0D273F';
+  }};
     cursor: pointer;
-    background-color: #1F4E7A;
   }
 
   :active {
