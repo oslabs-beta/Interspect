@@ -10,13 +10,10 @@ const ResponseComponent = (props) => {
 
   return (
     <div>
-      <p>{`${checkmark} ' - ' ${status}`}</p>
-      <textarea
-        cols='50'
-        rows='5'
-        value={JSON.stringify(payload)}
-        readOnly={true}
-      />
+      <p>{`${checkmark}  -  ${status}`}</p>
+      <textarea cols='50' rows='5'>
+        {payload}
+      </textarea>
     </div>
   );
 };
