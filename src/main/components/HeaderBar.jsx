@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const HeaderBar = (props) => {
   const {
     header, authType, handleChange,
   } = props;
 
-
   return (
     <div>
-      <p>Header Bar</p>
+      <p>Headers</p>
       <form>
       <select name='header' id='headerTypeInput' multiple={false} value={header}
             onChange={handleChange} >
