@@ -15,7 +15,7 @@ const ResponseComponent = (props) => {
         cols='50'
         rows='5'
         value={JSON.stringify(payload)}
-        readOnly={true}  
+        readOnly={true}
       />
     </div>
   );

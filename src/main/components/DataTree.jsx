@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
-import JsonTree from '../lib/treeView/jsonTree';
 import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
@@ -9,12 +8,8 @@ const DataTree = (props) => {
     onAdd, onEdit, onDelete, enableClipboard,
   } = options;
 
-  const renderTree = (htmlElement) => {
-    const tree = JsonTree.create(data, htmlElement);
-  };
-
-  const changeObject = (val) => {
-    console.log(val);
+  const changeObject = (src) => {
+    saveUpdatedTree(src.updated_src, treeCount)
   };
 
   return (
@@ -24,12 +19,9 @@ const DataTree = (props) => {
         src={data}
         theme='bright:inverted'
         iconStyle='square'
-        onAdd={onAdd}
-        onEdit={(onEdit) ? (src) => {
-          console.log('src', src);
-          saveUpdatedTree(src.updated_src, treeCount) }
-          : false}
-        onDelete={onDelete}
+        onAdd={(onAdd) ? changeObject : false}
+        onEdit={(onEdit) ? changeObject : false}
+        onDelete={(onDelete) ? changeObject : false}
         enableClipboard={enableClipboard}
       />
     </section>

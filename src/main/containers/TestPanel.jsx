@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
-import { largeData, smallData } from '../dummyData';
-import TestComponent from '../components/TestComponent.jsx';
+// import { largeData, smallData } from '../dummyData';
 import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
 
@@ -11,7 +10,7 @@ const TestPanel = (props) => {
   const { treeCount, updateTreeCount, data, setTests, tests } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
-    onAdd: false,
+    onAdd: true,
     onEdit: true,
     onDelete: true,
     enableClipboard: false,
@@ -19,7 +18,6 @@ const TestPanel = (props) => {
 
   function saveUpdatedTree (newData, arrayPosition) {
     const testsClone = [...tests];
-    console.log('newData', newData);
     testsClone[arrayPosition].payload = newData;
     setTests(testsClone);
   };
@@ -27,16 +25,7 @@ const TestPanel = (props) => {
   const testsList = [];
   let i = 0;
   tests.forEach((test) => {
-    console.log('yo test here:', test);
     testsList.push(
-
-      // <TestComponent
-      //   data={test.payload}
-      //   // binding may be necessary 
-      //   saveTest={saveTest}
-      //   listPosition={i}
-      //   key={i}
-      // />
 
       <DataTree
         treeCount={i}
@@ -50,19 +39,11 @@ const TestPanel = (props) => {
     i += 1;
   });
 
-  function saveTest (newData, arrayPosition) {
-    const testsClone = [...tests];
-    testsClone[arrayPosition].payload = JSON.parse(newData);
-    setTests(testsClone);
-  };
-
   function createNewTest () {
     const testsClone = [...tests];
-    console.log('datahere', data);
     testsClone.push({ 'payload': data, status: '' });
 
-    // the ID of the TestComponent will be 
-    // the same as the position in the array 
+    // the ID of the test will be the same as the position in the array 
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
   };
@@ -77,10 +58,8 @@ const TestPanel = (props) => {
           updateTreeCount={updateTreeCount}
           options={dataTreeOptions}
         />
-        {/* <p>{((data) ? data.slice(150) : '')}</p> */}
         <button onClick={createNewTest}> New Test </button>
       </div>
-      {/* <TestComponent data={data} main={true} /> */}
 
       {testsList}
       {/* <DataTree data={largeData}/> */}
