@@ -4,7 +4,7 @@ import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
 
 const DestinationPanel = (props) => {
-  const { tests, setTests } = props;
+  const { tests, setTests, active, onClickFunction } = props;
 
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i += 1) {
@@ -19,16 +19,23 @@ const DestinationPanel = (props) => {
     );
   }
 
+  if (active) {
+    return (
+      <StyledPanel active={active}>
+        <h1>Data destination panel</h1>
+        <RequestBar
+          SourceOrDest='dest'
+          tests={tests}
+          setTests={setTests}
+        />
+  
+        {responseComponentsList}
+      </StyledPanel>
+    );
+  }
   return (
-    <StyledPanel>
-      <p> Data destination panel </p>
-      <RequestBar
-        SourceOrDest='dest'
-        tests={tests}
-        setTests={setTests}
-      />
-
-      {responseComponentsList}
+    <StyledPanel onClick={onClickFunction} active={active}>
+      <h1>Data destination panel</h1>
     </StyledPanel>
   );
 };
