@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // import { largeData, smallData } from '../dummyData';
 import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
+import StyledPanel from './StyledPanel.jsx';
 
 // will need to get data from the get request to pass to the formatted view
 
@@ -49,7 +50,7 @@ const TestPanel = (props) => {
   };
 
   return (
-    <section className='panel' >
+    <StyledPanel>
       <p>Test panel</p>
       <div>
         <p>Server Response:</p>
@@ -64,7 +65,7 @@ const TestPanel = (props) => {
       {testsList}
       {/* <DataTree data={largeData}/> */}
 
-    </section>
+    </StyledPanel>
   );
 };
 

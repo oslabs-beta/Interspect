@@ -16,7 +16,7 @@ const RequestBar = (props) => {
     else if (name === 'uri') setUri(value);
   };
 
-  function sendFetch(e) {
+  function sendFetch (e) {
     e.preventDefault();
 
     if (SourceOrDest === 'source') {
@@ -24,7 +24,10 @@ const RequestBar = (props) => {
 
       fetch(uri, sendingObj)
         .then(res => res.json())
-        .then(res => setData(res));
+        .then(res => {
+          setTests([{ payload: res, status: '' }]);
+          setData(res);
+        });
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
