@@ -6,7 +6,6 @@ import StyledPanel from './StyledPanel.jsx';
 const DestinationPanel = (props) => {
   const { tests, setTests } = props;
 
-  // will be props.testBodies but not connected yet :D
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i += 1) {
     responseComponentsList.push(
@@ -15,7 +14,7 @@ const DestinationPanel = (props) => {
         payload={tests[i].payload}
 
         // fix later
-        key={tests[i].payload}
+        key={`DestPanelTest ${i}`}
       />,
     );
   }
