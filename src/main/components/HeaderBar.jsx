@@ -5,7 +5,6 @@ const HeaderBar = (props) => {
     header, authType, handleChange,
   } = props;
 
-  console.log(authType);
   return (
     <div>
       <p>Headers</p>
