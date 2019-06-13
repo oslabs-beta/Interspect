@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
-import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
   const {
