@@ -15,7 +15,7 @@ const DestinationPanel = (props) => {
         payload={tests[i].payload}
 
         // fix later
-        key={tests[i].payload}
+        key={'DestPanelTest'+i}
       />,
     );
   }
