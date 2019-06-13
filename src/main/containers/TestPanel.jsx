@@ -68,17 +68,17 @@ const TestPanel = (props) => {
           
           {testsList}
         </StyledPanel>
-      
-
     )
   }
 
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
-      <h1>Test panel</h1>
+    <StyledPanel
+      onClick={onClickFunction}
+      active={active}
+      onMouseOver={() => setCursor('pointer')} >
+        <h1>Test panel</h1>
     </StyledPanel>
   )
-
 };
 
 export default TestPanel;

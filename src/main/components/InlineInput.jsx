@@ -8,6 +8,7 @@ const InlineInput = styled.input`
   font-size: 1em;
   line-height: 1em;
   padding: 0.825em;
+  width: 100%;
   &:focus {
     outline: none;
   }

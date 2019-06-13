@@ -31,7 +31,11 @@ const SourcePanel = (props) => {
   }
 
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
+    <StyledPanel
+      onClick={onClickFunction}
+      active={active}
+      onMouseOver={() => setCursor('pointer')} 
+    >
       <h1>Data source panel</h1>
     </StyledPanel>
   );

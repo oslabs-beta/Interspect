@@ -4,8 +4,7 @@ import Panels from './Panels.jsx';
 
 const App = () => (
    <div>
-      <h1>Hello world!! From REACT SIDE</h1>
-      <h2>Welcome MIME team</h2>
+      <h1>An Open-Source API Data Mocking Tool</h1>
       <Panels/>
    </div>
 );
