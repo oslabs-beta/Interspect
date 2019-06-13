@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests
+    treeCount, updateTreeCount, data, setData, setTests,
   } = props;
 
   const dataTreeOptions = {
