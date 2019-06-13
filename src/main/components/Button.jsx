@@ -1,20 +1,36 @@
 import styled from 'styled-components';
 
+let backgroundColor;
+
 const Button = styled.button`
-  background-color: #80C1FF;
+  background-color: ${(props) => {
+    if (!props.enabled) return '#BCC1C2';
+    if (props.variation === 'positive') return '#49893E';
+    return '#1F4E7A';
+  }};
   border: none;
-  color: #0D273F;
-  border-radius: 5px;
+  color: ${(props) => {
+    if (!props.enabled) return '#555B5E';
+    if (props.variation === 'positive') return '#DEF0DB';
+    return '#D9EDF2';
+  }};
+  border-radius: 3px;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   font-size: 1em;
   font-weight: 500;
-  padding: 0.5em 1em;
+  padding: 0.25em 1em;
   transition: all 0.15s ease-in-out;
 
   :hover {
-    color: #D4E6F7;
-    cursor: pointer;
-    background-color: #1F4E7A;
+    background-color: ${(props) => {
+    if (!props.enabled) return '#BCC1C2';
+    if (props.variation === 'positive') return '#35612E';
+    return '#0D273F';
+  }};
+    cursor: ${(props) => {
+    if (!props.enabled) return 'not-allowed';
+    return 'pointer';
+  }};
   }
 
   :active {
@@ -25,8 +41,11 @@ const Button = styled.button`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 1px 2px #96C1E9;
-  }
+    box-shadow: ${(props) => {
+    if (!props.enabled) return '0 0 1px 2px #949C9E';
+    if (props.variation === 'positive') return '0 0 1px 2px #DEF0DB';
+    return '0 0 1px 2px #96C1E9';
+  }}
 `;
 
 export default Button;

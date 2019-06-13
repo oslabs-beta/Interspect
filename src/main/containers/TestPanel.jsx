@@ -29,9 +29,8 @@ const TestPanel = (props) => {
   const testsList = [];
   let i = 0;
   tests.forEach((test) => {
-    console.log('test'+i, test.payload[0]);
 
-    testsList.push(  
+    testsList.push(
       <DataTree
           treeCount={i}
           key={`TestPanelDataTree ${i}`}
@@ -57,7 +56,7 @@ const TestPanel = (props) => {
       
         <StyledPanel active={active}>
           <h1>Test panel</h1>
-            <div>
+          <div>
             <p>Server Response:</p>
             <DataCanvas
               data={data}
@@ -65,7 +64,7 @@ const TestPanel = (props) => {
               options={dataTreeOptions}
             />
             <button onClick={createNewTest}> New Test </button>
-            </div>
+          </div>
           
           {testsList}
         </StyledPanel>
