@@ -36,7 +36,7 @@ const RequestBar = (props) => {
       .catch(error => console.log(error));
   };
 
-  function sendFetch (e) {
+  function sendFetch(e) {
     e.preventDefault();
 
     if (SourceOrDest === 'source') {
@@ -45,7 +45,7 @@ const RequestBar = (props) => {
 
       fetch(uri, sendingObj)
         .then(res => res.json())
-        .then(res => {
+        .then((res) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
