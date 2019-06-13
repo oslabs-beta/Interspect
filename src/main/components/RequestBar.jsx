@@ -34,7 +34,7 @@ const RequestBar = (props) => {
 
   const handleInvalid = (e) => {
     e.preventDefault();
-  }
+  };
 
   const runTest = (link, sendingObj, testsClone, i) => {
     const test = testsClone;
@@ -67,7 +67,7 @@ const RequestBar = (props) => {
         runTest(uri, sendingObj, testsClone, i);
       }
     }
-  }
+  };
 
   return (
     <div>
@@ -90,7 +90,6 @@ const RequestBar = (props) => {
         }
         <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
-        {/* <button type='submit' value='Submit'>Submit</button> */}
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
     </div>

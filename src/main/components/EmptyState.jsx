@@ -12,7 +12,7 @@ const EmptyState = styled.section`
     text-align: center;
   }
   p {
-    color: #555B5E;
+    color: #949C9E;
     font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
     margin-bottom: 2em;
