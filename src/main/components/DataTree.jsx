@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
-import '../lib/treeView/jsonTree.css';
 
 const DataTree = (props) => {
-  const { 
-  treeCount, data, options, saveUpdatedTree 
+  const {
+    treeCount, data, options, saveUpdatedTree,
   } = props;
   const {
     onAdd, onEdit, onDelete, enableClipboard,
   } = options;
 
   const changeObject = (src) => {
-    saveUpdatedTree(src.updated_src, treeCount)
+    saveUpdatedTree(src.updated_src, treeCount);
   };
 
   return (

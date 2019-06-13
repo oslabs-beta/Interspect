@@ -17,7 +17,7 @@ const Panels = () => {
   // Tests are objects with
   // { payload: JSON that represents test,
   //   status: initial value of '' };
-  const [tests, setTests] = useState([]); 
+  const [tests, setTests] = useState([]);
 
   return (
     <PanelsWrapper>

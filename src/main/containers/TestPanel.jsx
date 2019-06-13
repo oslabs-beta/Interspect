@@ -8,8 +8,8 @@ import StyledPanel from './StyledPanel.jsx';
 // will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
-  const { 
-  treeCount, updateTreeCount, data, setTests, tests 
+  const {
+    treeCount, updateTreeCount, data, setTests, tests,
   } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
@@ -19,11 +19,11 @@ const TestPanel = (props) => {
     enableClipboard: false,
   };
 
-  function saveUpdatedTree (newData, arrayPosition) {
+  function saveUpdatedTree(newData, arrayPosition) {
     const testsClone = [...tests];
     testsClone[arrayPosition].payload = newData;
     setTests(testsClone);
-  };
+  }
 
   const testsList = [];
   let i = 0;
@@ -34,24 +34,23 @@ const TestPanel = (props) => {
 
       <DataTree
         treeCount={i}
-        key={'TestPanelDataTree' + i}
+        key={`TestPanelDataTree ${i}`}
         data={test.payload}
         options={dataTreeOptions}
         saveUpdatedTree={saveUpdatedTree}
-      />
-
+      />,
     );
     i += 1;
   });
 
-  function createNewTest () {
+  function createNewTest() {
     const testsClone = [...tests];
-    testsClone.push({ 'payload': data, status: '' });
+    testsClone.push({ payload: data, status: '' });
 
-    // the ID of the test will be the same as the position in the array 
+    // the ID of the test will be the same as the position in the array
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
-  };
+  }
 
   return (
     <StyledPanel>
