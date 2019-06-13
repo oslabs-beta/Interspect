@@ -28,12 +28,14 @@ const TestPanel = (props) => {
   const testsList = [];
   let i = 0;
   tests.forEach((test) => {
+    console.log('test'+i, test.payload[0]);
+
     testsList.push(
 
       <DataTree
         treeCount={i}
         key={'TestPanelDataTree' + i}
-        data={data}
+        data={test.payload}
         options={dataTreeOptions}
         saveUpdatedTree={saveUpdatedTree}
       />

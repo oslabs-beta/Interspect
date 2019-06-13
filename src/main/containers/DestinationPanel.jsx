@@ -15,7 +15,7 @@ const DestinationPanel = (props) => {
         payload={tests[i].payload}
 
         // fix later
-        key={JSON.stringify(tests[i].payload)}
+        key={'DestPanelTest'+i}
       />,
     );
   }
