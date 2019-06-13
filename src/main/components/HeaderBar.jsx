@@ -1,4 +1,7 @@
 import React from 'react';
+import Form from './InlineForm.jsx';
+import Select from './InlineSelect.jsx';
+import Input from './InlineInput.jsx';
 
 const HeaderBar = (props) => {
   const {
@@ -7,19 +10,19 @@ const HeaderBar = (props) => {
 
   return (
     <div>
-      <p>Headers</p>
-      <form>
-      <select name='Authentication' id='headerTypeInput' multiple={false} value={header}
+      {/* <p>Headers</p> */}
+      <Form bordered={false}>
+      <Select name='Authentication' id='headerTypeInput' multiple={false} value={header}
             onChange={handleChange} >
             <option value='Authorization'>Authorization</option>
             <option value='NONE'>none</option>
-          </select>
-          <select name='authType' id='typeInput' multiple={false} value={authType}
+          </Select>
+          <Select name='authType' id='typeInput' multiple={false} value={authType}
             onChange={handleChange} >
             <option value={authType}>{authType}</option>
-          </select>
-          <input name='headerKey' id='headerInput' type='text' onChange={handleChange}></input>
-      </form>
+          </Select>
+          <Input bordered={false} name='headerKey' id='headerInput' type='text' onChange={handleChange}></Input>
+      </Form>
     </div>
   );
 };
