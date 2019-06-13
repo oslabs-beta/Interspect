@@ -13,6 +13,7 @@ const RequestBar = (props) => {
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
   const [uri, setUri] = useState('');
+  const [valid, setValid] = useState(false);
 
   // header info
   const [headerType, setHeaderType] = useState('Authorization');
@@ -24,11 +25,16 @@ const RequestBar = (props) => {
     if (name === 'method') setSelected(value);
     else if (name === 'uri') setUri(value);
 
-    // header info
+    // Header info
     if (name === 'Authentication') setHeaderType(value);
     if (name === 'headerKey') setHeaderKey(`Bearer ${value}`);
 
+    setValid(e.target.parentElement.reportValidity());
   };
+
+  const handleInvalid = (e) => {
+    e.preventDefault();
+  }
 
   const runTest = (link, sendingObj, testsClone, i) => {
     const test = testsClone;
@@ -42,6 +48,7 @@ const RequestBar = (props) => {
 
   const sendFetch = (e) => {
     e.preventDefault();
+    if (!valid) return alert('Enter a valid URI');
 
     if (SourceOrDest === 'source') {
       const sendingObj = { method: selected, mode: 'cors' };
@@ -64,7 +71,7 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} >
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid}>
         {
           (SourceOrDest === 'source')
           && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
@@ -82,7 +89,7 @@ const RequestBar = (props) => {
           </Select>
         }
         <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
-        <Button type='submit' value='Submit' variation={'positive'}>Send</Button>
+        <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
         {/* <button type='submit' value='Submit'>Submit</button> */}
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>

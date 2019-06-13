@@ -4,11 +4,13 @@ let backgroundColor;
 
 const Button = styled.button`
   background-color: ${(props) => {
+    if (!props.enabled) return '#BCC1C2';
     if (props.variation === 'positive') return '#49893E';
     return '#1F4E7A';
   }};
   border: none;
   color: ${(props) => {
+    if (!props.enabled) return '#555B5E';
     if (props.variation === 'positive') return '#DEF0DB';
     return '#D9EDF2';
   }};
@@ -21,10 +23,14 @@ const Button = styled.button`
 
   :hover {
     background-color: ${(props) => {
+    if (!props.enabled) return '#BCC1C2';
     if (props.variation === 'positive') return '#35612E';
     return '#0D273F';
   }};
-    cursor: pointer;
+    cursor: ${(props) => {
+    if (!props.enabled) return 'not-allowed';
+    return 'pointer';
+  }};
   }
 
   :active {
@@ -35,8 +41,11 @@ const Button = styled.button`
 
   :focus {
     outline: 0;
-    box-shadow: 0 0 1px 2px #96C1E9;
-  }
+    box-shadow: ${(props) => {
+    if (!props.enabled) return '0 0 1px 2px #949C9E';
+    if (props.variation === 'positive') return '0 0 1px 2px #DEF0DB';
+    return '0 0 1px 2px #96C1E9';
+  }}
 `;
 
 export default Button;
