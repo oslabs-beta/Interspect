@@ -28,10 +28,8 @@ const TestPanel = (props) => {
   const testsList = [];
   let i = 0;
   tests.forEach((test) => {
-    console.log('test'+i, test.payload[0]);
 
     testsList.push(
-
       <DataTree
         treeCount={i}
         key={`TestPanelDataTree ${i}`}
@@ -64,10 +62,7 @@ const TestPanel = (props) => {
         />
         <button onClick={createNewTest}> New Test </button>
       </div>
-
       {testsList}
-      {/* <DataTree data={largeData}/> */}
-
     </StyledPanel>
   );
 };
