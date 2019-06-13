@@ -6,7 +6,7 @@ const DataCanvas = (props) => {
   const {
     data, treeCount, updateTreeCount, options,
   } = props;
-  // const { onAdd, onEdit, onDelete, enableClipboard } = options;
+
   // Display empty state for no data
   if (!data) {
     return (
