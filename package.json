@@ -8,7 +8,7 @@
     "start": "ELECTRON_IS_DEV=0 electron .",
     "build": "webpack  --mode production",
     "dev": "webpack-dev-server --watch --hot --inline --mode development",
-    "lint": "npx eslint . --fix --quiet"
+    "lint": "npx eslint '**/*.{tsx,ts,js,jsx}' --fix --quiet"
   },
   "repository": {
     "type": "git",
