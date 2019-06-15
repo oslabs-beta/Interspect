@@ -8,6 +8,11 @@
       "padded-blocks": 0,
       "import/no-extraneous-dependencies":0,
       "no-unused-vars": 0
-  }
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+}
 
 }
