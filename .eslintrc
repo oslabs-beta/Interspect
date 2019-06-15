@@ -1,5 +1,6 @@
 {
   "extends": "airbnb-base",
+  "parser": "babel-eslint",
   "rules": {
       "no-console": 0,
       "consistent-return": 0,
