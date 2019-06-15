@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    tests, setTests, active, onClickFunction, testsDiff,
+    tests, setTests, active, onClickFunction, testsDiff, setCursor,
   } = props;
 
   const responseComponentsList = [];

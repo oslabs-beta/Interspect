@@ -9,7 +9,8 @@ import StyledPanel from './StyledPanel.jsx';
 
 const TestPanel = (props) => {
   const {
-    tests, active, treeCount, updateTreeCount, data, setTests, onClickFunction, setTestsDiff, testsDiff, setCursor
+    tests, active, treeCount, updateTreeCount, data,
+    setTests, onClickFunction, setTestsDiff, testsDiff, setCursor,
   } = props;
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
@@ -18,7 +19,7 @@ const TestPanel = (props) => {
     onDelete: true,
     enableClipboard: false,
   };
-  
+
   function saveUpdatedTree(newData, arrayPosition, newValue, name, namespace) {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
@@ -56,7 +57,7 @@ const TestPanel = (props) => {
     const testsDiffClone = [...testsDiff];
     testsClone.push({ payload: data, status: '' });
     testsDiffClone.push({});
-  
+
     // the ID of the test will be the same as the position in the array
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
@@ -76,10 +77,9 @@ const TestPanel = (props) => {
             />
             <button onClick={createNewTest}> New Test </button>
           </div>
-          
           {testsList}
         </StyledPanel>
-    )
+    );
   }
 
   return (
@@ -89,7 +89,7 @@ const TestPanel = (props) => {
       onMouseOver={() => setCursor('pointer')} >
         <h1>Test panel</h1>
     </StyledPanel>
-  )
+  );
 };
 
 export default TestPanel;
