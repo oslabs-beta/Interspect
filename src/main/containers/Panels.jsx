@@ -16,6 +16,7 @@ const Panels = () => {
 
   const PanelsWrapper = styled.section`
     display: flex;
+    height: 80vh;
     cursor: ${cursor};
   `;
   // Tests are objects with

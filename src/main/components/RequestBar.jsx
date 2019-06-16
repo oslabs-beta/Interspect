@@ -77,7 +77,7 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} onInvalid={handleInvalid}>
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered={true}>
         {
           (SourceOrDest === 'source')
           && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
@@ -94,7 +94,7 @@ const RequestBar = (props) => {
             <option value='PUT'>PUT</option>
           </Select>
         }
-        <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
+        <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
