@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
 import Input from './InlineInput.jsx';
 import Button from './Button.jsx';
+import { TestsContext } from './../testsContext.js';
+
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData, tests, setTests,
+    SourceOrDest, setData, 
   } = props;
-
+  const [tests, setTests] = useContext(TestsContext);
+  
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
   const [uri, setUri] = useState('');

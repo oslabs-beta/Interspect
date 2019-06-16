@@ -10,7 +10,6 @@ const DataTree = (props) => {
   } = options;
 
   const changeObject = (src) => {
-    console.log('source', src);
     saveUpdatedTree(src.updated_src, treeCount, src.new_value, src.name, src.namespace);
   };
 

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import { TestsContext } from './../testsContext.js';
+
 
 const DestinationPanel = (props) => {
-  const { tests, setTests, active, onClickFunction, testsDiff } = props;
+  const { active, onClickFunction, testsDiff, setCursor } = props;
+  const [tests, setTests] = useContext(TestsContext);
 
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i += 1) {
@@ -26,9 +29,8 @@ const DestinationPanel = (props) => {
         <RequestBar
           SourceOrDest='dest'
           tests={tests}
-          setTests={setTests}
         />
-  
+
         {responseComponentsList}
       </StyledPanel>
     );

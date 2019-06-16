@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import DataCanvas from './DataCanvas.jsx';
 import RequestBar from '../components/RequestBar.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import { TestsContext } from './../testsContext.js';
+
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor
+    treeCount, updateTreeCount, data, setData, active, onClickFunction, setCursor
   } = props;
+
+  const [tests, setTests] = useContext(TestsContext);
 
   const dataTreeOptions = {
     onAdd: false,
@@ -19,7 +23,7 @@ const SourcePanel = (props) => {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
         <h1>Data source panel</h1>
-        <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
+        <RequestBar SourceOrDest='source' setData={setData} />
         <DataCanvas
           treeCount={treeCount}
           updateTreeCount={updateTreeCount}

@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 // import { largeData, smallData } from '../dummyData';
 import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import { TestsContext } from './../testsContext.js';
 
 // will need to get data from the get request to pass to the formatted view
 
 const TestPanel = (props) => {
   const {
-    tests, active, treeCount, updateTreeCount, data, setTests, onClickFunction, setTestsDiff, testsDiff, setCursor
+    active, treeCount, updateTreeCount, data, onClickFunction, setTestsDiff, testsDiff, setCursor
   } = props;
+  
+  const [tests, setTests] = useContext(TestsContext);
+
   const [testsListCounter, setTestsListCounter] = useState(0);
   const dataTreeOptions = {
     onAdd: true,
@@ -23,8 +27,6 @@ const TestPanel = (props) => {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
     testsClone[arrayPosition].payload = newData;
-    console.log('testsDiffClone', testsDiffClone);
-    console.log('testsDiffClone[arrayPosition]', testsDiffClone[arrayPosition]);
 
     if (!testsDiffClone[arrayPosition][namespace]) {
       testsDiffClone[arrayPosition][namespace] = {};
