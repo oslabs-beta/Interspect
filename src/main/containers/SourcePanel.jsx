@@ -18,7 +18,6 @@ const SourcePanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-        <h1>Data source panel</h1>
         <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
         <DataCanvas
           treeCount={treeCount}
@@ -36,7 +35,7 @@ const SourcePanel = (props) => {
       active={active}
       onMouseOver={() => setCursor('pointer')} 
     >
-      <h1>Data source panel</h1>
+      <h1>Source</h1>
     </StyledPanel>
   );
 };

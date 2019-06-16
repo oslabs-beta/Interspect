@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 // import { largeData, smallData } from '../dummyData';
-import DataTree from '../components/DataTree.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import Button from '../components/Button.jsx';
+import DataTree from '../components/DataTree.jsx';
 
 // will need to get data from the get request to pass to the formatted view
 
@@ -66,15 +67,14 @@ const TestPanel = (props) => {
   if (active) {
     return (
         <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-          <h1>Test panel</h1>
           <div>
-            <p>Server Response:</p>
+            {data && <h3>Server Response</h3>}
             <DataCanvas
               data={data}
               updateTreeCount={updateTreeCount}
               options={dataTreeOptions}
             />
-            <button onClick={createNewTest}> New Test </button>
+            {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
           </div>
           
           {testsList}
@@ -87,7 +87,7 @@ const TestPanel = (props) => {
       onClick={onClickFunction}
       active={active}
       onMouseOver={() => setCursor('pointer')} >
-        <h1>Test panel</h1>
+        <h1>Test</h1>
     </StyledPanel>
   )
 };

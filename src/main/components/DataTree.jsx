@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
 
+const styles = {
+  borderRadius: `5px`,
+  fontFamily: `'IBM Plex Mono', monospace`,
+  fontSize: `90%`,
+  maxHeight: `250px`,
+  overflow: `auto`,
+  margin: `0.75em auto`,
+  padding: `1em`,
+}
+
 const DataTree = (props) => {
   const {
     treeCount, data, options, saveUpdatedTree,
@@ -15,12 +25,14 @@ const DataTree = (props) => {
   };
 
   return (
-    <section className='wrapper' id={`tree-${treeCount}`} style={{ maxHeight: '350px', overflow: 'auto' }} >
+    <section className='wrapper' id={`tree-${treeCount}`} >
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}
-        theme='bright:inverted'
-        iconStyle='square'
+        theme='chalk'
+        iconStyle='circle'
+        style={styles}
+        collapsed={2}
         onAdd={(onAdd) ? changeObject : false}
         onEdit={(onEdit) ? changeObject : false}
         onDelete={(onDelete) ? changeObject : false}

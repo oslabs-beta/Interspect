@@ -22,7 +22,6 @@ const DestinationPanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-        <h1>Data destination panel</h1>
         <RequestBar
           SourceOrDest='dest'
           tests={tests}
@@ -35,7 +34,7 @@ const DestinationPanel = (props) => {
   }
   return (
     <StyledPanel onClick={onClickFunction} active={active}>
-      <h1>Data destination panel</h1>
+      <h1>Destination</h1>
     </StyledPanel>
   );
 };
