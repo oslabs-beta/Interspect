@@ -10,7 +10,6 @@ const HeaderBar = (props) => {
 
   return (
     <div>
-      {/* <p>Headers</p> */}
       <Form bordered={false}>
       <Select name='Authentication' id='headerTypeInput' multiple={false} value={header}
             onChange={handleChange} >
