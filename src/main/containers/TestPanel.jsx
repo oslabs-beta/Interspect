@@ -13,8 +13,8 @@ const TestPanel = (props) => {
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
-
   const [testsListCounter, setTestsListCounter] = useState(0);
+
   const dataTreeOptions = {
     onAdd: true,
     onEdit: true,
@@ -23,31 +23,35 @@ const TestPanel = (props) => {
   };
 
   function saveUpdatedTree(newData, arrayPosition, newValue, name, namespace) {
+    // Update tests
     const testsClone = [...tests];
-    const testsDiffClone = [...testsDiff];
     testsClone[arrayPosition].payload = newData;
+    setTests(testsClone);
 
+    // Update tests differences/changes
+    const testsDiffClone = [...testsDiff];
+    // for deletion-- find better syntax
     if (!testsDiffClone[arrayPosition][namespace]) {
       testsDiffClone[arrayPosition][namespace] = {};
     }
     testsDiffClone[arrayPosition][namespace][name] = newValue;
-
-    setTests(testsClone);
     setTestsDiff(testsDiffClone);
   }
 
-  const testsList = [];
+  const testsDisplayList = [];
   let i = 0;
   tests.forEach((test) => {
-
-    testsList.push(
-      <DataTree
-        treeId={i}
-        key={`TestPanelDataTree ${i}`}
-        data={test.payload}
-        options={dataTreeOptions}
-        saveUpdatedTree={saveUpdatedTree}
-      />,
+    testsDisplayList.push(
+      <div>
+        <h3 id={'title_' + i}>NAME</h3>
+        <DataTree
+          treeId={i}
+          key={`TestPanelDataTree ${i}`}
+          data={test.payload}
+          options={dataTreeOptions}
+          saveUpdatedTree={saveUpdatedTree}
+        />
+      </div>,
     );
     i += 1;
   });
@@ -72,7 +76,7 @@ const TestPanel = (props) => {
             {datacanvas}
             {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
           </div>
-          {testsList}
+          {testsDisplayList}
         </StyledPanel>
     );
   }
