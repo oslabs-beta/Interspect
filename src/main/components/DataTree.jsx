@@ -31,7 +31,7 @@ const DataTree = (props) => {
         theme='chalk'
         iconStyle='circle'
         style={styles}
-        collapsed={3}
+        collapsed={2}
         onAdd={(onAdd) ? changeObject : false}
         onEdit={(onEdit) ? changeObject : false}
         onDelete={(onDelete) ? changeObject : false}
