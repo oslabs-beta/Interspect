@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    setData, active, onClickFunction, setCursor,
+    setData, active, onClickFunction, setCursor, datacanvas,
   } = props;
 
 
@@ -13,7 +13,7 @@ const SourcePanel = (props) => {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
         <RequestBar SourceOrDest='source' setData={setData} />
-        {props.datacanvas}
+        {datacanvas}
       </StyledPanel>
     );
   }
