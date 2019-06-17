@@ -42,7 +42,7 @@ const TestPanel = (props) => {
 
     testsList.push(
       <DataTree
-        treeCount={i}
+        treeId={i}
         key={`TestPanelDataTree ${i}`}
         data={test.payload}
         options={dataTreeOptions}

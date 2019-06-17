@@ -29,7 +29,7 @@ const Panels = () => {
 
   const datacanvas = (
     <DataCanvas
-      treeCount={'rawdata'}
+      treeId={'rawdata'}
       data={data}
       options={dataTreeOptions} />
   );

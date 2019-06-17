@@ -5,7 +5,7 @@ import EmptyState from '../components/EmptyState.jsx';
 
 const DataCanvas = (props) => {
   const {
-    data, treeCount, options,
+    data, treeId, options,
   } = props;
 
   // Display empty state for no data
@@ -19,10 +19,9 @@ const DataCanvas = (props) => {
     );
   }
   // Increment tree count and render data
-  // TreeCount will always be 0 or 1 -- fix
   return (
     <DataTree
-      treeCount={treeCount}
+      treeId={treeId}
       data={data}
       options={options}
     />
