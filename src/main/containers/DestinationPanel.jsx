@@ -4,7 +4,9 @@ import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
 
 const DestinationPanel = (props) => {
-  const { tests, setTests, active, onClickFunction, testsDiff } = props;
+  const {
+    tests, setTests, active, onClickFunction, testsDiff, setCursor,
+  } = props;
 
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i += 1) {
@@ -27,7 +29,6 @@ const DestinationPanel = (props) => {
           tests={tests}
           setTests={setTests}
         />
-  
         {responseComponentsList}
       </StyledPanel>
     );

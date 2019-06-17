@@ -236,20 +236,21 @@ const smallData = {
 };
 
 const testsData = [{
-    payload: JSON.stringify({ message: 'hello by joe', created_by: 'joe' }),
-    status: '',
-  },
-  {
-    payload: JSON.stringify({ message: 'hello by conor', created_by: 'conor' }),
-    status: '',
-  },
-  {
-    payload: JSON.stringify({ message: 'hello by joe2', created_by: 'joe' }),
-    status: '',
-  },
-  {
-    payload: JSON.stringify({ message: 'hello by conor2', created_by: 'conor' }),
-    status: '',
-  }];
+  payload: JSON.stringify({ message: 'hello by joe', created_by: 'joe' }),
+  status: '',
+},
+{
+  payload: JSON.stringify({ message: 'hello by conor', created_by: 'conor' }),
+  status: '',
+},
+{
+  payload: JSON.stringify({ message: 'hello by joe2', created_by: 'joe' }),
+  status: '',
+},
+{
+  payload: JSON.stringify({ message: 'hello by conor2', created_by: 'conor' }),
+  status: '',
+}];
+
 
 module.exports = { largeData, smallData, testsData };

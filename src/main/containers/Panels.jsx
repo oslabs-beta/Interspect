@@ -11,7 +11,7 @@ const Panels = () => {
   const [treeCount, setTreeCount] = useState(0);
   const [data, setData] = useState(undefined);
   const [tests, setTests] = useState([]);
-  const [testsDiff, setTestsDiff] = useState([ {} ]);
+  const [testsDiff, setTestsDiff] = useState([{}]);
   const [cursor, setCursor] = useState('default');
 
   const PanelsWrapper = styled.section`
@@ -35,7 +35,7 @@ const Panels = () => {
         active={(activePanel === 'source')}
         setCursor={setCursor} />
 
-      <TestPanel 
+      <TestPanel
         onClickFunction={() => setActivePanel('test')}
         treeCount={treeCount}
         updateTreeCount={setTreeCount}
@@ -47,7 +47,7 @@ const Panels = () => {
         testsDiff={testsDiff}
         setTestsDiff={setTestsDiff} />
 
-      <DestinationPanel 
+      <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         tests={tests}
         setTests={setTests}

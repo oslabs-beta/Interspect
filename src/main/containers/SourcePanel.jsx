@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor
+    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor,
   } = props;
 
   const dataTreeOptions = {
@@ -33,7 +33,7 @@ const SourcePanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')} 
+      onMouseOver={() => setCursor('pointer')}
     >
       <h1>Source</h1>
     </StyledPanel>
