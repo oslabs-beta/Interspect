@@ -12,6 +12,6 @@ const TestsProvider = (props) => {
       {props.children}
     </TestsContext.Provider>
   );
-}
+};
 
 export { TestsContext, TestsProvider };

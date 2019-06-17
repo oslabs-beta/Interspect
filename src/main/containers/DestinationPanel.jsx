@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
-import { TestsContext } from './../testsContext.js';
+import { TestsContext } from '../testsContext';
 
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, testsDiff, setCursor
+    active, onClickFunction, testsDiff, setCursor,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 

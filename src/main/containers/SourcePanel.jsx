@@ -5,7 +5,7 @@ import StyledPanel from './StyledPanel.jsx';
 
 const SourcePanel = (props) => {
   const {
-    setData, active, onClickFunction, setCursor
+    setData, active, onClickFunction, setCursor,
   } = props;
 
 

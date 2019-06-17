@@ -2,14 +2,14 @@ import React, { useState, useContext } from 'react';
 // sample JSON to pass down as props. Will be able to remove as the project evolves.
 // import { largeData, smallData } from '../dummyData';
 import StyledPanel from './StyledPanel.jsx';
-import { TestsContext } from './../testsContext.js';
+import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
 
 // will need to get data from the get request to pass to the formatted view
 const TestPanel = (props) => {
   const {
-    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor
+    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor,
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
@@ -52,7 +52,7 @@ const TestPanel = (props) => {
     i += 1;
   });
 
-  function createNewTest () {
+  function createNewTest() {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
     testsClone.push({ payload: data, status: '' });
