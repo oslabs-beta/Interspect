@@ -6,7 +6,9 @@ import { TestsContext } from './../testsContext.js';
 
 
 const DestinationPanel = (props) => {
-  const { active, onClickFunction, testsDiff, setCursor } = props;
+  const {
+    active, onClickFunction, testsDiff, setCursor
+  } = props;
   const [tests, setTests] = useContext(TestsContext);
 
   const responseComponentsList = [];
@@ -28,7 +30,6 @@ const DestinationPanel = (props) => {
         <RequestBar
           SourceOrDest='dest'
         />
-
         {responseComponentsList}
       </StyledPanel>
     );

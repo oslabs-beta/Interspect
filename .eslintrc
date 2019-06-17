@@ -1,12 +1,17 @@
 {
-  "extends": "airbnb-base",
-  "rules": {
-      "no-console": 0,
-      "consistent-return": 0,
-      "func-names": 0,
-      "padded-blocks": 0,
-      "import/no-extraneous-dependencies":0,
-      "no-unused-vars": 0
-  }
-
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "rules": {
+        "no-console": 0,
+        "consistent-return": 0,
+        "func-names": 0,
+        "padded-blocks": 0,
+        "import/no-extraneous-dependencies": 0,
+        "no-unused-vars": 0
+    },
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    }
 }

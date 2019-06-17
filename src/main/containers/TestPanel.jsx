@@ -22,7 +22,7 @@ const TestPanel = (props) => {
     enableClipboard: false,
   };
 
-  function saveUpdatedTree (newData, arrayPosition, newValue, name, namespace) {
+  function saveUpdatedTree(newData, arrayPosition, newValue, name, namespace) {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
     testsClone[arrayPosition].payload = newData;
@@ -66,16 +66,15 @@ const TestPanel = (props) => {
 
   if (active) {
     return (
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-        <div>
-          {data && <h3>Server Response</h3>}
-          {datacanvas}
-          {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
-        </div>
-
-        {testsList}
-      </StyledPanel>
-    )
+        <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+          <div>
+            {data && <h3>Server Response</h3>}
+            {datacanvas}
+            {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
+          </div>
+          {testsList}
+        </StyledPanel>
+    );
   }
 
   return (
@@ -85,7 +84,7 @@ const TestPanel = (props) => {
       onMouseOver={() => setCursor('pointer')} >
       <h1>Test</h1>
     </StyledPanel>
-  )
+  );
 };
 
 export default TestPanel;
