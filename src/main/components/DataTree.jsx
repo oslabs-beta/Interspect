@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactJson from 'react-json-view';
 
 const styles = {
-  borderRadius: `5px`,
-  fontFamily: `'IBM Plex Mono', monospace`,
-  fontSize: `90%`,
-  maxHeight: `250px`,
-  overflow: `auto`,
-  margin: `0.75em auto`,
-  padding: `1em`,
-}
+  borderRadius: '5px',
+  fontFamily: '\'IBM Plex Mono\', monospace',
+  fontSize: '90%',
+  maxHeight: '250px',
+  overflow: 'auto',
+  margin: '0.75em auto',
+  padding: '1em',
+};
 
 const DataTree = (props) => {
   const {

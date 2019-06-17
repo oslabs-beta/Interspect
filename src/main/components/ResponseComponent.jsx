@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import DataTree from './DataTree';
+import DataTree from './DataTree.jsx';
 
 const ResponseWrapper = styled.article`
   background-color: #F0F3F4;
@@ -12,7 +12,7 @@ const ResponseWrapper = styled.article`
   align-items: center;
   padding: 1em;
   margin-bottom: 1em;
-`
+`;
 
 const Icon = styled.span`
   font-family: 'SF Pro Text';
@@ -22,7 +22,7 @@ const Icon = styled.span`
     if (props.status >= 300) return '#E5544C;';
     return '#292F32;';
   }}
-`
+`;
 
 const Code = styled.textarea`
   background-color: #292F32;
@@ -34,14 +34,16 @@ const Code = styled.textarea`
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.725em;
   resize: none;
-`
+`;
 
 const Header = styled.header`
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-`
+`;
 
 const ResponseComponent = (props) => {
-  const { status, payload, treeCount, updateTreeCount } = props;
+  const {
+    status, payload, treeCount, updateTreeCount,
+  } = props;
 
   let checkmark = '􀍡';
   if (status >= 200 && status < 300) {
