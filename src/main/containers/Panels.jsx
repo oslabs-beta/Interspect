@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
-import { TestsProvider } from './../testsContext.js'
 // import { testsData } from '../dummyData';
 // import { smallData } from '../dummyData';
 
@@ -25,7 +24,6 @@ const Panels = () => {
 
   return (
     <PanelsWrapper>
-      <TestsProvider>
         <SourcePanel
           onClickFunction={() => setActivePanel('source')}
           treeCount={treeCount}
@@ -50,7 +48,6 @@ const Panels = () => {
           active={(activePanel === 'dest')}
           setCursor={setCursor}
           testsDiff={testsDiff} />
-      </TestsProvider>
     </PanelsWrapper>
   );
 };
