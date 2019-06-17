@@ -41,7 +41,7 @@ const Header = styled.header`
 `
 
 const ResponseComponent = (props) => {
-  const { status, payload, treeCount, updateTreeCount } = props;
+  const { status, payload } = props;
 
   let checkmark = '􀍡';
   if (status >= 200 && status < 300) {

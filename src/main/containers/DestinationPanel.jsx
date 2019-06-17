@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
@@ -27,7 +27,6 @@ const DestinationPanel = (props) => {
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
         <RequestBar
           SourceOrDest='dest'
-          tests={tests}
         />
 
         {responseComponentsList}

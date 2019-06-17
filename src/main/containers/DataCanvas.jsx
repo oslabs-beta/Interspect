@@ -19,6 +19,7 @@ const DataCanvas = (props) => {
     );
   }
   // Increment tree count and render data
+  // TreeCount will always be 0 or 1 -- fix
   if (!treeCount) updateTreeCount(1);
   return (
     <DataTree

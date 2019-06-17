@@ -11,7 +11,7 @@ import DataTree from '../components/DataTree.jsx';
 
 const TestPanel = (props) => {
   const {
-    active, treeCount, updateTreeCount, data, onClickFunction, setTestsDiff, testsDiff, setCursor
+    active, updateTreeCount, data, onClickFunction, setTestsDiff, testsDiff, setCursor
   } = props;
   
   const [tests, setTests] = useContext(TestsContext);
