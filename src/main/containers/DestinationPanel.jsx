@@ -4,14 +4,16 @@ import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
 
 const DestinationPanel = (props) => {
-  const { tests, setTests } = props;
+  const {
+    tests, setTests, active, onClickFunction, testsDiff, setCursor,
+  } = props;
 
   const responseComponentsList = [];
   for (let i = 0; i < tests.length; i += 1) {
     responseComponentsList.push(
       <ResponseComponent
         status={tests[i].status}
-        payload={tests[i].payload}
+        payload={testsDiff[i]}
 
         // fix later
         key={`DestPanelTest ${i}`}
@@ -19,16 +21,21 @@ const DestinationPanel = (props) => {
     );
   }
 
+  if (active) {
+    return (
+      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+        <RequestBar
+          SourceOrDest='dest'
+          tests={tests}
+          setTests={setTests}
+        />
+        {responseComponentsList}
+      </StyledPanel>
+    );
+  }
   return (
-    <StyledPanel>
-      <p> Data destination panel </p>
-      <RequestBar
-        SourceOrDest='dest'
-        tests={tests}
-        setTests={setTests}
-      />
-
-      {responseComponentsList}
+    <StyledPanel onClick={onClickFunction} active={active}>
+      <h1>Destination</h1>
     </StyledPanel>
   );
 };
