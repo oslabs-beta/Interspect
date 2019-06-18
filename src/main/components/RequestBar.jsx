@@ -5,6 +5,7 @@ import Select from './InlineSelect.jsx';
 import Input from './InlineInput.jsx';
 import Button from './Button.jsx';
 import { TestsContext } from '../testsContext';
+// import parser from 'xml2json';
 
 
 const RequestBar = (props) => {
@@ -60,9 +61,18 @@ const RequestBar = (props) => {
       fetch(uri, sendingObj)
         .then((res) => {
           console.log(res.headers.get('content-type'));
-          res.json();
+          if (res.headers.get('content-type') === 'application/xml; charset=UTF-8') {
+            console.log('XML');
+            // console.log(parser)
+            return res.text();
+          }
+          if (res.headers.get('content-type') === 'application/json; charset=UTF-8') {
+            console.log('JSON');
+            return res.json();
+          }
         })
         .then((res) => {
+          console.log('RES', res);
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
