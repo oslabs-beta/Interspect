@@ -8,7 +8,6 @@ import { TestsContext } from '../testsContext';
 const { app, BrowserWindow } = require('electron');
 
 
-
 const RequestBar = (props) => {
   const {
     SourceOrDest, setData, setFetchTimes

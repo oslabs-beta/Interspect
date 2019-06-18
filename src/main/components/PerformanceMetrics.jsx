@@ -12,13 +12,35 @@ const PerformanceWrapper = styled.div`
   padding: 1em;
   margin-bottom: 1em;
 `;
+// myBarChart = new Chart(ctx).Bar(data, options);
+const BarChart = require("react-chartjs").Bar;
 
 const PerformanceMetrics = (props) => {
   const { fetchTimes } = props;
+  const chartData = {
+    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(151,187,205,0.5)",
+        strokeColor: "rgba(151,187,205,0.8)",
+        highlightFill: "rgba(151,187,205,0.75)",
+        highlightStroke: "rgba(151,187,205,1)",
+        data: fetchTimes
+      }
+    ]
+  };
 
+  //      <h3>{JSON.stringify(fetchTimes)}</h3>
   return (
     <PerformanceWrapper>
-      <h3>{JSON.stringify(fetchTimes)}</h3>
+      
+      <div>
+        <h3>API Fetch Times{"\n"}</h3>
+      </div>
+      
+      <BarChart data={chartData} width="500" height="250" />
+      
     </PerformanceWrapper>
   );
 };
