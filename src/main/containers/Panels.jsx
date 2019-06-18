@@ -11,6 +11,8 @@ const Panels = () => {
   const [data, setData] = useState(undefined);
   const [testsDiff, setTestsDiff] = useState([{}]);
   const [cursor, setCursor] = useState('default');
+  const [getFetchTimes, setGetFetchTimes] = useState([]);
+  const [postFetchTimes, setPostFetchTimes] = useState([]);
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -41,6 +43,8 @@ const Panels = () => {
         datacanvas={datacanvas}
         setData={setData}
         active={(activePanel === 'source')}
+        fetchTimes={getFetchTimes}
+        setFetchTimes={setGetFetchTimes}
         setCursor={setCursor} />
 
       <TestPanel
@@ -56,6 +60,8 @@ const Panels = () => {
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
         setCursor={setCursor}
+        fetchTimes={postFetchTimes}
+        setFetchTimes={setPostFetchTimes}
         testsDiff={testsDiff} />
     </PanelsWrapper>
   );
