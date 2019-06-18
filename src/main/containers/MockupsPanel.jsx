@@ -86,7 +86,7 @@ const MockupsPanel = (props) => {
       onClick={onClickFunction}
       active={active}
       onMouseOver={() => setCursor('pointer')} >
-      <h1>Test</h1>
+      <h1>Mockups</h1>
     </StyledPanel>
   );
 };
