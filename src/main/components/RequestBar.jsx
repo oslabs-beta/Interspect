@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
 import Input from './InlineInput.jsx';
 import Button from './Button.jsx';
+import { TestsContext } from '../testsContext';
+
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData, tests, setTests,
+    SourceOrDest, setData,
   } = props;
+  const [tests, setTests] = useContext(TestsContext);
 
   const method = (SourceOrDest === 'dest' ? 'POST' : 'GET');
   const [selected, setSelected] = useState(method);
@@ -74,7 +77,7 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} onInvalid={handleInvalid}>
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered={true}>
         {
           (SourceOrDest === 'source')
           && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
@@ -91,7 +94,7 @@ const RequestBar = (props) => {
             <option value='PUT'>PUT</option>
           </Select>
         }
-        <Input placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
+        <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const EmptyState = styled.section`
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: middle;
-  align-items: center;
+  margin: 4em auto;
   h2 {
     color: #171A1C;
     font-family: 'P22 Mackinac Pro', 'Iowan Old Style', 'Palantino', Georgia, serif;
