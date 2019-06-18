@@ -58,7 +58,10 @@ const RequestBar = (props) => {
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
       fetch(uri, sendingObj)
-        .then(res => res.json())
+        .then((res) => {
+          console.log(res.headers.get('content-type'));
+          res.json();
+        })
         .then((res) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
@@ -97,7 +100,7 @@ const RequestBar = (props) => {
         <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
       </Form>
-      <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
+      <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
     </div>
   );
 };
