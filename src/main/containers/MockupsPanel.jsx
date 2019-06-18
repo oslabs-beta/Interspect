@@ -41,24 +41,32 @@ const MockupsPanel = (props) => {
 
   const Name = styled.h3`
     font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color:  #999;
+    color: #292F32;
   `;
 
   const Label = styled.label`
-    color:  #999;
+    color:  #BCC1C2;
     font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 0.9em;
-    text-transform: uppercase;
+    font-size: 0.75em;
+  `;
+
+  const NameInput = styled(Input)`
+    padding: 0;
+    padding-bottom: 0.25em;
   `;
 
   const ModForm = styled(Form)`
     flex-direction: column;
     align-items: flex-start;
+    margin: 1em auto;
   `;
 
   const MockupHeader = styled.header`
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    h3 {
+      margin-bottom: 0;
+    }
   `;
 
   const EditButton = styled.button`
@@ -67,13 +75,13 @@ const MockupsPanel = (props) => {
     color: #4299EA;
     font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     letter-spacing: 0.05em;
-    margin-left: 1em;
+    margin: 0 auto 0.25em 0.825em;
     text-transform: uppercase;
     opacity: ${props => (props.visible ? 1 : 0)};
-    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     &:hover {
       cursor: pointer;
-      opacity: 1;
+      /* opacity: 1; */
     }
     &:active, &:focus {
       color: #1F4E7A;
@@ -87,6 +95,9 @@ const MockupsPanel = (props) => {
     setTests(testsCopy);
   };
 
+  const [visibility, setVisibility] = useState(false);
+  // let visibility = false;
+
   const mockupsListDisplay = [];
   let i = 0;
   tests.forEach((test, index) => {
@@ -96,15 +107,15 @@ const MockupsPanel = (props) => {
         e.preventDefault();
         updateName(e.target.children[0].value, index);
       }}>
-      <Input name="name" placeholder={`Test #${i + 1}`} onBlur={e => updateName(e.target.value, index)}></Input>
+      <NameInput name="name" placeholder={`Test #${i + 1}`} onBlur={e => updateName(e.target.value, index)}></NameInput>
       <Label htmlFor="name">Name</Label>
     </ModForm>;
     mockupsListDisplay.push(
       <article className='mockup' key={`mockup-${i}`}>
-        {name 
-          ? <MockupHeader>
+        {name
+          ? <MockupHeader onMouseEnter={() => { setVisibility(true); }} onMouseLeave={() => setVisibility(false)}>
               <Name>{name}</Name>
-              <EditButton onClick={() => updateName('', index)}>Edit</EditButton>
+              <EditButton onClick={() => updateName('', index)} visible={visibility}>Edit</EditButton>
             </MockupHeader>
           : NameForm }
         <DataTree
