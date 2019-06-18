@@ -17,7 +17,7 @@ const DestinationPanel = (props) => {
       <ResponseComponent
         status={tests[i].status}
         payload={testsDiff[i]}
-
+        name={tests[i].name}
         // fix later
         key={`DestPanelTest ${i}`}
       />,
