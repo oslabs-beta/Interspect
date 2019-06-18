@@ -42,7 +42,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, treeCount, updateTreeCount,
+    status, payload,
   } = props;
 
   let checkmark = '􀍡';

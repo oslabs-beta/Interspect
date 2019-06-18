@@ -1,30 +1,19 @@
-import React, { useState } from 'react';
-import DataCanvas from './DataCanvas.jsx';
+import React from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import StyledPanel from './StyledPanel.jsx';
 
+
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor,
+    setData, active, onClickFunction, setCursor, datacanvas,
   } = props;
 
-  const dataTreeOptions = {
-    onAdd: false,
-    onEdit: false,
-    onDelete: false,
-    enableClipboard: false,
-  };
 
   if (active) {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-        <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
-        <DataCanvas
-          treeCount={treeCount}
-          updateTreeCount={updateTreeCount}
-          data={data}
-          options={dataTreeOptions}
-        />
+        <RequestBar SourceOrDest='source' setData={setData} />
+        {datacanvas}
       </StyledPanel>
     );
   }
