@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SourcePanel from './SourcePanel.jsx';
-import TestPanel from './TestPanel.jsx';
+import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 // import { smallData, testsData } from '../dummyData';
@@ -43,7 +43,7 @@ const Panels = () => {
         active={(activePanel === 'source')}
         setCursor={setCursor} />
 
-      <TestPanel
+      <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
         data={data}

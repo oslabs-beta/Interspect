@@ -7,7 +7,7 @@ import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
 
 // will need to get data from the get request to pass to the formatted view
-const TestPanel = (props) => {
+const MockupsPanel = (props) => {
   const {
     active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor,
   } = props;
@@ -91,4 +91,4 @@ const TestPanel = (props) => {
   );
 };
 
-export default TestPanel;
+export default MockupsPanel;
