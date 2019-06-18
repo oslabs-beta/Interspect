@@ -56,6 +56,31 @@ const MockupsPanel = (props) => {
     align-items: flex-start;
   `;
 
+  const MockupHeader = styled.header`
+    display: flex;
+    align-items: center;
+  `;
+
+  const EditButton = styled.button`
+    background: none;
+    border: none;
+    color: #4299EA;
+    font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.05em;
+    margin-left: 1em;
+    text-transform: uppercase;
+    opacity: ${props => (props.visible ? 1 : 0)};
+    transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+    &:active, &:focus {
+      color: #1F4E7A;
+      outline: 0;
+    }
+  `;
+
   const updateName = (name, index) => {
     const testsCopy = [...tests];
     testsCopy[index].name = name;
@@ -76,7 +101,12 @@ const MockupsPanel = (props) => {
     </ModForm>;
     mockupsListDisplay.push(
       <article className='mockup' key={`mockup-${i}`}>
-        {name ? <Name onClick={() => updateName('', index)}>{name}</Name> : NameForm }
+        {name 
+          ? <MockupHeader>
+              <Name>{name}</Name>
+              <EditButton onClick={() => updateName('', index)}>Edit</EditButton>
+            </MockupHeader>
+          : NameForm }
         <DataTree
           treeId={i}
           data={test.payload}
