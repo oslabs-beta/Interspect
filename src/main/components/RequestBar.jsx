@@ -69,15 +69,10 @@ const RequestBar = (props) => {
 
       fetch(uri, sendingObj)
         .then((res) => {
-          console.log(res.headers.get('content-type'));
           if (res.headers.get('content-type') === 'application/xml; charset=UTF-8') {
-            console.log('XML');
             return res.text().then(xml => parseXmlToJson(xml));
           }
-          if (res.headers.get('content-type') === 'application/json; charset=UTF-8') {
-            console.log('JSON');
-            return res.json();
-          }
+          return res.json();
         })
         .then((res) => {
           setTests([{ payload: res, status: '' }]);
