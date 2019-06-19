@@ -43,7 +43,7 @@ const TestPanel = (props) => {
   tests.forEach((test) => {
     testsDisplayList.push(
       <div>
-        <h3 id={'title_' + i}>NAME</h3>
+        <h3 id={`title_${i}`}>NAME</h3>
         <DataTree
           treeId={i}
           key={`TestPanelDataTree ${i}`}
