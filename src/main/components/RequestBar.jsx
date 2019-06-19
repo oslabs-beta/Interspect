@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { parseString } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
 import Input from './InlineInput.jsx';
 import Button from './Button.jsx';
 import { TestsContext } from '../testsContext';
-// import parser from 'xml2json';
 
 
 const RequestBar = (props) => {
@@ -50,6 +50,15 @@ const RequestBar = (props) => {
       .catch(error => console.log(error));
   };
 
+  const parseXmlToJson = (xml) => {
+    let json;
+    parseString(xml, (err, result) => {
+      json = result;
+      return result;
+    });
+    return json;
+  };
+
   const sendFetch = (e) => {
     e.preventDefault();
     if (!valid) return alert('Enter a valid URI');
@@ -63,8 +72,7 @@ const RequestBar = (props) => {
           console.log(res.headers.get('content-type'));
           if (res.headers.get('content-type') === 'application/xml; charset=UTF-8') {
             console.log('XML');
-            // console.log(parser)
-            return res.text();
+            return res.text().then(xml => parseXmlToJson(xml));
           }
           if (res.headers.get('content-type') === 'application/json; charset=UTF-8') {
             console.log('JSON');
@@ -72,7 +80,6 @@ const RequestBar = (props) => {
           }
         })
         .then((res) => {
-          console.log('RES', res);
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
