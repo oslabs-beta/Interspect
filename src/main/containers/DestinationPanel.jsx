@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
-
+import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, testsDiff, setCursor,
+    active, onClickFunction, testsDiff, fetchTimes, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -24,18 +24,27 @@ const DestinationPanel = (props) => {
     );
   }
 
+  const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
+
   if (active) {
     return (
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+      <StyledPanel active={active} style={{cursor: 'default'}}>
         <RequestBar
           SourceOrDest='dest'
+          fetchTimes={fetchTimes}
+          setFetchTimes={setFetchTimes}
         />
         {responseComponentsList}
+        { (fetchTimes.length > 0)
+          && (fetchTimes.reduce(sumReducer) > 0)
+          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
       </StyledPanel>
     );
   }
+
+  // only returned if not active
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
+    <StyledPanel onClick={onClickFunction} active={active} style={{cursor: 'pointer'}}>
       <h1>Destination</h1>
     </StyledPanel>
   );

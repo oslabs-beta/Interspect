@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { parseString } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
@@ -9,7 +10,7 @@ import { TestsContext } from '../testsContext';
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData,
+    SourceOrDest, setData, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -22,6 +23,7 @@ const RequestBar = (props) => {
   const [headerType, setHeaderType] = useState('Authorization');
   const [authType, setType] = useState('Bearer Token');
   const [headerKey, setHeaderKey] = useState('');
+  let now = new Date();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,14 +41,48 @@ const RequestBar = (props) => {
     e.preventDefault();
   };
 
+  // Extra fetches for performance metrics
+  const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  function getPerformanceMetricsData(getOrPost, sendingObj) {
+    let successfulFetchesCounter = 0;
+
+    function recordFetchTimes(i) {
+      fetch(uri, sendingObj)
+        .then(() => {
+          fetchTimesList[i] = new Date() - now;
+          successfulFetchesCounter += 1;
+          now = new Date();
+          if (successfulFetchesCounter === 9) {
+            setFetchTimes(fetchTimesList);
+          }
+        });
+    }
+
+    for (let i = 1; i < 10; i += 1) recordFetchTimes(i);
+  }
+
   const runTest = (link, sendingObj, testsClone, i) => {
     const test = testsClone;
+    now = new Date();
     fetch(link, sendingObj)
       .then((response) => {
+        fetchTimesList[0] = new Date() - now;
         test[i].status = response.status;
         if (i === test.length - 1) setTests(test);
+        now = new Date();
       })
       .catch(error => console.log(error));
+
+    getPerformanceMetricsData('post', sendingObj);
+  };
+
+  const parseXmlToJson = (xml) => {
+    let json;
+    parseString(xml, (err, result) => {
+      json = result;
+      return result;
+    });
+    return json;
   };
 
   const sendFetch = (e) => {
@@ -57,12 +93,25 @@ const RequestBar = (props) => {
       const sendingObj = { method: selected, mode: 'cors' };
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
+      now = new Date();
       fetch(uri, sendingObj)
-        .then(res => res.json())
+        .then((res) => {
+          fetchTimesList[0] = new Date() - now;
+          now = new Date();
+          const val = res.headers.get('content-type');
+          if (val === 'application/xml; charset=utf-8') {
+            console.log('in If');
+            return res.text().then(xml => parseXmlToJson(xml));
+          }
+          return res.json();
+        })
         .then((res) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
+
+      getPerformanceMetricsData('get', sendingObj);
+
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
@@ -97,7 +146,7 @@ const RequestBar = (props) => {
         <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
       </Form>
-      <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
+      <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
     </div>
   );
 };

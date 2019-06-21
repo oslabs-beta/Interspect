@@ -10,7 +10,7 @@ import Mockup from '../components/Mockup.jsx';
 // will need to get data from the get request to pass to the formatted view
 const MockupsPanel = (props) => {
   const {
-    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor,
+    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff,
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
@@ -42,7 +42,7 @@ const MockupsPanel = (props) => {
 
   if (active) {
     return (
-        <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+        <StyledPanel active={active} style={{cursor: 'default'}}>
           <div>
             {data && <h3>Server Response</h3>}
             {datacanvas}
@@ -57,8 +57,8 @@ const MockupsPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')} >
-      <h1>Mockups</h1>
+      style={{cursor: 'pointer'}} >
+      <h1>Test</h1>
     </StyledPanel>
   );
 };
