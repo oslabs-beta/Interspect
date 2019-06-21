@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const { Bar } = require('react-chartjs');
+import { Bar } from 'react-chartjs';
 
 const PerformanceWrapper = styled.div`
   background-color: #F0F3F4;
