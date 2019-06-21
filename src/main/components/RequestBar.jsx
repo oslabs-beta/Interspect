@@ -44,17 +44,17 @@ const RequestBar = (props) => {
   const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   function getPerformanceMetricsData(getOrPost, sendingObj) {
     let successfulFetchesCounter = 0;
-    
-    function recordFetchTimes (i) {
+
+    function recordFetchTimes(i) {
       fetch(uri, sendingObj)
-      .then(() => {
-        fetchTimesList[i] = new Date() - now;
-        successfulFetchesCounter += 1;
-        now = new Date();
-        if (successfulFetchesCounter === 9) {
-          setFetchTimes(fetchTimesList);
-        }
-      });
+        .then(() => {
+          fetchTimesList[i] = new Date() - now;
+          successfulFetchesCounter += 1;
+          now = new Date();
+          if (successfulFetchesCounter === 9) {
+            setFetchTimes(fetchTimesList);
+          }
+        });
     }
 
     for (let i = 1; i < 10; i += 1) recordFetchTimes(i);

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 const { Chart, Bar } = require('react-chartjs');
 
 const PerformanceWrapper = styled.div`
@@ -32,10 +33,12 @@ const PerformanceMetrics = (props) => {
     ],
   };
 
-  const average = fetchTimes.reduce((acc, val) => { return acc + (val / 10) }, 0);
-  const max = fetchTimes.reduce((acc, val) => { return ((acc > val) ? acc : val) });
-  const min = fetchTimes.reduce((acc, val) => { return ((acc > val) ? val : acc) });
-  const variance = fetchTimes.reduce((acc,val) => (acc + ((val - average)**2)), 0) / fetchTimes.length;
+  const average = fetchTimes.reduce((acc, val) => acc + (val / 10), 0);
+  const max = fetchTimes.reduce((acc, val) => ((acc > val) ? acc : val));
+  const min = fetchTimes.reduce((acc, val) => ((acc > val) ? val : acc));
+  const variance = fetchTimes.reduce(
+    (acc, val) => (acc + ((val - average) ** 2)), 0,
+  ) / fetchTimes.length;
 
   return (
     <PerformanceWrapper>
