@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { parseString } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
@@ -75,6 +76,15 @@ const RequestBar = (props) => {
     getPerformanceMetricsData('post', sendingObj);
   };
 
+  const parseXmlToJson = (xml) => {
+    let json;
+    parseString(xml, (err, result) => {
+      json = result;
+      return result;
+    });
+    return json;
+  };
+
   const sendFetch = (e) => {
     e.preventDefault();
     if (!valid) return alert('Enter a valid URI');
@@ -88,6 +98,11 @@ const RequestBar = (props) => {
         .then((res) => {
           fetchTimesList[0] = new Date() - now;
           now = new Date();
+          const val = res.headers.get('content-type');
+          if (val === 'application/xml; charset=utf-8') {
+            console.log('in If');
+            return res.text().then(xml => parseXmlToJson(xml));
+          }
           return res.json();
         })
         .then((res) => {
