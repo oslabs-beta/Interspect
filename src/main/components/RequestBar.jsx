@@ -5,12 +5,11 @@ import Select from './InlineSelect.jsx';
 import Input from './InlineInput.jsx';
 import Button from './Button.jsx';
 import { TestsContext } from '../testsContext';
-const { app, BrowserWindow } = require('electron');
 
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData, setFetchTimes
+    SourceOrDest, setData, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -23,6 +22,7 @@ const RequestBar = (props) => {
   const [headerType, setHeaderType] = useState('Authorization');
   const [authType, setType] = useState('Bearer Token');
   const [headerKey, setHeaderKey] = useState('');
+  let now = new Date();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,37 +40,35 @@ const RequestBar = (props) => {
     e.preventDefault();
   };
 
+  // Extra fetches for performance metrics
   const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  function getPerformanceMetricsData (getOrPost, sendingObj) {
-    // Extra fetches for performance metrics
+  function getPerformanceMetricsData(getOrPost, sendingObj) {
     let successfulFetchesCounter = 0;
-    let now1 = new Date();
-    for (let i = 1; i < 10; i++) {
-      console.log('sendingObj', sendingObj);
-      console.log('uri', uri);
+    
+    function recordFetchTimes (i) {
       fetch(uri, sendingObj)
-        .then(() => {
-          fetchTimesList[i] = new Date() - now1;
-          successfulFetchesCounter += 1;
-          now1 = new Date();
-          if (successfulFetchesCounter === 9) {
-            setFetchTimes(fetchTimesList);
-            console.log(`${getOrPost} request fetchTimesList`, fetchTimesList);
-          }
-        });
-    };
+      .then(() => {
+        fetchTimesList[i] = new Date() - now;
+        successfulFetchesCounter += 1;
+        now = new Date();
+        if (successfulFetchesCounter === 9) {
+          setFetchTimes(fetchTimesList);
+        }
+      });
+    }
 
+    for (let i = 1; i < 10; i += 1) recordFetchTimes(i);
   }
 
   const runTest = (link, sendingObj, testsClone, i) => {
     const test = testsClone;
-
-    const now = new Date();
+    now = new Date();
     fetch(link, sendingObj)
       .then((response) => {
         fetchTimesList[0] = new Date() - now;
         test[i].status = response.status;
         if (i === test.length - 1) setTests(test);
+        now = new Date();
       })
       .catch(error => console.log(error));
 
@@ -85,13 +83,14 @@ const RequestBar = (props) => {
       const sendingObj = { method: selected, mode: 'cors' };
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
-      const now = new Date();
+      now = new Date();
       fetch(uri, sendingObj)
-        .then(res => {
+        .then((res) => {
           fetchTimesList[0] = new Date() - now;
+          now = new Date();
           return res.json();
         })
-        .then(res => {
+        .then((res) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
@@ -107,7 +106,7 @@ const RequestBar = (props) => {
         sendingObj.body = JSON.stringify(testsClone[i].payload);
         runTest(uri, sendingObj, testsClone, i);
       }
-    };
+    }
   };
 
   return (

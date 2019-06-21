@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import RequestBar from '../components/RequestBar.jsx';
 import StyledPanel from './StyledPanel.jsx';
-import PerformanceMetrics from './../components/PerformanceMetrics.jsx'
+import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const SourcePanel = (props) => {
   const {
-    setData, active, onClickFunction, setCursor, datacanvas, fetchTimes, setFetchTimes
+    setData, active, onClickFunction, setCursor, datacanvas, fetchTimes, setFetchTimes,
   } = props;
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  if (fetchTimes.length) {
-    console.log('reduce', fetchTimes.reduce(reducer));
-  }
 
   if (active) {
     return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+const { Chart, Bar } = require('react-chartjs');
 
 const PerformanceWrapper = styled.div`
   background-color: #F0F3F4;
@@ -13,7 +14,7 @@ const PerformanceWrapper = styled.div`
   margin-bottom: 1em;
 `;
 // myBarChart = new Chart(ctx).Bar(data, options);
-const BarChart = require("react-chartjs").Bar;
+const BarChart = Bar;
 
 const PerformanceMetrics = (props) => {
   const { fetchTimes } = props;
@@ -21,26 +22,42 @@ const PerformanceMetrics = (props) => {
     labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     datasets: [
       {
-        label: "My First dataset",
-        fillColor: "rgba(151,187,205,0.5)",
-        strokeColor: "rgba(151,187,205,0.8)",
-        highlightFill: "rgba(151,187,205,0.75)",
-        highlightStroke: "rgba(151,187,205,1)",
-        data: fetchTimes
-      }
-    ]
+        label: 'My First dataset',
+        fillColor: 'rgba(151,187,205,0.5)',
+        strokeColor: 'rgba(151,187,205,0.8)',
+        highlightFill: 'rgba(151,187,205,0.75)',
+        highlightStroke: 'rgba(151,187,205,1)',
+        data: fetchTimes,
+      },
+    ],
   };
 
-  //      <h3>{JSON.stringify(fetchTimes)}</h3>
+  const average = fetchTimes.reduce((acc, val) => { return acc + (val / 10) }, 0);
+  const max = fetchTimes.reduce((acc, val) => { return ((acc > val) ? acc : val) });
+  const min = fetchTimes.reduce((acc, val) => { return ((acc > val) ? val : acc) });
+  const variance = fetchTimes.reduce((acc,val) => (acc + ((val - average)**2)), 0) / fetchTimes.length;
+
   return (
     <PerformanceWrapper>
-      
       <div>
-        <h3>API Fetch Times{"\n"}</h3>
+        <div>
+          <h3>API Request Times</h3>
+        </div>
+
+        <div>
+          <BarChart data={chartData} width="500" height="250" />
+        </div>
+
+        <div >
+          <br />
+          <h3>
+            Average: {Math.floor(average)} ms |
+            Max: {max} ms |
+            Min: {min} ms |
+            SD: {Math.floor(Math.sqrt(variance))} ms
+          </h3>
+        </div>
       </div>
-      
-      <BarChart data={chartData} width="500" height="250" />
-      
     </PerformanceWrapper>
   );
 };

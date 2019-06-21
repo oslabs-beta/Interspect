@@ -3,11 +3,11 @@ import RequestBar from '../components/RequestBar.jsx';
 import ResponseComponent from '../components/ResponseComponent.jsx';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
-import PerformanceMetrics from './../components/PerformanceMetrics.jsx'
+import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, testsDiff, setCursor, fetchTimes, setFetchTimes
+    active, onClickFunction, testsDiff, setCursor, fetchTimes, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -24,6 +24,8 @@ const DestinationPanel = (props) => {
     );
   }
 
+  const sumReducer = (accumulator, currentValue) => accumulator + currentValue;
+
   if (active) {
     return (
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
@@ -32,8 +34,10 @@ const DestinationPanel = (props) => {
           fetchTimes={fetchTimes}
           setFetchTimes={setFetchTimes}
         />
-        { (fetchTimes.length > 0) && (fetchTimes.reduce((acc, val) => {acc+val}) > 0) && <PerformanceMetrics fetchTimes={fetchTimes} />}
         {responseComponentsList}
+        { (fetchTimes.length > 0)
+          && (fetchTimes.reduce(sumReducer) > 0)
+          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
       </StyledPanel>
     );
   }
