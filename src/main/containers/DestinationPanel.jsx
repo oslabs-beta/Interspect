@@ -7,7 +7,7 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, testsDiff, setCursor, fetchTimes, setFetchTimes,
+    active, onClickFunction, testsDiff, fetchTimes, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -28,7 +28,7 @@ const DestinationPanel = (props) => {
 
   if (active) {
     return (
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+      <StyledPanel active={active} style={{cursor: 'default'}}>
         <RequestBar
           SourceOrDest='dest'
           fetchTimes={fetchTimes}
@@ -44,7 +44,7 @@ const DestinationPanel = (props) => {
 
   // only returned if not active
   return (
-    <StyledPanel onClick={onClickFunction} active={active}>
+    <StyledPanel onClick={onClickFunction} active={active} style={{cursor: 'pointer'}}>
       <h1>Destination</h1>
     </StyledPanel>
   );

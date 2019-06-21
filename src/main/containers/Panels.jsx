@@ -10,14 +10,12 @@ const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [data, setData] = useState(undefined);
   const [testsDiff, setTestsDiff] = useState([{}]);
-  const [cursor, setCursor] = useState('default');
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
 
   const PanelsWrapper = styled.section`
     display: flex;
     height: 80vh;
-    cursor: ${cursor};
   `;
 
   // Create DataCanvas component for component composition to
@@ -44,22 +42,19 @@ const Panels = () => {
         setData={setData}
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
-        setFetchTimes={setGetFetchTimes}
-        setCursor={setCursor} />
+        setFetchTimes={setGetFetchTimes} />
 
       <TestPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
         data={data}
         active={(activePanel === 'test')}
-        setCursor={setCursor}
         testsDiff={testsDiff}
         setTestsDiff={setTestsDiff} />
 
       <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
-        setCursor={setCursor}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
         testsDiff={testsDiff} />
