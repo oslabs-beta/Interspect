@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const { Chart, Bar } = require('react-chartjs');
+const { Bar } = require('react-chartjs');
 
 const PerformanceWrapper = styled.div`
   background-color: #F0F3F4;
   border-radius: 3px;
-  box-shadow: inset 
+  box-shadow: inset;
   box-shadow: inset 0 0 1px 0 rgba(41,47,50,0.25);
   display: flex;
   justify-content: space-between;
@@ -14,7 +14,7 @@ const PerformanceWrapper = styled.div`
   padding: 1em;
   margin-bottom: 1em;
 `;
-// myBarChart = new Chart(ctx).Bar(data, options);
+
 const BarChart = Bar;
 
 const PerformanceMetrics = (props) => {
@@ -33,9 +33,9 @@ const PerformanceMetrics = (props) => {
     ],
   };
 
-  const average = fetchTimes.reduce((acc, val) => acc + (val / 10), 0);
-  const max = fetchTimes.reduce((acc, val) => ((acc > val) ? acc : val));
-  const min = fetchTimes.reduce((acc, val) => ((acc > val) ? val : acc));
+  const average = fetchTimes.reduce((acc, val) => acc + (val / fetchTimes.length), 0);
+  const max = Math.max(...fetchTimes);
+  const min = Math.min(...fetchTimes);
   const variance = fetchTimes.reduce(
     (acc, val) => (acc + ((val - average) ** 2)), 0,
   ) / fetchTimes.length;

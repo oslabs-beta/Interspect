@@ -25,7 +25,6 @@
   "homepage": "https://github.com/jdcj-oslabs/apimocking#readme",
   "dependencies": {
     "chart.js": "^1.1.1",
-    "chartjs": "^0.3.24",
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-dom": "^16.8.6",
