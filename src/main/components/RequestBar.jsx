@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { parseString } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
@@ -49,6 +50,15 @@ const RequestBar = (props) => {
       .catch(error => console.log(error));
   };
 
+  const parseXmlToJson = (xml) => {
+    let json;
+    parseString(xml, (err, result) => {
+      json = result;
+      return result;
+    });
+    return json;
+  };
+
   const sendFetch = (e) => {
     e.preventDefault();
     if (!valid) return alert('Enter a valid URI');
@@ -58,7 +68,14 @@ const RequestBar = (props) => {
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
       fetch(uri, sendingObj)
-        .then(res => res.json())
+        .then((res) => {
+          const val = res.headers.get('content-type');
+          if (val === 'application/xml; charset=utf-8') {
+            console.log('in If');
+            return res.text().then(xml => parseXmlToJson(xml));
+          }
+          return res.json();
+        })
         .then((res) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
@@ -97,7 +114,7 @@ const RequestBar = (props) => {
         <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
         <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
       </Form>
-      <HeaderBar header={headerType} authType={authType} handleChange={handleChange}/>
+      <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
     </div>
   );
 };
