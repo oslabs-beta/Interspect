@@ -69,7 +69,9 @@ const RequestBar = (props) => {
 
       fetch(uri, sendingObj)
         .then((res) => {
-          if (res.headers.get('content-type') === 'application/xml; charset=UTF-8') {
+          const val = res.headers.get('content-type');
+          if (val === 'application/xml; charset=utf-8') {
+            console.log('in If');
             return res.text().then(xml => parseXmlToJson(xml));
           }
           return res.json();
