@@ -10,7 +10,7 @@ import { TestsContext } from '../testsContext';
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData,
+    SourceOrDest, setData, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -23,6 +23,7 @@ const RequestBar = (props) => {
   const [headerType, setHeaderType] = useState('Authorization');
   const [authType, setType] = useState('Bearer Token');
   const [headerKey, setHeaderKey] = useState('');
+  let now = new Date();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,14 +41,39 @@ const RequestBar = (props) => {
     e.preventDefault();
   };
 
+  // Extra fetches for performance metrics
+  const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  function getPerformanceMetricsData(getOrPost, sendingObj) {
+    let successfulFetchesCounter = 0;
+
+    function recordFetchTimes(i) {
+      fetch(uri, sendingObj)
+        .then(() => {
+          fetchTimesList[i] = new Date() - now;
+          successfulFetchesCounter += 1;
+          now = new Date();
+          if (successfulFetchesCounter === 9) {
+            setFetchTimes(fetchTimesList);
+          }
+        });
+    }
+
+    for (let i = 1; i < 10; i += 1) recordFetchTimes(i);
+  }
+
   const runTest = (link, sendingObj, testsClone, i) => {
     const test = testsClone;
+    now = new Date();
     fetch(link, sendingObj)
       .then((response) => {
+        fetchTimesList[0] = new Date() - now;
         test[i].status = response.status;
         if (i === test.length - 1) setTests(test);
+        now = new Date();
       })
       .catch(error => console.log(error));
+
+    getPerformanceMetricsData('post', sendingObj);
   };
 
   const parseXmlToJson = (xml) => {
@@ -67,8 +93,11 @@ const RequestBar = (props) => {
       const sendingObj = { method: selected, mode: 'cors' };
       if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
 
+      now = new Date();
       fetch(uri, sendingObj)
         .then((res) => {
+          fetchTimesList[0] = new Date() - now;
+          now = new Date();
           const val = res.headers.get('content-type');
           if (val === 'application/xml; charset=utf-8') {
             console.log('in If');
@@ -80,6 +109,9 @@ const RequestBar = (props) => {
           setTests([{ payload: res, status: '' }]);
           setData(res);
         });
+
+      getPerformanceMetricsData('get', sendingObj);
+
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };

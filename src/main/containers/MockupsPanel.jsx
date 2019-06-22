@@ -1,28 +1,23 @@
 import React, { useState, useContext } from 'react';
-// sample JSON to pass down as props. Will be able to remove as the project evolves.
-// import { largeData, smallData } from '../dummyData';
+import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
+// import NameForm from '../components/NameForm.jsx';
+import Mockup from '../components/Mockup.jsx';
+
 
 // will need to get data from the get request to pass to the formatted view
-const TestPanel = (props) => {
+const MockupsPanel = (props) => {
   const {
-    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor,
+    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff,
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
   const [testsListCounter, setTestsListCounter] = useState(0);
 
-  const dataTreeOptions = {
-    onAdd: true,
-    onEdit: true,
-    onDelete: true,
-    enableClipboard: false,
-  };
-
-  function saveUpdatedTree(newData, arrayPosition, newValue, name, namespace) {
+  const saveUpdatedTree = (newData, arrayPosition, newValue, name, namespace) => {
     // Update tests
     const testsClone = [...tests];
     testsClone[arrayPosition].payload = newData;
@@ -30,43 +25,37 @@ const TestPanel = (props) => {
 
     // Update tests differences/changes
     const testsDiffClone = [...testsDiff];
-    // for deletion-- find better syntax
+    // for deletion—find better syntax
     if (!testsDiffClone[arrayPosition][namespace]) {
       testsDiffClone[arrayPosition][namespace] = {};
     }
     testsDiffClone[arrayPosition][namespace][name] = newValue;
     setTestsDiff(testsDiffClone);
-  }
+  };
 
-  const testsDisplayList = [];
+  const mockupsListDisplay = [];
   let i = 0;
-  tests.forEach((test) => {
-    testsDisplayList.push(
-      <div>
-        <h3 id={`title_${i}`}>NAME</h3>
-        <DataTree
-          treeId={i}
-          key={`TestPanelDataTree ${i}`}
-          data={test.payload}
-          options={dataTreeOptions}
-          saveUpdatedTree={saveUpdatedTree}
-        />
-      </div>,
+  tests.forEach((test, index) => {
+    const { name } = test;
+
+    mockupsListDisplay.push(
+      // Creates a component for each test to display name and data
+      <Mockup key={index} test={test} index={index} saveUpdatedTree={saveUpdatedTree} />,
     );
     i += 1;
   });
 
-  function createNewTest() {
+  const createNewTest = () => {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
-    testsClone.push({ payload: data, status: '' });
+    testsClone.push({ payload: data, status: '', name: '' });
     testsDiffClone.push({});
 
     // the ID of the test will be the same as the position in the array
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
     setTestsDiff(testsDiffClone);
-  }
+  };
 
   function createTestFromIndex() {
     // grab the number inputed
@@ -93,6 +82,7 @@ const TestPanel = (props) => {
 
   if (active) {
     return (
+<<<<<<< HEAD:src/main/containers/TestPanel.jsx
       <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
         <div>
           {data && <h3>Server Response</h3>}
@@ -103,6 +93,16 @@ const TestPanel = (props) => {
         </div>
         {testsDisplayList}
       </StyledPanel>
+=======
+        <StyledPanel active={active} style={{cursor: 'default'}}>
+          <div>
+            {data && <h3>Server Response</h3>}
+            {datacanvas}
+            {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
+          </div>
+          {mockupsListDisplay}
+        </StyledPanel>
+>>>>>>> dev:src/main/containers/MockupsPanel.jsx
     );
   }
 
@@ -110,11 +110,15 @@ const TestPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
+<<<<<<< HEAD:src/main/containers/TestPanel.jsx
       onMouseOver={() => setCursor('pointer')}
     >
+=======
+      style={{cursor: 'pointer'}} >
+>>>>>>> dev:src/main/containers/MockupsPanel.jsx
       <h1>Test</h1>
     </StyledPanel>
   );
 };
 
-export default TestPanel;
+export default MockupsPanel;

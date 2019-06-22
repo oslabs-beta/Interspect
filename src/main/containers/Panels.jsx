@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import SourcePanel from './SourcePanel.jsx';
-import TestPanel from './TestPanel.jsx';
+import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 // import { smallData, testsData } from '../dummyData';
@@ -10,12 +10,12 @@ const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [data, setData] = useState(undefined);
   const [testsDiff, setTestsDiff] = useState([{}]);
-  const [cursor, setCursor] = useState('default');
+  const [getFetchTimes, setGetFetchTimes] = useState([]);
+  const [postFetchTimes, setPostFetchTimes] = useState([]);
 
   const PanelsWrapper = styled.section`
     display: flex;
     height: 80vh;
-    cursor: ${cursor};
   `;
 
   // Create DataCanvas component for component composition to
@@ -42,15 +42,15 @@ const Panels = () => {
         datacanvas={datacanvas}
         setData={setData}
         active={(activePanel === 'source')}
-        setCursor={setCursor}
+        fetchTimes={getFetchTimes}
+        setFetchTimes={setGetFetchTimes}
       />
 
-      <TestPanel
+      <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
         data={data}
         active={(activePanel === 'test')}
-        setCursor={setCursor}
         testsDiff={testsDiff}
         setTestsDiff={setTestsDiff}
       />
@@ -58,7 +58,8 @@ const Panels = () => {
       <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
-        setCursor={setCursor}
+        fetchTimes={postFetchTimes}
+        setFetchTimes={setPostFetchTimes}
         testsDiff={testsDiff}
       />
     </PanelsWrapper>
