@@ -46,14 +46,19 @@ function createWindow() {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {
-      console.log(request.body);
-  
       socket.emit('post_received', request.body);
+      response.status(200);
+      response.end();
+    });
 
-      // poster.emit('ferret', 'tobi', 'woot', function (data) { // args are sent in order to acknowledgement function
-      //   console.log(data); // data will be 'tobi says woot'
-      // });
-  
+    expressApp.patch('/posturl', (request, response) => {
+      socket.emit('post_received', request.body);
+      response.status(200);
+      response.end();
+    });
+
+    expressApp.delete('/posturl', (request, response) => {
+      socket.emit('post_received', request.body);
       response.status(200);
       response.end();
     });

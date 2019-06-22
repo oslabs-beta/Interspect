@@ -13,7 +13,7 @@ const DataCanvas = (props) => {
     return (
       <EmptyState>
         <h2>Let’s get some data</h2>
-        <p>To get started, send a request to any of your microservices—or post to <br/>http://localhost:3001/posturl</p>
+        <p>To get started, send a request to any of your microservices—<br/>or post / patch / delete to http://localhost:3001/posturl</p>
         <Button title='Not yet functional'>Open Mockup</Button>
       </EmptyState>
     );
