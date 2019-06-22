@@ -82,27 +82,16 @@ const MockupsPanel = (props) => {
 
   if (active) {
     return (
-<<<<<<< HEAD:src/main/containers/TestPanel.jsx
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
         <div>
           {data && <h3>Server Response</h3>}
           {datacanvas}
-          {data && <Button enabled onClick={createNewTest}> New Test </Button>}
+          {data && <Button enabled onClick={createNewTest}>New Test</Button>}
           {data && <Button enabled onClick={createTestFromIndex}>Create Test From index</Button>}
           {data && <input type="text" id="indexNum" />}
         </div>
-        {testsDisplayList}
+        {mockupsListDisplay}
       </StyledPanel>
-=======
-        <StyledPanel active={active} style={{cursor: 'default'}}>
-          <div>
-            {data && <h3>Server Response</h3>}
-            {datacanvas}
-            {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
-          </div>
-          {mockupsListDisplay}
-        </StyledPanel>
->>>>>>> dev:src/main/containers/MockupsPanel.jsx
     );
   }
 
@@ -110,12 +99,8 @@ const MockupsPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-<<<<<<< HEAD:src/main/containers/TestPanel.jsx
-      onMouseOver={() => setCursor('pointer')}
+      style={{ cursor: 'pointer' }}
     >
-=======
-      style={{cursor: 'pointer'}} >
->>>>>>> dev:src/main/containers/MockupsPanel.jsx
       <h1>Test</h1>
     </StyledPanel>
   );
