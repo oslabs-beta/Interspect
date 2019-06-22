@@ -68,16 +68,41 @@ const TestPanel = (props) => {
     setTestsDiff(testsDiffClone);
   }
 
+  function createTestFromIndex() {
+    // grab the number inputed
+    // clone the tests => testClone
+    const indexNum = document.querySelector('#indexNum').value;
+    const testsClone = [...tests];
+
+    testsClone.push({ payload: data[indexNum], status: '' });
+    // grab data[numberInputed] and add it
+    // update setTests
+    setTests(testsClone);
+
+    // show the diff btwn the OG data and what the test now is
+    // the OG is data
+    // add something to testDiff array that will show user diff btwn the OG data and the test they just created
+    const testsDiffClone = [...testsDiff];
+
+    // goal is to add to testsDiff the data at the index the user specifies
+    testsDiffClone.push(data[indexNum]);
+
+    setTestsDiff(testsDiffClone);
+
+  }
+
   if (active) {
     return (
-        <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-          <div>
-            {data && <h3>Server Response</h3>}
-            {datacanvas}
-            {data && <Button enabled={true} onClick={createNewTest}> New Test </Button>}
-          </div>
-          {testsDisplayList}
-        </StyledPanel>
+      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+        <div>
+          {data && <h3>Server Response</h3>}
+          {datacanvas}
+          {data && <Button enabled onClick={createNewTest}> New Test </Button>}
+          {data && <Button enabled onClick={createTestFromIndex}>Create Test From index</Button>}
+          {data && <input type="text" id="indexNum" />}
+        </div>
+        {testsDisplayList}
+      </StyledPanel>
     );
   }
 
@@ -85,7 +110,8 @@ const TestPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')} >
+      onMouseOver={() => setCursor('pointer')}
+    >
       <h1>Test</h1>
     </StyledPanel>
   );
