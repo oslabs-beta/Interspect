@@ -58,26 +58,18 @@ const MockupsPanel = (props) => {
   };
 
   function createTestFromIndex() {
-    // grab the number inputed
-    // clone the tests => testClone
     const indexNum = document.querySelector('#indexNum').value;
     const testsClone = [...tests];
 
     testsClone.push({ payload: data[indexNum], status: '' });
-    // grab data[numberInputed] and add it
-    // update setTests
+
     setTests(testsClone);
 
-    // show the diff btwn the OG data and what the test now is
-    // the OG is data
-    // add something to testDiff array that will show user diff btwn the OG data and the test they just created
     const testsDiffClone = [...testsDiff];
 
-    // goal is to add to testsDiff the data at the index the user specifies
     testsDiffClone.push(data[indexNum]);
 
     setTestsDiff(testsDiffClone);
-
   }
 
   if (active) {
