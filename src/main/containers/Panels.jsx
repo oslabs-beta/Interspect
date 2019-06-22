@@ -27,7 +27,7 @@ const Panels = () => {
     onDelete: false,
     enableClipboard: false,
   };
-  console.log('panels', hContentType);
+
   const datacanvas = (
     <DataCanvas
       treeId={'rawdata'}
