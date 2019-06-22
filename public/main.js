@@ -3,6 +3,9 @@ const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
 const bodyParser = require('body-parser');
+const expressApp = require('express')();
+const server = require('http').Server(expressApp);
+const io = require('socket.io')(server);
 
 if (isDev) {
   console.log('Running in development');
@@ -13,10 +16,7 @@ if (isDev) {
 let mainWindow;
 
 function createWindow() {
-  const expressApp = require('express')();
   expressApp.use(bodyParser.urlencoded({ extended: true }));
-  const server = require('http').Server(expressApp);
-  const io = require('socket.io')(server);
 
   server.listen(3001);
 
@@ -42,7 +42,7 @@ function createWindow() {
 
   // http.listen(80);
 
-  const poster = io.on('connection', function(socket) {
+  const poster = io.on('connection', (socket) => {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {

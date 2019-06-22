@@ -39,7 +39,7 @@ const Panels = () => {
       options={dataTreeOptions} />
   );
 
-  socket.on('post_received', function hello (postedData) {
+  socket.on('post_received', (postedData) => {
     setData(postedData);
     setTests([{ payload: postedData, status: '' }]);
 
