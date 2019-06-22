@@ -11,7 +11,7 @@ const StyledPanel = styled.section`
   padding: 0 2em 1em;
   position: relative;
   width: ${props => (props.active ? '80vw' : '10vw')};
-  h1, h3 {
+  h1 {
     color: #BCC1C2;
     font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1em;
