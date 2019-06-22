@@ -99,7 +99,7 @@ const RequestBar = (props) => {
           fetchTimesList[0] = new Date() - now;
           now = new Date();
           const val = res.headers.get('content-type');
-          if (val === 'application/xml; charset=utf-8') {
+          if (val.includes('xml')) {
             console.log('in If');
             return res.text().then(xml => parseXmlToJson(xml));
           }
