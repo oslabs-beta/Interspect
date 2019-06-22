@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
+const bodyParser = require('body-parser');
 
 if (isDev) {
   console.log('Running in development');
@@ -13,6 +14,7 @@ let mainWindow;
 
 function createWindow() {
   const expressApp = require('express')();
+  expressApp.use(bodyParser.urlencoded({ extended: true }));
   const server = require('http').Server(expressApp);
   const io = require('socket.io')(server);
 
@@ -38,16 +40,23 @@ function createWindow() {
     mainWindow = null;
   });
 
-  expressApp.post('/posturl', (request, response) => {
-    console.log(request);
-    response.status(200);
-    response.end();
-  });
-
   // http.listen(80);
 
-  io.on('connection', function(socket) {
+  const poster = io.on('connection', function(socket) {
     console.log('a user connected');
+
+    expressApp.post('/posturl', (request, response) => {
+      console.log(request.body);
+  
+      socket.emit('post_received', request.body);
+
+      // poster.emit('ferret', 'tobi', 'woot', function (data) { // args are sent in order to acknowledgement function
+      //   console.log(data); // data will be 'tobi says woot'
+      // });
+  
+      response.status(200);
+      response.end();
+    });
   });
 }
 app.on('ready', createWindow);

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import SourcePanel from './SourcePanel.jsx';
 import TestPanel from './TestPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
+import { TestsContext } from '../testsContext';
 // import { smallData, testsData } from '../dummyData';
+
+const socket = io.connect('http://localhost:3001/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
@@ -12,6 +15,8 @@ const Panels = () => {
   const [testsDiff, setTestsDiff] = useState([{}]);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
+
+  const [tests, setTests] = useContext(TestsContext);
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -33,6 +38,11 @@ const Panels = () => {
       data={data}
       options={dataTreeOptions} />
   );
+
+  socket.on('post_received', function hello (postedData) {
+    setData(postedData);
+    setTests([{ payload: postedData, status: '' }]);
+  });
 
   return (
     <PanelsWrapper>
