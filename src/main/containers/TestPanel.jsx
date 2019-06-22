@@ -9,7 +9,7 @@ import DataTree from '../components/DataTree.jsx';
 // will need to get data from the get request to pass to the formatted view
 const TestPanel = (props) => {
   const {
-    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff, setCursor,
+    active, datacanvas, data, onClickFunction, setTestsDiff, testsDiff,
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
@@ -70,7 +70,7 @@ const TestPanel = (props) => {
 
   if (active) {
     return (
-        <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+        <StyledPanel active={active} style={{cursor: 'default'}}>
           <div>
             {data && <h3>Server Response</h3>}
             {datacanvas}
@@ -85,7 +85,7 @@ const TestPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')} >
+      style={{cursor: 'pointer'}} >
       <h1>Test</h1>
     </StyledPanel>
   );

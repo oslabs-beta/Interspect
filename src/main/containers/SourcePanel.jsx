@@ -5,14 +5,14 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const SourcePanel = (props) => {
   const {
-    setData, active, onClickFunction, setCursor, datacanvas, fetchTimes, setFetchTimes,
+    setData, active, onClickFunction, datacanvas, fetchTimes, setFetchTimes,
   } = props;
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   if (active) {
     return (
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
+      <StyledPanel active={active} style={{cursor: 'default'}}>
         <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} />
         {datacanvas}
         { (fetchTimes.length > 0)
@@ -26,7 +26,7 @@ const SourcePanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')}
+      style={{cursor: 'pointer'}}
     >
       <h1>Source</h1>
     </StyledPanel>
