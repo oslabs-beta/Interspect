@@ -18,6 +18,7 @@ const DestinationPanel = (props) => {
         status={tests[i].status}
         payload={testsDiff[i]}
         name={tests[i].name}
+        index={i}
         // fix later
         key={`DestPanelTest ${i}`}
       />,

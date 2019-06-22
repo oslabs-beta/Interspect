@@ -45,7 +45,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, name,
+    status, payload, name, index
   } = props;
 
   /* Download SF Symbols to view icons
@@ -59,7 +59,7 @@ const ResponseComponent = (props) => {
   return (
     <ResponseWrapper>
       <Header>
-        <h3>{ name || 'Untitled test' }</h3>
+        <h3>{ name || `Test #${index + 1}` }</h3>
         <Icon status={status}>{checkmark}</Icon>
         { status || 'Ready to send' }
       </Header>
