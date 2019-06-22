@@ -7,6 +7,7 @@ import DataTree from '../components/DataTree.jsx';
 // import NameForm from '../components/NameForm.jsx';
 import Mockup from '../components/Mockup.jsx';
 
+
 // will need to get data from the get request to pass to the formatted view
 const MockupsPanel = (props) => {
   const {
@@ -16,6 +17,22 @@ const MockupsPanel = (props) => {
   const [tests, setTests] = useContext(TestsContext);
   const [testsListCounter, setTestsListCounter] = useState(0);
 
+  const saveUpdatedTree = (newData, arrayPosition, newValue, name, namespace) => {
+    // Update tests
+    const testsClone = [...tests];
+    testsClone[arrayPosition].payload = newData;
+    setTests(testsClone);
+
+    // Update tests differences/changes
+    const testsDiffClone = [...testsDiff];
+    // for deletion—find better syntax
+    if (!testsDiffClone[arrayPosition][namespace]) {
+      testsDiffClone[arrayPosition][namespace] = {};
+    }
+    testsDiffClone[arrayPosition][namespace][name] = newValue;
+    setTestsDiff(testsDiffClone);
+  };
+
   const mockupsListDisplay = [];
   let i = 0;
   tests.forEach((test, index) => {
@@ -23,12 +40,12 @@ const MockupsPanel = (props) => {
 
     mockupsListDisplay.push(
       // Creates a component for each test to display name and data
-      <Mockup key={index} test={test} index={index}/>,
+      <Mockup key={index} test={test} index={index} saveUpdatedTree={saveUpdatedTree} />,
     );
     i += 1;
   });
 
-  function createNewTest() {
+  const createNewTest = () => {
     const testsClone = [...tests];
     const testsDiffClone = [...testsDiff];
     testsClone.push({ payload: data, status: '', name: '' });
@@ -38,7 +55,7 @@ const MockupsPanel = (props) => {
     setTestsListCounter(testsListCounter + 1);
     setTests(testsClone);
     setTestsDiff(testsDiffClone);
-  }
+  };
 
   if (active) {
     return (

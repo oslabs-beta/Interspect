@@ -11,7 +11,7 @@ const dataTreeOptions = {
 };
 
 const Mockup = (props) => {
-  const { test, index } = props;
+  const { test, index, saveUpdatedTree } = props;
 
   // State
   const [name, setName] = useState(test.name);
@@ -30,6 +30,7 @@ const Mockup = (props) => {
           data={test.payload}
           name={name}
           options={dataTreeOptions}
+          saveUpdatedTree={saveUpdatedTree}
         />
     </article>
   );
