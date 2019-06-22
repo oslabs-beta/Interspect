@@ -29,9 +29,10 @@ const Panels = () => {
 
   const datacanvas = (
     <DataCanvas
-      treeId={'rawdata'}
+      treeId="rawdata"
       data={data}
-      options={dataTreeOptions} />
+      options={dataTreeOptions}
+    />
   );
 
   return (
@@ -41,7 +42,8 @@ const Panels = () => {
         datacanvas={datacanvas}
         setData={setData}
         active={(activePanel === 'source')}
-        setCursor={setCursor} />
+        setCursor={setCursor}
+      />
 
       <TestPanel
         onClickFunction={() => setActivePanel('test')}
@@ -50,13 +52,15 @@ const Panels = () => {
         active={(activePanel === 'test')}
         setCursor={setCursor}
         testsDiff={testsDiff}
-        setTestsDiff={setTestsDiff} />
+        setTestsDiff={setTestsDiff}
+      />
 
       <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
         setCursor={setCursor}
-        testsDiff={testsDiff} />
+        testsDiff={testsDiff}
+      />
     </PanelsWrapper>
   );
 };
