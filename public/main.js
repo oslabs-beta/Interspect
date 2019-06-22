@@ -2,7 +2,6 @@ const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
-const express = require('express');
 
 if (isDev) {
   console.log('Running in development');
@@ -13,7 +12,12 @@ if (isDev) {
 let mainWindow;
 
 function createWindow() {
-  const expressApp = express();
+  const expressApp = require('express')();
+  const server = require('http').Server(expressApp);
+  const io = require('socket.io')(server);
+
+  server.listen(3001);
+
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -40,6 +44,10 @@ function createWindow() {
     response.end();
   });
 
-  expressApp.listen(3000);
+  // http.listen(80);
+
+  io.on('connection', function(socket) {
+    console.log('a user connected');
+  });
 }
 app.on('ready', createWindow);

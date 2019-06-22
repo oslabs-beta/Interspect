@@ -7,6 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Interspect</title>
 </head>
+
+<script src="http://localhost:3001/socket.io/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:3001');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+
 <body>
   <main id="app"></main>
 </body>
