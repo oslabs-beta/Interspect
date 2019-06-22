@@ -12,6 +12,7 @@ const Panels = () => {
   const [testsDiff, setTestsDiff] = useState([{}]);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
+  const [hContentType, setContentType] = useState('');
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -26,7 +27,7 @@ const Panels = () => {
     onDelete: false,
     enableClipboard: false,
   };
-
+  console.log('panels', hContentType);
   const datacanvas = (
     <DataCanvas
       treeId={'rawdata'}
@@ -42,7 +43,9 @@ const Panels = () => {
         setData={setData}
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
-        setFetchTimes={setGetFetchTimes} />
+        setFetchTimes={setGetFetchTimes}
+        setContentType={setContentType}
+        />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
@@ -57,7 +60,9 @@ const Panels = () => {
         active={(activePanel === 'dest')}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
-        testsDiff={testsDiff} />
+        testsDiff={testsDiff}
+        hContentType={hContentType}
+        />
     </PanelsWrapper>
   );
 };
