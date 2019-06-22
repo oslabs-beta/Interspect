@@ -45,7 +45,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, name, index
+    status, payload, name, index,
   } = props;
 
   /* Download SF Symbols to view icons

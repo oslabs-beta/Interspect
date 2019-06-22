@@ -106,7 +106,9 @@ const RequestBar = (props) => {
           return res.json();
         })
         .then((res) => {
-          setTests([{ payload: res, status: '' }]);
+          setTests([{
+            payload: res, status: '', name: '', diff: {},
+          }]);
           setData(res);
         });
 
