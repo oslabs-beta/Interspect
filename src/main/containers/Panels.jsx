@@ -42,6 +42,10 @@ const Panels = () => {
   socket.on('post_received', function hello (postedData) {
     setData(postedData);
     setTests([{ payload: postedData, status: '' }]);
+
+    // clear old performance metrics on new post
+    if (getFetchTimes.length) setGetFetchTimes([]);
+    if (postFetchTimes.length) setPostFetchTimes([]);
   });
 
   return (
