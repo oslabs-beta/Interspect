@@ -12,7 +12,7 @@ const SourcePanel = (props) => {
 
   if (active) {
     return (
-      <StyledPanel active={active} style={{cursor: 'default'}}>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
         <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} />
         {datacanvas}
         { (fetchTimes.length > 0)
@@ -26,7 +26,7 @@ const SourcePanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      style={{cursor: 'pointer'}}
+      style={{ cursor: 'pointer' }}
     >
       <h1>Source</h1>
     </StyledPanel>
