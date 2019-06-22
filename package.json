@@ -26,14 +26,16 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "chart.js": "^1.1.1",
-    "chartjs": "^0.3.24",
     "express": "^4.16.4",
+    "electron": "^5.0.2",
+    "electron-is-dev": "^1.1.0",
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-dom": "^16.8.6",
     "react-json-view": "^1.19.1",
     "socket.io": "^2.2.0",
-    "styled-components": "^4.3.1"
+    "styled-components": "^4.3.1",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -48,8 +50,6 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "css-loader": "^2.1.1",
-    "electron": "^5.0.2",
-    "electron-is-dev": "^1.1.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
