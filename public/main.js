@@ -63,5 +63,9 @@ function createWindow() {
       response.end();
     });
   });
+
+  io.on('disconnect', () => {
+    console.log('a user disconnected');
+  });
 }
 app.on('ready', createWindow);
