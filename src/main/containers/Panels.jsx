@@ -13,7 +13,6 @@ const socket = io.connect('http://localhost:3001/');
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [data, setData] = useState(undefined);
-  const [testsDiff, setTestsDiff] = useState([{}]);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
 
@@ -64,15 +63,14 @@ const Panels = () => {
         datacanvas={datacanvas}
         data={data}
         active={(activePanel === 'test')}
-        testsDiff={testsDiff}
-        setTestsDiff={setTestsDiff} />
+      />
 
       <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
-        testsDiff={testsDiff} />
+      />
     </PanelsWrapper>
   );
 };
