@@ -59,7 +59,7 @@ const MockupsPanel = (props) => {
 
   if (active) {
     return (
-        <StyledPanel active={active} style={{cursor: 'default'}}>
+        <StyledPanel active={active} style={{ cursor: 'default' }}>
           <div>
             {data && <h3>Server Response</h3>}
             {datacanvas}
@@ -74,7 +74,7 @@ const MockupsPanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      style={{cursor: 'pointer'}} >
+      style={{ cursor: 'pointer' }} >
       <h1>Test</h1>
     </StyledPanel>
   );
