@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactJson from 'react-json-view';
 
 const styles = {
@@ -13,26 +13,25 @@ const styles = {
 
 const DataTree = (props) => {
   const {
-    treeCount, data, options, saveUpdatedTree,
+    treeId, data, options, saveUpdatedTree,
   } = props;
   const {
     onAdd, onEdit, onDelete, enableClipboard,
   } = options;
 
   const changeObject = (src) => {
-    console.log('source', src);
-    saveUpdatedTree(src.updated_src, treeCount, src.new_value, src.name, src.namespace);
+    saveUpdatedTree(src.updated_src, treeId, src.new_value, src.name, src.namespace);
   };
 
   return (
-    <section className='wrapper' id={`tree-${treeCount}`} >
+    <section className='wrapper' id={`tree-${treeId}`} >
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}
         theme='chalk'
         iconStyle='circle'
         style={styles}
-        collapsed={2}
+        collapsed={0}
         onAdd={(onAdd) ? changeObject : false}
         onEdit={(onEdit) ? changeObject : false}
         onDelete={(onDelete) ? changeObject : false}

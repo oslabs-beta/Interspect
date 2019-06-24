@@ -1,30 +1,23 @@
 import React, { useState } from 'react';
-import DataCanvas from './DataCanvas.jsx';
 import RequestBar from '../components/RequestBar.jsx';
 import StyledPanel from './StyledPanel.jsx';
+import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const SourcePanel = (props) => {
   const {
-    treeCount, updateTreeCount, data, setData, setTests, active, onClickFunction, setCursor,
+    setData, active, onClickFunction, datacanvas, fetchTimes, setFetchTimes, setContentType,
   } = props;
 
-  const dataTreeOptions = {
-    onAdd: false,
-    onEdit: false,
-    onDelete: false,
-    enableClipboard: false,
-  };
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   if (active) {
     return (
-      <StyledPanel active={active} onMouseOver={() => setCursor('default')}>
-        <RequestBar SourceOrDest='source' setData={setData} setTests={setTests} />
-        <DataCanvas
-          treeCount={treeCount}
-          updateTreeCount={updateTreeCount}
-          data={data}
-          options={dataTreeOptions}
-        />
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
+        <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} setContentType={setContentType} />
+        {datacanvas}
+        { (fetchTimes.length > 0)
+          && (fetchTimes.reduce(reducer) > 0)
+          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
       </StyledPanel>
     );
   }
@@ -33,7 +26,7 @@ const SourcePanel = (props) => {
     <StyledPanel
       onClick={onClickFunction}
       active={active}
-      onMouseOver={() => setCursor('pointer')}
+      style={{ cursor: 'pointer' }}
     >
       <h1>Source</h1>
     </StyledPanel>
