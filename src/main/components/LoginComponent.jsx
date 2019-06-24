@@ -1,22 +1,34 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+const { BrowserWindow } = require('electron').remote
 
 const LoginComponent = () => {
   let [redirectNeeded, setRedirectNeeded] = useState(false);
 
   const authorizeWithGithub = props => {
-    const metaData = {
-      method: 'GET',
-      'Content-type': 'application/json',
-      Accept: 'text/html',
-    };
+    const authWindow =
+      new BrowserWindow({
+        width: 800,
+        height: 600,
+        webPreferences: {
+          nodeIntegration: true,
+          webSecurity: false,
+        },
+      });
+    authWindow.loadURL('http://localhost:3006/github-init');
+    authWindow.show();
+    // const metaData = {
+    //   method: 'GET',
+    //   'Content-type': 'application/json',
+    //   Accept: 'text/html',
+    // };
 
-    fetch('/oauth-init', metaData)
-      .then(response => {
-        // console.log('oauth-init-response:', response);
-        setRedirectNeeded(true);
-      })
-      .catch(err => console.error('github-init-error:', err));
+    // fetch('http://localhost:3006/github-init', metaData)
+    //   .then(response => {
+    //     console.log('oauth-init-response:', response);
+    //     setRedirectNeeded(true);
+    //   })
+    //   .catch(err => console.error('github-init-error:', err));
   };
 
   return (

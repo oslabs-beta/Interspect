@@ -9,8 +9,8 @@ const App = () => {
   return (
     <Router>
       <Route path="/" exact component={LoginComponent} />
-      <Route path='/google-init' component={() => {
-        window.location.href = 'http://localhost:3000/google-init';
+      <Route path='/github-init' component={() => {
+        window.location.href = 'http://localhost:3006/github-init';
         return null;
       }} />
       <TestsProvider>
