@@ -15,6 +15,7 @@ const Panels = () => {
   const [data, setData] = useState(undefined);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
+  const [hContentType, setContentType] = useState('');
 
   const [tests, setTests] = useContext(TestsContext);
 
@@ -56,7 +57,9 @@ const Panels = () => {
         setData={setData}
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
-        setFetchTimes={setGetFetchTimes} />
+        setFetchTimes={setGetFetchTimes}
+        setContentType={setContentType}
+        />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
@@ -70,6 +73,7 @@ const Panels = () => {
         active={(activePanel === 'dest')}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
+        hContentType={hContentType}
       />
     </PanelsWrapper>
   );
