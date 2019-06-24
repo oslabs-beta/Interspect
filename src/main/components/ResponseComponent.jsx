@@ -45,16 +45,23 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, name, index
+    status, expectedStatus, payload, name, index,
   } = props;
 
   /* Download SF Symbols to view icons
   (https://developer.apple.com/design/human-interface-guidelines/sf-symbols/)
   (SVG icons to come) */
   let checkmark = '􀍡';
-  if (status >= 200 && status < 300) {
-    checkmark = '􀁣';
-  } else if (status >= 300) checkmark = '􀁡';
+  if (expectedStatus.length === 2) {
+    if (status >= expectedStatus[0] && status < expectedStatus[1]) checkmark = '􀁣';
+    else checkmark = '􀁡';
+  } else if (expectedStatus.length === 1) {
+    if (status === expectedStatus[0]) checkmark = '􀁣';
+    else checkmark = '􀁡';
+  } else {
+    if (status >= 200 && status < 300) checkmark = '􀁣';
+    else if (status >= 300) checkmark = '􀁡';
+  }
 
   return (
     <ResponseWrapper>

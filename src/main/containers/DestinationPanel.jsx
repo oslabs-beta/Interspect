@@ -19,6 +19,7 @@ const DestinationPanel = (props) => {
         payload={testsDiff[i]}
         name={tests[i].name}
         index={i}
+        expectedStatus={tests[i].expectedStatus}
         // fix later
         key={`DestPanelTest ${i}`}
       />,
@@ -45,7 +46,7 @@ const DestinationPanel = (props) => {
 
   // only returned if not active
   return (
-    <StyledPanel onClick={onClickFunction} active={active} style={{cursor: 'pointer'}}>
+    <StyledPanel onClick={onClickFunction} active={active} style={{ cursor: 'pointer' }}>
       <h1>Destination</h1>
     </StyledPanel>
   );
