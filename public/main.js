@@ -3,17 +3,6 @@ const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
 
-const redis = require('redis');
-const redisURI = process.env.REDIS_URI;
-const redisClient = redis.createClient(redisURI);
-
-const ghClientId = process.env.GH_CL_ID;
-const ghClientSecret = process.env.GH_CL_SECRET;
-
-redisClient.on('connect', function() {
-  console.log('connected to redis');
-});
-
 if (isDev) {
   console.log('Running in development');
 } else {
