@@ -37,9 +37,9 @@ const DestinationPanel = (props) => {
           contentType={hContentType}
         />
         {responseComponentsList}
-        { (fetchTimes.length > 0)
+        {(fetchTimes.length > 0)
           && (fetchTimes.reduce(sumReducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
+          && <PerformanceMetrics fetchTimes={fetchTimes} />}
       </StyledPanel>
     );
   }

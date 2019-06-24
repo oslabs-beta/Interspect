@@ -15,9 +15,9 @@ const SourcePanel = (props) => {
       <StyledPanel active={active} style={{ cursor: 'default' }}>
         <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} setContentType={setContentType} />
         {datacanvas}
-        { (fetchTimes.length > 0)
+        {(fetchTimes.length > 0)
           && (fetchTimes.reduce(reducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
+          && <PerformanceMetrics fetchTimes={fetchTimes} />}
       </StyledPanel>
     );
   }

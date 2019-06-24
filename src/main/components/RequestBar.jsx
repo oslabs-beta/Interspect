@@ -134,26 +134,38 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered={true}>
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered>
         {
           (SourceOrDest === 'source')
-          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
-            onChange={handleChange} >
-            <option value='GET'>GET</option>
-          </Select>
+          && (
+            <Select
+              name='method'
+              id='fetchTypeInput'
+              multiple={false}
+              value={selected}
+              onChange={handleChange}
+            >
+              <option value='GET'>GET</option>
+            </Select>
+          )
         }
         {
           (SourceOrDest === 'dest')
-          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
-            onChange={handleChange} >
+          && <Select
+              name='method'
+              id='fetchTypeInput'
+              multiple={false}
+              value={selected}
+              onChange={handleChange}
+            >
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
             <option value='PUT'>PUT</option>
             <option value='DELETE'>DELETE</option>
           </Select>
         }
-        <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
-        <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
+        <Input bordered placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange} />
+        <Button enabled={valid} type='submit' value='Submit' variation="positive">Send</Button>
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
     </div>

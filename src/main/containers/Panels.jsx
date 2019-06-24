@@ -34,9 +34,10 @@ const Panels = () => {
 
   const datacanvas = (
     <DataCanvas
-      treeId={'rawdata'}
+      treeId="rawdata"
       data={data}
-      options={dataTreeOptions} />
+      options={dataTreeOptions}
+    />
   );
 
   socket.on('post_received', (postedData) => {
@@ -60,7 +61,7 @@ const Panels = () => {
         fetchTimes={getFetchTimes}
         setFetchTimes={setGetFetchTimes}
         setContentType={setContentType}
-        />
+      />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}

@@ -52,16 +52,25 @@ const MockupsPanel = (props) => {
     setTests(testsClone);
   };
 
+  function createTestFromIndex() {
+    const indexNum = document.querySelector('#indexNum').value;
+    const testsClone = [...tests];
+    testsClone.push({ payload: data[indexNum], status: '', name: '', diff: data[indexNum] });
+    setTests(testsClone);
+  }
+
   if (active) {
     return (
-        <StyledPanel active={active} style={{ cursor: 'default' }}>
-          <div>
-            {data && <h3>Server Response</h3>}
-            {datacanvas}
-            {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
-          </div>
-          {mockupsListDisplay}
-        </StyledPanel>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
+        <div>
+          {data && <h3>Server Response</h3>}
+          {datacanvas}
+          {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
+          {data && <Button enabled onClick={createTestFromIndex}>Create Test From index</Button>}
+          {data && <input type="text" id="indexNum" />}
+        </div>
+        {mockupsListDisplay}
+      </StyledPanel>
     );
   }
 
