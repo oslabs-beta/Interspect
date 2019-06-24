@@ -45,9 +45,71 @@ function createWindow() {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {
-      socket.emit('post_received', request.body);
-      response.status(200);
-      response.end();
+      try {
+        if (request.headers["content-type"].includes('json') || 
+            request.headers["content-type"].includes('x-www-form-urlencoded')) {
+              socket.emit('post_received', request.body);
+              response.status(200);
+              response.end();
+        } else {
+          response.status(400);
+          response.end();
+        }
+      } catch {
+        response.status(500);
+        response.end();
+      }
+    });
+
+    expressApp.patch('/posturl', (request, response) => {
+      try {
+        if (request.headers["content-type"].includes('json') || 
+            request.headers["content-type"].includes('x-www-form-urlencoded')) {
+              socket.emit('post_received', request.body);
+              response.status(200);
+              response.end();
+        } else {
+          response.status(400);
+          response.end();
+        }
+      } catch {
+        response.status(500);
+        response.end();
+      }
+    });
+
+    expressApp.put('/posturl', (request, response) => {
+      try {
+        if (request.headers["content-type"].includes('json') || 
+            request.headers["content-type"].includes('x-www-form-urlencoded')) {
+              socket.emit('post_received', request.body);
+              response.status(200);
+              response.end();
+        } else {
+          response.status(400);
+          response.end();
+        }
+      } catch {
+        response.status(500);
+        response.end();
+      }
+    });
+
+    expressApp.delete('/posturl', (request, response) => {
+      try {
+        if (request.headers["content-type"].includes('json') || 
+            request.headers["content-type"].includes('x-www-form-urlencoded')) {
+              socket.emit('post_received', request.body);
+              response.status(200);
+              response.end();
+        } else {
+          response.status(400);
+          response.end();
+        }
+      } catch {
+        response.status(500);
+        response.end();
+      }
     });
   });
 

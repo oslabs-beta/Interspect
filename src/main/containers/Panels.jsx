@@ -6,7 +6,6 @@ import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import { TestsContext } from '../testsContext';
-// import { smallData, testsData } from '../dummyData';
 
 const socket = io.connect('http://localhost:3001/');
 
@@ -42,8 +41,10 @@ const Panels = () => {
 
   socket.on('post_received', (postedData) => {
     setData(postedData);
-    setTests([{ payload: postedData, status: '' }]);
-
+    setTests([{
+      payload: postedData, status: '', name: '', diff: {},
+    }]);
+    
     // clear old performance metrics on new post
     if (getFetchTimes.length) setGetFetchTimes([]);
     if (postFetchTimes.length) setPostFetchTimes([]);
