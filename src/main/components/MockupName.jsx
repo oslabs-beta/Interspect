@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // Styles
@@ -41,7 +41,7 @@ const MockupName = (props) => {
   return (
     <Header onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <Name>{name}</Name>
-      <EditButton onClick={() => { setMode('edit'); }} hovered={hovered}>
+      <EditButton onClick={() => { setMode('editName'); }} hovered={hovered}>
       Edit
       </EditButton>
     </Header>
