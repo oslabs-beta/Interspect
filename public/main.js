@@ -41,75 +41,40 @@ function createWindow() {
     mainWindow = null;
   });
 
+  const handleRequest = (request, response, socket) => {
+    try {
+      if (request.headers['content-type'].includes('json')
+        || request.headers['content-type'].includes('xml')) {
+        socket.emit('post_received', request.body);
+        response.status(200);
+        response.end();
+      } else {
+        response.status(400);
+        response.end();
+      }
+    } catch {
+      response.status(500);
+      response.end();
+    }
+  };
+
   const poster = io.on('connection', (socket) => {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {
-      try {
-        if (request.headers["content-type"].includes('json') || 
-            request.headers["content-type"].includes('x-www-form-urlencoded')) {
-              socket.emit('post_received', request.body);
-              response.status(200);
-              response.end();
-        } else {
-          response.status(400);
-          response.end();
-        }
-      } catch {
-        response.status(500);
-        response.end();
-      }
+      handleRequest(request, response, socket);
     });
 
     expressApp.patch('/posturl', (request, response) => {
-      try {
-        if (request.headers["content-type"].includes('json') || 
-            request.headers["content-type"].includes('x-www-form-urlencoded')) {
-              socket.emit('post_received', request.body);
-              response.status(200);
-              response.end();
-        } else {
-          response.status(400);
-          response.end();
-        }
-      } catch {
-        response.status(500);
-        response.end();
-      }
+      handleRequest(request, response, socket);
     });
 
     expressApp.put('/posturl', (request, response) => {
-      try {
-        if (request.headers["content-type"].includes('json') || 
-            request.headers["content-type"].includes('x-www-form-urlencoded')) {
-              socket.emit('post_received', request.body);
-              response.status(200);
-              response.end();
-        } else {
-          response.status(400);
-          response.end();
-        }
-      } catch {
-        response.status(500);
-        response.end();
-      }
+      handleRequest(request, response, socket);
     });
 
     expressApp.delete('/posturl', (request, response) => {
-      try {
-        if (request.headers["content-type"].includes('json') || 
-            request.headers["content-type"].includes('x-www-form-urlencoded')) {
-              socket.emit('post_received', request.body);
-              response.status(200);
-              response.end();
-        } else {
-          response.status(400);
-          response.end();
-        }
-      } catch {
-        response.status(500);
-        response.end();
-      }
+      handleRequest(request, response, socket);
     });
   });
 
@@ -117,4 +82,5 @@ function createWindow() {
     console.log('a user disconnected');
   });
 }
+
 app.on('ready', createWindow);
