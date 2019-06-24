@@ -50,13 +50,29 @@ const PerformanceMetrics = (props) => {
           <BarChart data={chartData} width="500" height="250" />
         </div>
 
-        <div >
+        <div>
           <br />
           <h3>
-            Average: {Math.floor(average)} ms |
-            Max: {max} ms |
-            Min: {min} ms |
-            SD: {Math.floor(Math.sqrt(variance))} ms
+            Average:
+            {' '}
+            {Math.floor(average)}
+            {' '}
+ms |
+            Max:
+            {' '}
+            {max}
+            {' '}
+ms |
+            Min:
+            {' '}
+            {min}
+            {' '}
+ms |
+            SD:
+            {' '}
+            {Math.floor(Math.sqrt(variance))}
+            {' '}
+ms
           </h3>
         </div>
       </div>

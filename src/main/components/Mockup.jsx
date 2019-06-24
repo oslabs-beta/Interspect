@@ -18,7 +18,7 @@ const Mockup = (props) => {
   // State
   const [name, setName] = useState(test.name);
 
-  // Mode controls display of name vs. name edit form, and is set by child compoments
+  // Mode controls test assertions and name edit form—it’s set by child components
   const [mode, setMode] = useState('view');
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { parseString } from 'xml2js';
+import { parseString, Builder } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
@@ -10,7 +10,7 @@ import { TestsContext } from '../testsContext';
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData, setFetchTimes,
+    SourceOrDest, setData, setFetchTimes, setContentType, contentType,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -99,14 +99,16 @@ const RequestBar = (props) => {
           fetchTimesList[0] = new Date() - now;
           now = new Date();
           const val = res.headers.get('content-type');
-          if (val === 'application/xml; charset=utf-8') {
-            console.log('in If');
+          setContentType(val);
+          if (val.includes('xml')) {
             return res.text().then(xml => parseXmlToJson(xml));
           }
           return res.json();
         })
         .then((res) => {
-          setTests([{ payload: res, status: '' }]);
+          setTests([{
+            payload: res, status: '', name: '', diff: {},
+          }]);
           setData(res);
         });
 
@@ -115,10 +117,16 @@ const RequestBar = (props) => {
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
-      if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
+      sendingObj.headers = { 'Content-Type': contentType };
+      if (headerType !== 'NONE') sendingObj.headers[headerType] = headerKey;
 
       for (let i = 0; i < testsClone.length; i += 1) {
-        sendingObj.body = JSON.stringify(testsClone[i].payload);
+        if (sendingObj.headers['Content-Type'].includes('xml')) {
+          const jsonToXml = new Builder();
+          sendingObj.body = jsonToXml.buildObject(testsClone[i].payload);
+        } else {
+          sendingObj.body = JSON.stringify(testsClone[i].payload);
+        }
         runTest(uri, sendingObj, testsClone, i);
       }
     }
@@ -126,25 +134,38 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered={true}>
+      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered>
         {
           (SourceOrDest === 'source')
-          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
-            onChange={handleChange} >
-            <option value='GET'>GET</option>
-          </Select>
+          && (
+            <Select
+              name='method'
+              id='fetchTypeInput'
+              multiple={false}
+              value={selected}
+              onChange={handleChange}
+            >
+              <option value='GET'>GET</option>
+            </Select>
+          )
         }
         {
           (SourceOrDest === 'dest')
-          && <Select name='method' id='fetchTypeInput' multiple={false} value={selected}
-            onChange={handleChange} >
+          && <Select
+              name='method'
+              id='fetchTypeInput'
+              multiple={false}
+              value={selected}
+              onChange={handleChange}
+            >
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
             <option value='PUT'>PUT</option>
+            <option value='DELETE'>DELETE</option>
           </Select>
         }
-        <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
-        <Button enabled={valid} type='submit' value='Submit' variation={'positive'}>Send</Button>
+        <Input bordered placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange} />
+        <Button enabled={valid} type='submit' value='Submit' variation="positive">Send</Button>
       </Form>
       <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
     </div>

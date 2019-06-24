@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import io from 'socket.io-client';
 import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
-// import { smallData, testsData } from '../dummyData';
+import { TestsContext } from '../testsContext';
+
+const socket = io.connect('http://localhost:3001/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [data, setData] = useState(undefined);
-  const [testsDiff, setTestsDiff] = useState([{}]);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
+  const [hContentType, setContentType] = useState('');
+
+  const [tests, setTests] = useContext(TestsContext);
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -29,10 +34,22 @@ const Panels = () => {
 
   const datacanvas = (
     <DataCanvas
-      treeId={'rawdata'}
+      treeId="rawdata"
       data={data}
-      options={dataTreeOptions} />
+      options={dataTreeOptions}
+    />
   );
+
+  socket.on('post_received', (postedData) => {
+    setData(postedData);
+    setTests([{
+      payload: postedData, status: '', name: '', diff: {},
+    }]);
+    
+    // clear old performance metrics on new post
+    if (getFetchTimes.length) setGetFetchTimes([]);
+    if (postFetchTimes.length) setPostFetchTimes([]);
+  });
 
   return (
     <PanelsWrapper>
@@ -42,22 +59,24 @@ const Panels = () => {
         setData={setData}
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
-        setFetchTimes={setGetFetchTimes} />
+        setFetchTimes={setGetFetchTimes}
+        setContentType={setContentType}
+      />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
         data={data}
         active={(activePanel === 'test')}
-        testsDiff={testsDiff}
-        setTestsDiff={setTestsDiff} />
+      />
 
       <DestinationPanel
         onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
-        testsDiff={testsDiff} />
+        hContentType={hContentType}
+      />
     </PanelsWrapper>
   );
 };
