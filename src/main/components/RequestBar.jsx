@@ -10,7 +10,7 @@ import { TestsContext } from '../testsContext';
 
 const RequestBar = (props) => {
   const {
-    SourceOrDest, setData, setFetchTimes,
+    SourceOrDest, setData, setFetchTimes, setContentType, contentType,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -99,14 +99,16 @@ const RequestBar = (props) => {
           fetchTimesList[0] = new Date() - now;
           now = new Date();
           const val = res.headers.get('content-type');
-          if (val === 'application/xml; charset=utf-8') {
-            console.log('in If');
+          setContentType(val);
+          if (val.includes('xml')) {
             return res.text().then(xml => parseXmlToJson(xml));
           }
           return res.json();
         })
         .then((res) => {
-          setTests([{ payload: res, status: '' }]);
+          setTests([{
+            payload: res, status: '', name: '', diff: {},
+          }]);
           setData(res);
         });
 
@@ -115,8 +117,8 @@ const RequestBar = (props) => {
     } else if (SourceOrDest === 'dest') {
       const testsClone = [...tests];
       const sendingObj = { method: selected, mode: 'cors' };
-      if (headerType !== 'NONE') sendingObj.headers = { [headerType]: headerKey };
-
+      sendingObj.headers = { 'Content-Type': contentType };
+      if (headerType !== 'NONE') sendingObj.headers[headerType] = headerKey;
       for (let i = 0; i < testsClone.length; i += 1) {
         sendingObj.body = JSON.stringify(testsClone[i].payload);
         runTest(uri, sendingObj, testsClone, i);

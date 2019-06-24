@@ -5,7 +5,7 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const SourcePanel = (props) => {
   const {
-    setData, active, onClickFunction, datacanvas, fetchTimes, setFetchTimes,
+    setData, active, onClickFunction, datacanvas, fetchTimes, setFetchTimes, setContentType,
   } = props;
 
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -13,11 +13,11 @@ const SourcePanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active} style={{ cursor: 'default' }}>
-        <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} />
+        <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} setContentType={setContentType} />
         {datacanvas}
-        { (fetchTimes.length > 0)
+        {(fetchTimes.length > 0)
           && (fetchTimes.reduce(reducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
+          && <PerformanceMetrics fetchTimes={fetchTimes} />}
       </StyledPanel>
     );
   }

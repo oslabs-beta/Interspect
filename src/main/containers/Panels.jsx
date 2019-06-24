@@ -9,9 +9,9 @@ import DataCanvas from './DataCanvas.jsx';
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
   const [data, setData] = useState(undefined);
-  const [testsDiff, setTestsDiff] = useState([{}]);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
+  const [hContentType, setContentType] = useState('');
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -44,6 +44,7 @@ const Panels = () => {
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
         setFetchTimes={setGetFetchTimes}
+        setContentType={setContentType}
       />
 
       <MockupsPanel
@@ -51,8 +52,6 @@ const Panels = () => {
         datacanvas={datacanvas}
         data={data}
         active={(activePanel === 'test')}
-        testsDiff={testsDiff}
-        setTestsDiff={setTestsDiff}
       />
 
       <DestinationPanel
@@ -60,7 +59,7 @@ const Panels = () => {
         active={(activePanel === 'dest')}
         fetchTimes={postFetchTimes}
         setFetchTimes={setPostFetchTimes}
-        testsDiff={testsDiff}
+        hContentType={hContentType}
       />
     </PanelsWrapper>
   );
