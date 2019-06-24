@@ -45,7 +45,6 @@ function createWindow() {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {
-      console.log(request.body);
       socket.emit('post_received', request.body);
       response.status(200);
       response.end();
