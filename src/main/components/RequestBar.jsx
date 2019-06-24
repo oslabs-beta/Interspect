@@ -149,6 +149,7 @@ const RequestBar = (props) => {
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
             <option value='PUT'>PUT</option>
+            <option value='DELETE'>DELETE</option>
           </Select>
         }
         <Input bordered={true} placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange}></Input>
