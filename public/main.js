@@ -41,25 +41,11 @@ function createWindow() {
     mainWindow = null;
   });
 
-  // http.listen(80);
-
   const poster = io.on('connection', (socket) => {
     console.log('a user connected');
 
     expressApp.post('/posturl', (request, response) => {
       console.log(request.body);
-      socket.emit('post_received', request.body);
-      response.status(200);
-      response.end();
-    });
-
-    expressApp.patch('/posturl', (request, response) => {
-      socket.emit('post_received', request.body);
-      response.status(200);
-      response.end();
-    });
-
-    expressApp.delete('/posturl', (request, response) => {
       socket.emit('post_received', request.body);
       response.status(200);
       response.end();
