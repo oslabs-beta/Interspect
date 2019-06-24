@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { parseString } from 'xml2js';
+import { parseString, Builder } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
 import Select from './InlineSelect.jsx';
@@ -119,8 +119,14 @@ const RequestBar = (props) => {
       const sendingObj = { method: selected, mode: 'cors' };
       sendingObj.headers = { 'Content-Type': contentType };
       if (headerType !== 'NONE') sendingObj.headers[headerType] = headerKey;
+
       for (let i = 0; i < testsClone.length; i += 1) {
-        sendingObj.body = JSON.stringify(testsClone[i].payload);
+        if (sendingObj.headers['Content-Type'].includes('xml')) {
+          const jsonToXml = new Builder();
+          sendingObj.body = jsonToXml.buildObject(testsClone[i].payload);
+        } else {
+          sendingObj.body = JSON.stringify(testsClone[i].payload);
+        }
         runTest(uri, sendingObj, testsClone, i);
       }
     }
@@ -145,19 +151,18 @@ const RequestBar = (props) => {
         }
         {
           (SourceOrDest === 'dest')
-          && (
-            <Select
+          && <Select
               name='method'
               id='fetchTypeInput'
               multiple={false}
               value={selected}
               onChange={handleChange}
             >
-              <option value='POST'>POST</option>
-              <option value='PATCH'>PATCH</option>
-              <option value='PUT'>PUT</option>
-            </Select>
-          )
+            <option value='POST'>POST</option>
+            <option value='PATCH'>PATCH</option>
+            <option value='PUT'>PUT</option>
+            <option value='DELETE'>DELETE</option>
+          </Select>
         }
         <Input bordered placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange} />
         <Button enabled={valid} type='submit' value='Submit' variation="positive">Send</Button>

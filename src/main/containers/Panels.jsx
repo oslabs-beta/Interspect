@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import io from 'socket.io-client';
 import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
-// import { smallData, testsData } from '../dummyData';
+import { TestsContext } from '../testsContext';
+
+const socket = io.connect('http://localhost:3001/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
@@ -12,6 +15,8 @@ const Panels = () => {
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
   const [hContentType, setContentType] = useState('');
+
+  const [tests, setTests] = useContext(TestsContext);
 
   const PanelsWrapper = styled.section`
     display: flex;
@@ -34,6 +39,17 @@ const Panels = () => {
       options={dataTreeOptions}
     />
   );
+
+  socket.on('post_received', (postedData) => {
+    setData(postedData);
+    setTests([{
+      payload: postedData, status: '', name: '', diff: {},
+    }]);
+    
+    // clear old performance metrics on new post
+    if (getFetchTimes.length) setGetFetchTimes([]);
+    if (postFetchTimes.length) setPostFetchTimes([]);
+  });
 
   return (
     <PanelsWrapper>
