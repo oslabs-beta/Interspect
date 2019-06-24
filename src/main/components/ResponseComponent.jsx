@@ -45,7 +45,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, name, index
+    status, payload, name, index,
   } = props;
 
   /* Download SF Symbols to view icons
@@ -67,7 +67,7 @@ const ResponseComponent = (props) => {
         cols='50'
         rows='5'
         value={JSON.stringify(payload)}
-        readOnly={true}
+        readOnly
       />
     </ResponseWrapper>
   );

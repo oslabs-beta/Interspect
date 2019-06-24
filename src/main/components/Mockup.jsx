@@ -26,12 +26,12 @@ const Mockup = (props) => {
         : <NameForm name={name} index={index} setMode={setMode} setName={setName} />
       }
       <DataTree
-          treeId={index}
-          data={test.payload}
-          name={name}
-          options={dataTreeOptions}
-          saveUpdatedTree={saveUpdatedTree}
-        />
+        treeId={index}
+        data={test.payload}
+        name={name}
+        options={dataTreeOptions}
+        saveUpdatedTree={saveUpdatedTree}
+      />
     </article>
   );
 };

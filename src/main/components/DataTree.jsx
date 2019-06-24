@@ -24,7 +24,7 @@ const DataTree = (props) => {
   };
 
   return (
-    <section className='wrapper' id={`tree-${treeId}`} >
+    <section className='wrapper' id={`tree-${treeId}`}>
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}

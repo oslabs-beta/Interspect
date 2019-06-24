@@ -29,23 +29,23 @@ const DestinationPanel = (props) => {
 
   if (active) {
     return (
-      <StyledPanel active={active} style={{cursor: 'default'}}>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
         <RequestBar
           SourceOrDest='dest'
           fetchTimes={fetchTimes}
           setFetchTimes={setFetchTimes}
         />
         {responseComponentsList}
-        { (fetchTimes.length > 0)
+        {(fetchTimes.length > 0)
           && (fetchTimes.reduce(sumReducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
+          && <PerformanceMetrics fetchTimes={fetchTimes} />}
       </StyledPanel>
     );
   }
 
   // only returned if not active
   return (
-    <StyledPanel onClick={onClickFunction} active={active} style={{cursor: 'pointer'}}>
+    <StyledPanel onClick={onClickFunction} active={active} style={{ cursor: 'pointer' }}>
       <h1>Destination</h1>
     </StyledPanel>
   );
