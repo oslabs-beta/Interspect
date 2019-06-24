@@ -7,7 +7,7 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, fetchTimes, setFetchTimes,
+    active, onClickFunction, fetchTimes, setFetchTimes, hContentType,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -34,6 +34,7 @@ const DestinationPanel = (props) => {
           SourceOrDest='dest'
           fetchTimes={fetchTimes}
           setFetchTimes={setFetchTimes}
+          contentType={hContentType}
         />
         {responseComponentsList}
         { (fetchTimes.length > 0)
