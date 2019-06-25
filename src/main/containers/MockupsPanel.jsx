@@ -53,15 +53,18 @@ const MockupsPanel = (props) => {
   };
 
   const saveButton = (
-    <Button enabled={true} onClick={() => {
-      fetch('http://localhost:3006/projects', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({data, tests}),
-      })
-        .then(response => {console.log(response)})
-        .catch(error => {console.log(error)});
-    }} > Save Project </Button>
+    <div>
+      <input id='projectName'>ProjectName</input>
+      <Button enabled={true} onClick={() => {
+        fetch('http://localhost:3006/projects', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({data, tests, 'name': document.querySelector('#projectName')}),
+        })
+          .then(response => {console.log(response)})
+          .catch(error => {console.log(error)});
+      }} > Save Project </Button>
+    </div>
   );
 
   if (active) {
