@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import io from 'socket.io-client';
-import SVG from 'react-inlinesvg';
 import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import { TestsContext } from '../testsContext';
-import Image from '../../../dist/Circle-icons-download.svg';
 
 const socket = io.connect('http://localhost:3001/');
 
@@ -64,12 +62,7 @@ const Panels = () => {
         setFetchTimes={setGetFetchTimes}
         setContentType={setContentType}
       />
-      <SVG
-        src='Circle-icons-download.svg'
-      >
-      Here's some optional content for browsers
-      </SVG>
-      <img src={require('../../../dist/Circle-icons-download.svg')}/>
+
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
