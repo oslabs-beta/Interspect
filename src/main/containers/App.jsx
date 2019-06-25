@@ -10,7 +10,6 @@ const App = () => (
     <TestsProvider>
       <Panels />
     </TestsProvider>
-    <Nodatasvg />
   </div>
 );
 export default hot(App);
