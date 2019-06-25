@@ -52,6 +52,18 @@ const MockupsPanel = (props) => {
     setTests(testsClone);
   };
 
+  const saveButton = (
+    <Button enabled={true} onClick={() => {
+      fetch('http://localhost:3006/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({data, tests}),
+      })
+        .then(response => {console.log(response)})
+        .catch(error => {console.log(error)});
+    }} > Save Project </Button>
+  );
+
   if (active) {
     return (
         <StyledPanel active={active} style={{ cursor: 'default' }}>
@@ -61,6 +73,7 @@ const MockupsPanel = (props) => {
             {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
           </div>
           {mockupsListDisplay}
+          {data && saveButton}
         </StyledPanel>
     );
   }

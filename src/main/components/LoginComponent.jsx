@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom';
 const { BrowserWindow } = require('electron').remote
 
 const LoginComponent = () => {
-  let [redirectNeeded, setRedirectNeeded] = useState(false);
+  let [toolRedirect, setToolRedirect] = useState(false);
+  let [projectsPageRedirect, setProjectsPageRedirect] = useState(false);
 
   const authorizeWithGithub = props => {
     const authWindow =
@@ -17,6 +18,24 @@ const LoginComponent = () => {
       });
     authWindow.loadURL('http://localhost:3006/github-init');
     authWindow.show();
+
+    function checkIfLoggedIn () {
+      console.log('checking')
+      setTimeout(() => {
+        if (authWindow.webContents.getURL().includes('success-no-projs')) {
+          authWindow.close();
+          setToolRedirect(true);
+        } else if (authWindow.webContents.getURL().includes('success-has-projs')) {
+          authWindow.close();
+          setProjectsPageRedirect(true);
+        } else {
+          checkIfLoggedIn();
+        }
+      }, 2000)
+    }
+
+    checkIfLoggedIn();
+    
     // const metaData = {
     //   method: 'GET',
     //   'Content-type': 'application/json',
@@ -33,9 +52,11 @@ const LoginComponent = () => {
 
   return (
     <div>
-      {redirectNeeded && <Redirect to="/github-init" />}
+      {toolRedirect && <Redirect to="/tool" />} 
+      {projectsPageRedirect && <Redirect to="/myprojects" />} 
       <h1> Dis Login </h1>
       <button onClick={authorizeWithGithub}>Login with Github</button>
+      <button onClick={() => {setToolRedirect(true)}}>Use Without Saving</button>
     </div>
   )
 };

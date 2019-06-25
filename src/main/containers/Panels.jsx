@@ -4,7 +4,6 @@ import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
-// import { smallData, testsData } from '../dummyData';
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
