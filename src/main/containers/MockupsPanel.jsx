@@ -1,17 +1,14 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
-import DataTree from '../components/DataTree.jsx';
-// import NameForm from '../components/NameForm.jsx';
 import Mockup from '../components/Mockup.jsx';
 
 
 // will need to get data from the get request to pass to the formatted view
 const MockupsPanel = (props) => {
   const {
-    active, datacanvas, data, onClickFunction,
+    active, datacanvas, data, onClickFunction, loggedIn
   } = props;
 
   const [tests, setTests] = useContext(TestsContext);
@@ -54,30 +51,31 @@ const MockupsPanel = (props) => {
 
   const saveButton = (
     <div>
-      <input id='projectName'>ProjectName</input>
+      <input id='projectName'></input>
       <Button enabled={true} onClick={() => {
+        const name = document.querySelector('#projectName').value;
         fetch('http://localhost:3006/projects', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({data, tests, 'name': document.querySelector('#projectName')}),
+          body: JSON.stringify({ data, tests, name })
         })
-          .then(response => {console.log(response)})
-          .catch(error => {console.log(error)});
+          .then(response => { console.log(response) })
+          .catch(error => { console.log(error) });
       }} > Save Project </Button>
     </div>
   );
 
   if (active) {
     return (
-        <StyledPanel active={active} style={{ cursor: 'default' }}>
-          <div>
-            {data && <h3>Server Response</h3>}
-            {datacanvas}
-            {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
-          </div>
-          {mockupsListDisplay}
-          {data && saveButton}
-        </StyledPanel>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
+        <div>
+          {data && <h3>Server Response</h3>}
+          {datacanvas}
+          {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
+        </div>
+        {mockupsListDisplay}
+        {data && loggedIn && saveButton}
+      </StyledPanel>
     );
   }
 

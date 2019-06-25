@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { TestsContext } from '../testsContext';
+import { Redirect } from 'react-router-dom';
+import Button from './../components/Button';
+import DataTree from '../components/DataTree.jsx';
 
-const SavedProjects = () => {
+const SavedProjects = (props) => {
+  const { setData } = props;
+  const [tests, setTests] = useContext(TestsContext);
   const [projsList, setProjsList] = useState([]);
+  const [toolRedirect, setToolRedirect] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:3006/projects')
       .then(response => {
-        console.log(response.body);
         return response.json();
       })
       .then(response => {
-        console.log(response);
         const projects = {}
         Object.keys(response).forEach((key) => {
           const splitKey = key.split(':');
@@ -21,13 +26,29 @@ const SavedProjects = () => {
       })
   }, []);
 
+  const dataTreeOptions = {
+    onAdd: false,
+    onEdit: false,
+    onDelete: false,
+    enableClipboard: false,
+  };
+
   return (
     <div>
+      {toolRedirect && <Redirect to="/tool" />}
       {Object.keys(projsList).map(proj => (
-        <div>
-          <h4>{proj}</h4>
-          <h5>{projsList[proj].data}</h5>
-          <button>Select</button>
+        <div key={proj}>
+          <h4>Project Name: {proj}</h4>
+          <DataTree
+            treeId={proj}
+            data={JSON.parse(projsList[proj].data)}
+            options={dataTreeOptions}
+          />
+          <Button enabled={true} onClick={() => {
+            setData(JSON.parse(projsList[proj].data));
+            setTests(JSON.parse(projsList[proj].tests));
+            setToolRedirect(true);
+          }}>Select</Button>
         </div>
       ))}
     </div>

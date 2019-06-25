@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import Button from './../components/Button'
 const { BrowserWindow } = require('electron').remote
 
-const LoginComponent = () => {
+const LoginComponent = (props) => {
+  const {setLoggedIn} = props;
   let [toolRedirect, setToolRedirect] = useState(false);
   let [projectsPageRedirect, setProjectsPageRedirect] = useState(false);
 
@@ -20,13 +22,14 @@ const LoginComponent = () => {
     authWindow.show();
 
     function checkIfLoggedIn () {
-      console.log('checking')
       setTimeout(() => {
         if (authWindow.webContents.getURL().includes('success-no-projs')) {
           authWindow.close();
+          setLoggedIn(true);
           setToolRedirect(true);
         } else if (authWindow.webContents.getURL().includes('success-has-projs')) {
           authWindow.close();
+          setLoggedIn(true);
           setProjectsPageRedirect(true);
         } else {
           checkIfLoggedIn();
@@ -35,28 +38,17 @@ const LoginComponent = () => {
     }
 
     checkIfLoggedIn();
-    
-    // const metaData = {
-    //   method: 'GET',
-    //   'Content-type': 'application/json',
-    //   Accept: 'text/html',
-    // };
-
-    // fetch('http://localhost:3006/github-init', metaData)
-    //   .then(response => {
-    //     console.log('oauth-init-response:', response);
-    //     setRedirectNeeded(true);
-    //   })
-    //   .catch(err => console.error('github-init-error:', err));
   };
 
   return (
     <div>
       {toolRedirect && <Redirect to="/tool" />} 
       {projectsPageRedirect && <Redirect to="/myprojects" />} 
-      <h1> Dis Login </h1>
-      <button onClick={authorizeWithGithub}>Login with Github</button>
-      <button onClick={() => {setToolRedirect(true)}}>Use Without Saving</button>
+      <center>
+        <h1> Welcome to InterSpect </h1>
+        <Button onClick={authorizeWithGithub} enabled={true}>Login with Github</Button> <br/><br/>
+        <Button onClick={() => {setToolRedirect(true)}} enabled={true}>Continue Without Saving</Button>
+      </center>
     </div>
   )
 };

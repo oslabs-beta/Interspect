@@ -100,7 +100,6 @@ const RequestBar = (props) => {
           now = new Date();
           const val = res.headers.get('content-type');
           if (val === 'application/xml; charset=utf-8') {
-            console.log('in If');
             return res.text().then(xml => parseXmlToJson(xml));
           }
           return res.json();

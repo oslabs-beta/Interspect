@@ -5,9 +5,9 @@ import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 
-const Panels = () => {
+const Panels = (props) => {
+  const {data, setData, loggedIn, setLoggedIn} = props;
   const [activePanel, setActivePanel] = useState('source');
-  const [data, setData] = useState(undefined);
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
 
@@ -40,12 +40,15 @@ const Panels = () => {
         setData={setData}
         active={(activePanel === 'source')}
         fetchTimes={getFetchTimes}
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
         setFetchTimes={setGetFetchTimes} />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
         datacanvas={datacanvas}
         data={data}
+        loggedIn={loggedIn}
         active={(activePanel === 'test')}
       />
 
