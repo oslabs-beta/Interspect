@@ -25,6 +25,10 @@ module.exports = {
         include: defaultInclude,
       },
       {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
+      {
         test: /\.jsx?$/,
         use: [{
           loader: 'babel-loader',
