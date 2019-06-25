@@ -16,9 +16,9 @@ const Icon = styled.span`
   font-family: 'SF Pro Text';
   margin-right: 0.625em;
   color: ${(props) => {
-    if (props.status >= 200 && props.status < 300) return '#77B86B;';
-    if (props.status >= 300) return '#E5544C;';
-    return '#292F32;';
+    if (props.didPass === 'pending') return '#555B5E';
+    if (props.didPass) return '#77B86B';
+    if (!props.didPass) return '#E5544C';
   }};
 `;
 
@@ -45,23 +45,64 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, payload, name, index,
+    status, expectedStatus, payload, name, index,
   } = props;
 
-  /* Download SF Symbols to view icons
-  (https://developer.apple.com/design/human-interface-guidelines/sf-symbols/)
-  (SVG icons to come) */
-  let checkmark = '􀍡';
-  if (status >= 200 && status < 300) {
-    checkmark = '􀁣';
-  } else if (status >= 300) checkmark = '􀁡';
+  const didPass = () => {
+    if (!status) return 'pending';
+    if (!expectedStatus) {
+      return status >= 200 && status <= 299;
+    }
+    if (expectedStatus[1]) {
+      const [lower, upper] = expectedStatus;
+      return status >= lower && status <= upper;
+    }
+    return expectedStatus[0] === status;
+  };
+
+  const renderCheckmark = () => {
+    /* Download SF Symbols to view icons in app
+    (https://developer.apple.com/design/human-interface-guidelines/sf-symbols/)
+    (SVG icons to come) */
+    if (!status) return '􀍡';
+    return didPass() ? '􀁣' : '􀁡';
+  };
+
+  const renderExpectedStatus = () => {
+    if (!expectedStatus) {
+      return 'No assertion given';
+    }
+    if (expectedStatus.length === 2) {
+      const [lower, upper] = expectedStatus;
+      return `Expecting status code in the ${lower}–${upper} range`;
+    }
+    if (expectedStatus.length === 1) {
+      return `Expecting status code to be ${expectedStatus[0]}`;
+    }
+  };
+
+  const renderTestResult = () => {
+    if (!expectedStatus) {
+      return 'No assertion given';
+    }
+    if (expectedStatus[1]) {
+      const [lower, upper] = expectedStatus;
+      return didPass()
+        ? 'Passed'
+        : `Expected status code to fall between ${lower}–${upper}`;
+    }
+    return didPass()
+      ? 'Passed'
+      : `Expected status code to be ${expectedStatus[0]}`;
+  };
 
   return (
     <ResponseWrapper>
       <Header>
         <h3>{ name || `Test #${index + 1}` }</h3>
-        <Icon status={status}>{checkmark}</Icon>
+        <Icon didPass={didPass()}>{renderCheckmark()}</Icon>
         { status || 'Ready to send' }
+        <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
       </Header>
       <Code
         cols='50'

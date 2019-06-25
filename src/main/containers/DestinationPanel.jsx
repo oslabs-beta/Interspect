@@ -19,6 +19,7 @@ const DestinationPanel = (props) => {
         payload={tests[i].diff}
         name={tests[i].name}
         index={i}
+        expectedStatus={tests[i].expectedStatus}
         // fix later
         key={`DestPanelTest ${i}`}
       />,
