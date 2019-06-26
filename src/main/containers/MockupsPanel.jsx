@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
-// import NameForm from '../components/NameForm.jsx';
+import Select from '../components/InlineSelect.jsx';
 import Mockup from '../components/Mockup.jsx';
 
 
@@ -50,13 +50,29 @@ const MockupsPanel = (props) => {
     setTests(testsClone);
   };
 
+  const initialstate = (data ? Object.keys(data)[0] : undefined);
+  const [createTestIndex, setCreateTestIndex] = useState(initialstate);
   function createTestFromIndex() {
-    const indexNum = document.querySelector('#indexNum').value;
     const testsClone = [...tests];
     testsClone.push({
-      payload: data[indexNum], status: '', name: `Test #${tests.length + 1}`, diff: data[indexNum],
+      payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: data[createTestIndex],
     });
     setTests(testsClone);
+  }
+
+  const options = [];
+  if (data) {
+    const testKeys = Object.keys(data)
+    for (let i = 0; i < testKeys.length; i += 1) {
+      if (typeof data[testKeys[i]] === 'object') {
+        options.push(<option value={testKeys[i]}>{testKeys[i]}</option>);
+      }
+    }
+  }
+
+  function changeTestIndex(e) {
+    const { value } = e.target;
+    setCreateTestIndex(value);
   }
 
   if (active) {
@@ -65,9 +81,21 @@ const MockupsPanel = (props) => {
         <div>
           {data && <h3>Server Response</h3>}
           {datacanvas}
-          {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
-          {data && <Button enabled onClick={createTestFromIndex}>Create Test From index</Button>}
-          {data && <input type="text" id="indexNum" />}
+          {data &&
+            <div>
+              <Button enabled={true} onClick={createNewTest}>New Test</Button>
+              <br />
+              <Button enabled onClick={createTestFromIndex}>Create Test From Index</Button>
+              <Select
+                name='createTestFromIndexDropdown'
+                id='createTestFromIndexDropdown'
+                multiple={false}
+                value={createTestIndex}
+                onChange={changeTestIndex}
+              >
+              {options}
+              </Select>
+            </div>}
         </div>
         {mockupsListDisplay}
       </StyledPanel>
