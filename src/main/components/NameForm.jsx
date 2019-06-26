@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { TestsContext } from '../testsContext';
 import InlineForm from './InlineForm.jsx';
 import InlineInput from './InlineInput.jsx';
+import Button from './Button.jsx';
 
 // Form styles
 const Form = styled(InlineForm)`
@@ -57,6 +58,7 @@ const NameForm = (props) => {
         onChange={updateName}
       />
       <Label htmlFor="name">Name</Label>
+      <Button style={{'margin-left': '100px'}} enabled={true} type="submit">Save</Button>
     </Form>
   );
 };
