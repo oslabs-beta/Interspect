@@ -20,7 +20,7 @@ const Panels = () => {
 
   const PanelsWrapper = styled.section`
     display: flex;
-    height: 80vh;
+    height: 100vh;
   `;
 
   // Create DataCanvas component for component composition to
