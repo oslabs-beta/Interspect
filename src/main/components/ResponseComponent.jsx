@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ArrowRightCircle, CheckCircle, XCircle } from 'react-feather';
 
 const ResponseWrapper = styled.article`
   background-color: #F0F3F4;
@@ -64,8 +65,8 @@ const ResponseComponent = (props) => {
     /* Download SF Symbols to view icons in app
     (https://developer.apple.com/design/human-interface-guidelines/sf-symbols/)
     (SVG icons to come) */
-    if (!status) return '􀍡';
-    return didPass() ? '􀁣' : '􀁡';
+    if (!status) return <ArrowRightCircle size={18} />;
+    return didPass() ? <CheckCircle size={18} /> : <XCircle size={18}/>;
   };
 
   const renderExpectedStatus = () => {
