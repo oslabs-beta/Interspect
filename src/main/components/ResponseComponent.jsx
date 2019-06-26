@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDiffViewer from 'react-diff-viewer';
 import styled from 'styled-components';
 
 const ResponseWrapper = styled.article`
@@ -45,7 +46,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, expectedStatus, payload, name, index,
+    status, expectedStatus, payload, data, name, index,
   } = props;
 
   const didPass = () => {
@@ -104,12 +105,18 @@ const ResponseComponent = (props) => {
         { status || 'Ready to send' }
         <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
       </Header>
-      <Code
+      {/* <Code
         cols='50'
         rows='5'
         value={JSON.stringify(payload)}
         readOnly
-      />
+      /> */}
+      <ReactDiffViewer
+        oldValue={JSON.stringify(data, null, 2)}
+        newValue={JSON.stringify(payload, null, 2)}
+        splitView={true}
+        // styles={}
+        />
     </ResponseWrapper>
   );
 };

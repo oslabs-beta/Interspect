@@ -7,7 +7,7 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, fetchTimes, setFetchTimes, hContentType,
+    active, data, fetchTimes, hContentType, onClickFunction, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -16,7 +16,8 @@ const DestinationPanel = (props) => {
     responseComponentsList.push(
       <ResponseComponent
         status={tests[i].status}
-        payload={tests[i].diff}
+        data={data}
+        payload={tests[i].payload}
         name={tests[i].name}
         index={i}
         expectedStatus={tests[i].expectedStatus}
