@@ -1,16 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDiffViewer from 'react-diff-viewer';
 import styled from 'styled-components';
 
+// Styles
 const ResponseWrapper = styled.article`
   background-color: #F0F3F4;
   border-radius: 3px;
   box-shadow: inset;
-  box-shadow: inset 0 0 1px 0 rgba(41, 47, 50, 0.25);
+  box-shadow: inset 0 0 2px 0 rgba(41, 47, 50, 0.25);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 1em;
   margin-bottom: 1em;
+  a {
+    color: #555B5E;
+    font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.825em;
+    text-align: center;
+    :hover {
+      cursor: pointer;
+    }
+  }
+  div.diff {
+    border-top: 1px solid #E2E6E9;
+    margin: 0.25em;
+    max-height: 480px;
+    overflow-y: scroll;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  pre {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 90%;
+  }
+`;
+
+const CardButton = styled.button`
+  background: #F0F3F4;
+  border: none;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-top: 1px solid #BCC1C2;
+  box-shadow: inset 0 0 1px 0 rgba(41, 47, 50, 0.35);
+  color: #555B5E;
+  font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 0.825em;
+  padding: 1em;
+  
+  :hover {
+    cursor: pointer;
+  }
+  
+  :active {
+    background: #555B5E;
+    color: #F0F3F4;
+    outline: 0;
+  }
+  
+  :focus {
+    outline: 0;
+    box-shadow: inset 0 0 3px 0 rgba(41, 47, 50, 0.5);
+  }
 `;
 
 const Icon = styled.span`
@@ -23,20 +74,26 @@ const Icon = styled.span`
   }};
 `;
 
-const Code = styled.textarea`
-  background-color: #292F32;
-  border: none;
-  border-radius: 3px;
-  color: #D4E6F7;
-  display: flex;
-  padding: 1em;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.725em;
-  resize: none;
-`;
+const diffColors = {
+  variables: {
+    addedBackground: '#DEF0DB',
+    addedColor: '#1A3715',
+    removedBackground: '#FFE5E5',
+    removedColor: '#5C0505',
+    wordAddedBackground: '#B2D2A2',
+    wordRemovedBackground: '#FBB6B6',
+    addedGutterBackground: '#B2D2A2',
+    removedGutterBackground: '#FBB6B6',
+    gutterBackground: '#F0F3F4',
+    gutterBackgroundDark: '#F0F3F4',
+    highlightBackground: '#fffbdd',
+    highlightGutterBackground: '#fff5b1',
+  },
+};
 
 const Header = styled.header`
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 1em;
   h3 {
     color: #292F32;
     margin: 0;
@@ -49,6 +106,9 @@ const ResponseComponent = (props) => {
     status, expectedStatus, payload, data, name, index,
   } = props;
 
+  const [showDiff, setShowDiff] = useState(false);
+
+  // Event handlers
   const didPass = () => {
     if (!status) return 'pending';
     if (!expectedStatus) {
@@ -97,6 +157,10 @@ const ResponseComponent = (props) => {
       : `Expected status code to be ${expectedStatus[0]}`;
   };
 
+  const toggleDiff = () => {
+    setShowDiff(!showDiff);
+  };
+
   return (
     <ResponseWrapper>
       <Header>
@@ -105,18 +169,19 @@ const ResponseComponent = (props) => {
         { status || 'Ready to send' }
         <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
       </Header>
-      {/* <Code
-        cols='50'
-        rows='5'
-        value={JSON.stringify(payload)}
-        readOnly
-      /> */}
-      <ReactDiffViewer
-        oldValue={JSON.stringify(data, null, 2)}
-        newValue={JSON.stringify(payload, null, 2)}
-        splitView={true}
-        // styles={}
-        />
+      { showDiff ? <a onClick={() => setShowDiff(false)}>Collapse Diff</a> : null }
+      { showDiff
+        ? <div className="diff">
+            <ReactDiffViewer
+            oldValue={JSON.stringify(data, null, 2)}
+            newValue={JSON.stringify(payload, null, 2)}
+            splitView={true}
+            styles={diffColors}
+            />
+          </div>
+        : <CardButton onClick={() => setShowDiff(true)}>Show Diff</CardButton>
+      }
+
     </ResponseWrapper>
   );
 };
