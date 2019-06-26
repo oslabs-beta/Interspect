@@ -62,10 +62,10 @@ const MockupsPanel = (props) => {
 
   const options = [];
   if (data) {
-    const testKeys = Object.keys(data)
-    for (let i = 0; i < testKeys.length; i += 1) {
-      if (typeof data[testKeys[i]] === 'object') {
-        options.push(<option value={testKeys[i]}>{testKeys[i]}</option>);
+    const testKeys = Object.keys(data);
+    for (let j = 0; j < testKeys.length; j += 1) {
+      if (typeof data[testKeys[j]] === 'object') {
+        options.push(<option value={testKeys[j]}>{testKeys[j]}</option>);
       }
     }
   }
@@ -81,8 +81,8 @@ const MockupsPanel = (props) => {
         <div>
           {data && <h3>Server Response</h3>}
           {datacanvas}
-          {data &&
-            <div>
+          {data
+            && <div>
               <Button enabled={true} onClick={createNewTest}>New Test</Button>
               <br />
               <Button enabled onClick={createTestFromIndex}>Create Test From Index</Button>

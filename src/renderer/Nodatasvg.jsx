@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Nodatasvg (props) {
-    return (
+function Nodatasvg(props) {
+  return (
         <svg width="162px" height="128px" viewBox="0 0 162 128" >
             <title>No-Data</title>
             <desc>Created with Sketch.</desc>
@@ -117,7 +117,7 @@ function Nodatasvg (props) {
                 </g>
             </g>
         </svg>
-    );
+  );
 }
 
 export default Nodatasvg;
