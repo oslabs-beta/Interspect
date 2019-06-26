@@ -42,7 +42,7 @@ const MockupsPanel = (props) => {
   const createNewTest = () => {
     const testsClone = [...tests];
     testsClone.push({
-      payload: data, status: '', name: '', diff: {},
+      payload: data, status: '', name: `Test #${tests.length + 1}`, diff: {},
     });
 
     // the ID of the test will be the same as the position in the array
@@ -53,7 +53,7 @@ const MockupsPanel = (props) => {
   function createTestFromIndex() {
     const indexNum = document.querySelector('#indexNum').value;
     const testsClone = [...tests];
-    testsClone.push({ payload: data[indexNum], status: '', name: '', diff: data[indexNum] });
+    testsClone.push({ payload: data[indexNum], status: '', name: `Test #${tests.length + 1}`, diff: data[indexNum] });
     setTests(testsClone);
   }
 

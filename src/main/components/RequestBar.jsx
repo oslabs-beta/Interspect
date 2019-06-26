@@ -43,10 +43,10 @@ const RequestBar = (props) => {
 
   // Extra fetches for performance metrics
   const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  function getPerformanceMetricsData(getOrPost, sendingObj) {
+  function getPerformanceMetricsData (getOrPost, sendingObj) {
     let successfulFetchesCounter = 0;
 
-    function recordFetchTimes(i) {
+    function recordFetchTimes (i) {
       fetch(uri, sendingObj)
         .then(() => {
           fetchTimesList[i] = new Date() - now;
@@ -107,7 +107,7 @@ const RequestBar = (props) => {
         })
         .then((res) => {
           setTests([{
-            payload: res, status: '', name: '', diff: {},
+            payload: res, status: '', name: 'Test #1', diff: {},
           }]);
           setData(res);
         });
@@ -152,12 +152,12 @@ const RequestBar = (props) => {
         {
           (SourceOrDest === 'dest')
           && <Select
-              name='method'
-              id='fetchTypeInput'
-              multiple={false}
-              value={selected}
-              onChange={handleChange}
-            >
+            name='method'
+            id='fetchTypeInput'
+            multiple={false}
+            value={selected}
+            onChange={handleChange}
+          >
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
             <option value='PUT'>PUT</option>

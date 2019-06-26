@@ -54,7 +54,7 @@ const NameForm = (props) => {
       <Input
         name="name"
         type="text"
-        placeholder={name || `Test #${index + 1}`}
+        placeholder={name}
         onChange={updateName}
       />
       <Label htmlFor="name">Name</Label>

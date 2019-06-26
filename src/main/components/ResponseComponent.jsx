@@ -70,7 +70,7 @@ const ResponseComponent = (props) => {
 
   const renderExpectedStatus = () => {
     if (!expectedStatus) {
-      return 'No assertion given';
+      return 'Expecting status code in the 200–299 range';
     }
     if (expectedStatus.length === 2) {
       const [lower, upper] = expectedStatus;
@@ -83,7 +83,7 @@ const ResponseComponent = (props) => {
 
   const renderTestResult = () => {
     if (!expectedStatus) {
-      return 'No assertion given';
+      return 'Expecting status code in the 200–299 range';
     }
     if (expectedStatus[1]) {
       const [lower, upper] = expectedStatus;
@@ -99,7 +99,7 @@ const ResponseComponent = (props) => {
   return (
     <ResponseWrapper>
       <Header>
-        <h3>{ name || `Test #${index + 1}` }</h3>
+        <h3>{ name }</h3>
         <Icon didPass={didPass()}>{renderCheckmark()}</Icon>
         { status || 'Ready to send' }
         <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
