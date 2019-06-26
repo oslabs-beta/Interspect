@@ -3,7 +3,7 @@ import NameForm from './NameForm.jsx';
 import MockupName from './MockupName.jsx';
 import DataTree from './DataTree.jsx';
 import Button from './Button.jsx';
-import AssertionsForm from './AssertionsForm.jsx'
+import AssertionsForm from './AssertionsForm.jsx';
 
 const dataTreeOptions = {
   onAdd: true,
