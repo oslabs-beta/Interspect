@@ -5,7 +5,7 @@ const StyledPanel = styled.section`
   border: ${(props) => {
     if (props.active) return 'none;';
     return '1px solid #F0F3F4;';
-  }}
+  }};
   max-height: 80vh;
   overflow-y: scroll;
   padding: 0 2em 1em;
