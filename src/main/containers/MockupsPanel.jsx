@@ -67,7 +67,7 @@ const MockupsPanel = (props) => {
         <div>
           {data && <h3>Server Response</h3>}
           {datacanvas}
-          {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
+          {data && <Button enabled onClick={createNewTest}>New Test</Button>}
           {data && <Button enabled onClick={createTestFromIndex}>Create Test From index</Button>}
           {data && <input type="text" id="indexNum" />}
         </div>
