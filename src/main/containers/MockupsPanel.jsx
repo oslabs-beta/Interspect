@@ -1,9 +1,7 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
-import DataTree from '../components/DataTree.jsx';
 // import NameForm from '../components/NameForm.jsx';
 import Mockup from '../components/Mockup.jsx';
 

@@ -38,7 +38,7 @@ const NameForm = (props) => {
     testsCopy[index].name = newName;
 
     // Update name in test array, then set mockup “mode” to trigger re-render
-    setName(newName);
+    setName(newName, index);
     setTests(testsCopy);
     setMode('view');
   };
