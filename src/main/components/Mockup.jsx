@@ -24,6 +24,7 @@ const Mockup = (props) => {
 
   function setName(name, testIndex) {
     const testsClone = [...tests];
+    // This if-statement just makes sure the test name wasn't just whitespace
     if (name.replace(/\s/g, '') !== '') testsClone[testIndex].name = name;
     else testsClone[testIndex].name = `Test #${testIndex + 1}`;
     setTests(testsClone);

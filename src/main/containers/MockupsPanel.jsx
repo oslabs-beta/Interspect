@@ -64,6 +64,7 @@ const MockupsPanel = (props) => {
   if (data) {
     const testKeys = Object.keys(data);
     for (let j = 0; j < testKeys.length; j += 1) {
+      // if necessary because otherwise you get errors with single values
       if (typeof data[testKeys[j]] === 'object') {
         options.push(<option value={testKeys[j]}>{testKeys[j]}</option>);
       }
