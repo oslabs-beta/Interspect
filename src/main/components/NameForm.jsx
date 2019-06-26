@@ -58,7 +58,7 @@ const NameForm = (props) => {
         onChange={updateName}
       />
       <Label htmlFor="name">Name</Label>
-      <Button style={{'margin-left': '100px'}} enabled={true} type="submit">Save</Button>
+      <Button style={{ 'margin-left': '100px' }} enabled={true} type="submit">Save</Button>
     </Form>
   );
 };

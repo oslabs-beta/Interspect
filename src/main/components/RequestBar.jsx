@@ -43,10 +43,10 @@ const RequestBar = (props) => {
 
   // Extra fetches for performance metrics
   const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  function getPerformanceMetricsData (getOrPost, sendingObj) {
+  function getPerformanceMetricsData(getOrPost, sendingObj) {
     let successfulFetchesCounter = 0;
 
-    function recordFetchTimes (i) {
+    function recordFetchTimes(i) {
       fetch(uri, sendingObj)
         .then(() => {
           fetchTimesList[i] = new Date() - now;

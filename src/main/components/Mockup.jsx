@@ -22,17 +22,17 @@ const Mockup = (props) => {
   // Mode controls test assertions and name edit form—it’s set by child components
   const [mode, setMode] = useState('view');
 
-  function setName (name, index) {
+  function setName(name, testIndex) {
     const testsClone = [...tests];
-    if (name.replace(/\s/g,'') !== '') testsClone[index].name = name;
-    else testsClone[index].name = `Test #${index + 1}`
+    if (name.replace(/\s/g, '') !== '') testsClone[testIndex].name = name;
+    else testsClone[testIndex].name = `Test #${testIndex + 1}`;
     setTests(testsClone);
   }
 
-  function deleteTest (index) {
+  function deleteTest(testIndex) {
     const testsClone = [];
-    for (let i = 0; i < tests.length; i++) {
-      if (i !== index) testsClone.push(tests[i]);
+    for (let i = 0; i < tests.length; i += 1) {
+      if (i !== testIndex) testsClone.push(tests[i]);
     }
     setTests(testsClone);
   }

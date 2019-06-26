@@ -45,7 +45,7 @@ const Panels = () => {
     setTests([{
       payload: postedData, status: '', name: 'Test #1', diff: {},
     }]);
-    
+
     // clear old performance metrics on new post
     if (getFetchTimes.length) setGetFetchTimes([]);
     if (postFetchTimes.length) setPostFetchTimes([]);
