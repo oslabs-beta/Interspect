@@ -14,6 +14,8 @@ const Panels = () => {
   const [getFetchTimes, setGetFetchTimes] = useState([]);
   const [postFetchTimes, setPostFetchTimes] = useState([]);
   const [hContentType, setContentType] = useState('');
+  const [listeningPort, setListeningPort] = useState(3002);
+  const [serverOn, setServerOn] = useState(false);
 
   const [tests, setTests] = useContext(TestsContext);
 
@@ -36,6 +38,10 @@ const Panels = () => {
       treeId="rawdata"
       data={data}
       options={dataTreeOptions}
+      listeningPort={listeningPort}
+      setListeningPort={setListeningPort}
+      serverOn={serverOn}
+      setServerOn={setServerOn}
     />
   );
 

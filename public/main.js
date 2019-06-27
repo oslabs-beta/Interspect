@@ -19,8 +19,6 @@ function createWindow() {
   expressApp.use(bodyParser.urlencoded({ extended: true }));
   expressApp.use(bodyParser.json());
 
-  server.listen(3001);
-
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 900,
@@ -60,21 +58,25 @@ function createWindow() {
   };
 
 
-  expressApp.post('/posturl', (request, response) => {
+  expressApp.post('/', (request, response) => {
     handleRequest(request, response);
   });
 
-  expressApp.patch('/posturl', (request, response) => {
+  expressApp.patch('/', (request, response) => {
     handleRequest(request, response);
   });
 
-  expressApp.put('/posturl', (request, response) => {
+  expressApp.put('/', (request, response) => {
     handleRequest(request, response);
   });
 
-  expressApp.delete('/posturl', (request, response) => {
+  expressApp.delete('/', (request, response) => {
     handleRequest(request, response);
   });
+
+  ipcMain.on('activate_server', (event, arg) => {
+    server.listen(arg);
+  })
 }
 
 app.on('ready', createWindow);
