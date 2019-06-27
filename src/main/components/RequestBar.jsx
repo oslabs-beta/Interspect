@@ -107,7 +107,7 @@ const RequestBar = (props) => {
         })
         .then((res) => {
           setTests([{
-            payload: res, status: '', name: 'Test #1', diff: {},
+            payload: res, status: '', name: 'Test #1',
           }]);
           setData(res);
         });

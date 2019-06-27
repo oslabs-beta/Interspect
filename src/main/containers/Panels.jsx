@@ -43,7 +43,7 @@ const Panels = () => {
   socket.on('post_received', (postedData) => {
     setData(postedData);
     setTests([{
-      payload: postedData, status: '', name: 'Test #1', diff: {},
+      payload: postedData, status: '', name: 'Test #1',
     }]);
 
     // clear old performance metrics on new post
@@ -71,11 +71,12 @@ const Panels = () => {
       />
 
       <DestinationPanel
-        onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
+        data={data}
         fetchTimes={postFetchTimes}
-        setFetchTimes={setPostFetchTimes}
         hContentType={hContentType}
+        onClickFunction={() => setActivePanel('dest')}
+        setFetchTimes={setPostFetchTimes}
       />
     </PanelsWrapper>
   );
