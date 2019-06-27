@@ -1,6 +1,6 @@
 {
   "name": "interspect",
-  "productName": "InterSpect",
+  "productName": "Interspect",
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
   "main": "public/main.js",
