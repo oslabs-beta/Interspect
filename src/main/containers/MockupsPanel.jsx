@@ -20,10 +20,12 @@ const MockupsPanel = (props) => {
     const testsClone = [...tests];
     testsClone[arrayPosition].payload = newData;
     // for deletion—find better syntax
+
     if (!testsClone[arrayPosition].diff[namespace]) {
       testsClone[arrayPosition].diff[namespace] = {};
     }
     testsClone[arrayPosition].diff[namespace][name] = newValue;
+
     setTests(testsClone);
   };
 
@@ -52,7 +54,7 @@ const MockupsPanel = (props) => {
 
   const initialstate = (data ? Object.keys(data)[0] : undefined);
   const [createTestIndex, setCreateTestIndex] = useState(initialstate);
-  function createTestFromIndex() {
+  function createTestFromIndex () {
     const testsClone = [...tests];
     testsClone.push({
       payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: data[createTestIndex],
@@ -71,7 +73,7 @@ const MockupsPanel = (props) => {
     }
   }
 
-  function changeTestIndex(e) {
+  function changeTestIndex (e) {
     const { value } = e.target;
     setCreateTestIndex(value);
   }
@@ -94,11 +96,11 @@ const MockupsPanel = (props) => {
                 value={createTestIndex}
                 onChange={changeTestIndex}
               >
-              {options}
+                {options}
               </Select>
             </div>}
+          {mockupsListDisplay}
         </div>
-        {mockupsListDisplay}
       </StyledPanel>
     );
   }
