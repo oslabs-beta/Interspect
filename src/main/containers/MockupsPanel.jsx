@@ -19,13 +19,6 @@ const MockupsPanel = (props) => {
     // Update tests
     const testsClone = [...tests];
     testsClone[arrayPosition].payload = newData;
-    // for deletion—find better syntax
-
-    if (!testsClone[arrayPosition].diff[namespace]) {
-      testsClone[arrayPosition].diff[namespace] = {};
-    }
-    testsClone[arrayPosition].diff[namespace][name] = newValue;
-
     setTests(testsClone);
   };
 
@@ -44,7 +37,7 @@ const MockupsPanel = (props) => {
   const createNewTest = () => {
     const testsClone = [...tests];
     testsClone.push({
-      payload: data, status: '', name: `Test #${tests.length + 1}`, diff: {},
+      payload: data, status: '', name: `Test #${tests.length + 1}`,
     });
 
     // the ID of the test will be the same as the position in the array
@@ -54,10 +47,10 @@ const MockupsPanel = (props) => {
 
   const initialstate = (data ? Object.keys(data)[0] : undefined);
   const [createTestIndex, setCreateTestIndex] = useState(initialstate);
-  function createTestFromIndex () {
+  function createTestFromIndex() {
     const testsClone = [...tests];
     testsClone.push({
-      payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: data[createTestIndex],
+      payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: createTestIndex,
     });
     setTests(testsClone);
   }
@@ -73,7 +66,7 @@ const MockupsPanel = (props) => {
     }
   }
 
-  function changeTestIndex (e) {
+  function changeTestIndex(e) {
     const { value } = e.target;
     setCreateTestIndex(value);
   }
