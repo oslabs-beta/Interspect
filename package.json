@@ -1,5 +1,6 @@
 {
-  "name": "apimocking",
+  "name": "interspect",
+  "productName": "Interspect",
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
   "main": "public/main.js",
@@ -53,6 +54,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "css-loader": "^2.1.1",
+    "electron-packager": "^14.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
