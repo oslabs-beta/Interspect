@@ -73,7 +73,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, expectedStatus, payload, data, name, diff
+    status, expectedStatus, payload, data, name, diff,
   } = props;
 
   const [showDiff, setShowDiff] = useState(false);
@@ -127,10 +127,14 @@ const ResponseComponent = (props) => {
       : `Expected status code to be ${expectedStatus[0]}`;
   };
 
-  const originalValue = (diff === undefined) ?
-                         JSON.stringify(data, null, 2) :
-                         JSON.stringify(data[diff], null, 2);
+  const originalValue = (diff === undefined)
+    ? JSON.stringify(data, null, 2)
+    : JSON.stringify(data[diff], null, 2);
   const newValue = JSON.stringify(payload, null, 2);
+
+  const cardButton = (originalValue === newValue
+          ? <CardButton> No Changes </CardButton>
+          : <CardButton onClick={() => setShowDiff(true)}> Show Changes </CardButton>);
 
   return (
     <ResponseWrapper>
@@ -152,9 +156,7 @@ const ResponseComponent = (props) => {
             hideLineNumbers={true}
           />
         </div>
-        : ((originalValue === newValue)
-           ? <CardButton> No Changes </CardButton>
-           : <CardButton onClick={() => setShowDiff(true)}> Show Changes </CardButton>)
+        : cardButton
       }
 
     </ResponseWrapper>

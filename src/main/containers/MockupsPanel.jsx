@@ -47,7 +47,7 @@ const MockupsPanel = (props) => {
 
   const initialstate = (data ? Object.keys(data)[0] : undefined);
   const [createTestIndex, setCreateTestIndex] = useState(initialstate);
-  function createTestFromIndex () {
+  function createTestFromIndex() {
     const testsClone = [...tests];
     testsClone.push({
       payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: createTestIndex,
@@ -66,7 +66,7 @@ const MockupsPanel = (props) => {
     }
   }
 
-  function changeTestIndex (e) {
+  function changeTestIndex(e) {
     const { value } = e.target;
     setCreateTestIndex(value);
   }
