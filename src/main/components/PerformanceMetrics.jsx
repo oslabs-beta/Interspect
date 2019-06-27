@@ -12,6 +12,13 @@ const PerformanceWrapper = styled.div`
   align-items: center;
   padding: 1em;
   margin-bottom: 1em;
+  h3 {
+    color: #555B5E;
+    font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-feature-settings: 'ss18';
+    font-size: 1em;
+    font-weight: 400;
+  }
 `;
 
 const BarChart = Bar;
@@ -50,13 +57,29 @@ const PerformanceMetrics = (props) => {
           <BarChart data={chartData} width="500" height="250" />
         </div>
 
-        <div >
+        <div>
           <br />
           <h3>
-            Average: {Math.floor(average)} ms |
-            Max: {max} ms |
-            Min: {min} ms |
-            SD: {Math.floor(Math.sqrt(variance))} ms
+            Average:
+            {' '}
+            {Math.floor(average)}
+            {' '}
+ms |
+            Max:
+            {' '}
+            {max}
+            {' '}
+ms |
+            Min:
+            {' '}
+            {min}
+            {' '}
+ms |
+            Standard Deviation:
+            {' '}
+            {Math.floor(Math.sqrt(variance))}
+            {' '}
+ms
           </h3>
         </div>
       </div>

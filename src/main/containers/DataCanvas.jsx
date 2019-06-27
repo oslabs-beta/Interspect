@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
 import EmptyState from '../components/EmptyState.jsx';
+import Nodatasvg from '../../renderer/Nodatasvg.jsx';
 
 const DataCanvas = (props) => {
   const {
@@ -13,8 +13,8 @@ const DataCanvas = (props) => {
     return (
       <EmptyState>
         <h2>Let’s get some data</h2>
-        <p>To get started, send a request to any of your microservices—or open a data mockup</p>
-        <Button title='Not yet functional'>Open Mockup</Button>
+        <p>To get started, send a request to any of your microservices <br/>or post JSON to http://localhost:3001/posturl</p>
+        <Nodatasvg />
       </EmptyState>
     );
   }

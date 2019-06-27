@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { TestsContext } from '../testsContext';
 import InlineForm from './InlineForm.jsx';
 import InlineInput from './InlineInput.jsx';
+import Button from './Button.jsx';
 
 // Form styles
 const Form = styled(InlineForm)`
@@ -38,7 +39,7 @@ const NameForm = (props) => {
     testsCopy[index].name = newName;
 
     // Update name in test array, then set mockup “mode” to trigger re-render
-    setName(newName);
+    setName(newName, index);
     setTests(testsCopy);
     setMode('view');
   };
@@ -53,11 +54,11 @@ const NameForm = (props) => {
       <Input
         name="name"
         type="text"
-        placeholder={ name || `Test #${index + 1}`}
+        placeholder={name}
         onChange={updateName}
-      >
-      </Input>
+      />
       <Label htmlFor="name">Name</Label>
+      <Button style={{ 'margin-left': '100px' }} enabled={true} type="submit">Save</Button>
     </Form>
   );
 };

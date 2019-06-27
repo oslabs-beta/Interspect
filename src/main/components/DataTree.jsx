@@ -24,14 +24,14 @@ const DataTree = (props) => {
   };
 
   return (
-    <section className='wrapper' id={`tree-${treeId}`} >
+    <section className='wrapper' id={`tree-${treeId}`}>
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}
         theme='chalk'
         iconStyle='circle'
         style={styles}
-        collapsed={0}
+        collapsed={2}
         onAdd={(onAdd) ? changeObject : false}
         onEdit={(onEdit) ? changeObject : false}
         onDelete={(onDelete) ? changeObject : false}

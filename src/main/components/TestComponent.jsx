@@ -27,7 +27,9 @@ const TestComponent = (props) => {
       <button
         id={`saveTest ${listPosition}`}
         onClick={() => saveTest(json, listPosition)}
-      >Save Test</button>
+      >
+        Save Test
+      </button>
     </div>
   );
 };

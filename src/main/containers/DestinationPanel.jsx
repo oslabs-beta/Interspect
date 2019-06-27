@@ -7,7 +7,7 @@ import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 const DestinationPanel = (props) => {
   const {
-    active, onClickFunction, fetchTimes, setFetchTimes, hContentType,
+    active, data, fetchTimes, hContentType, onClickFunction, setFetchTimes,
   } = props;
   const [tests, setTests] = useContext(TestsContext);
 
@@ -16,9 +16,11 @@ const DestinationPanel = (props) => {
     responseComponentsList.push(
       <ResponseComponent
         status={tests[i].status}
-        payload={tests[i].diff}
+        data={data}
+        payload={tests[i].payload}
         name={tests[i].name}
-        index={i}
+        diff={tests[i].diff}
+        expectedStatus={tests[i].expectedStatus}
         // fix later
         key={`DestPanelTest ${i}`}
       />,
@@ -30,16 +32,18 @@ const DestinationPanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active} style={{ cursor: 'default' }}>
-        <RequestBar
-          SourceOrDest='dest'
-          fetchTimes={fetchTimes}
-          setFetchTimes={setFetchTimes}
-          contentType={hContentType}
-        />
-        {responseComponentsList}
-        { (fetchTimes.length > 0)
-          && (fetchTimes.reduce(sumReducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} /> }
+        <div>
+          <RequestBar
+            SourceOrDest='dest'
+            fetchTimes={fetchTimes}
+            setFetchTimes={setFetchTimes}
+            contentType={hContentType}
+          />
+          {responseComponentsList}
+          {(fetchTimes.length > 0)
+            && (fetchTimes.reduce(sumReducer) > 0)
+            && <PerformanceMetrics fetchTimes={fetchTimes} />}
+        </div>
       </StyledPanel>
     );
   }

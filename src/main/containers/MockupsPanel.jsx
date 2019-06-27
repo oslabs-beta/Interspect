@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
-import DataTree from '../components/DataTree.jsx';
-// import NameForm from '../components/NameForm.jsx';
+import Select from '../components/InlineSelect.jsx';
 import Mockup from '../components/Mockup.jsx';
+import styled from 'styled-components';
 
 
 // will need to get data from the get request to pass to the formatted view
@@ -21,11 +20,6 @@ const MockupsPanel = (props) => {
     // Update tests
     const testsClone = [...tests];
     testsClone[arrayPosition].payload = newData;
-    // for deletion—find better syntax
-    if (!testsClone[arrayPosition].diff[namespace]) {
-      testsClone[arrayPosition].diff[namespace] = {};
-    }
-    testsClone[arrayPosition].diff[namespace][name] = newValue;
     setTests(testsClone);
   };
 
@@ -44,7 +38,7 @@ const MockupsPanel = (props) => {
   const createNewTest = () => {
     const testsClone = [...tests];
     testsClone.push({
-      payload: data, status: '', name: '', diff: {},
+      payload: data, status: '', name: `Test #${tests.length + 1}`,
     });
 
     // the ID of the test will be the same as the position in the array
@@ -52,16 +46,60 @@ const MockupsPanel = (props) => {
     setTests(testsClone);
   };
 
+  const initialstate = (data ? Object.keys(data)[0] : undefined);
+  const [createTestIndex, setCreateTestIndex] = useState(initialstate);
+  function createTestFromIndex() {
+    const testsClone = [...tests];
+    testsClone.push({
+      payload: data[createTestIndex], status: '', name: `Test #${tests.length + 1}`, diff: createTestIndex,
+    });
+    setTests(testsClone);
+  }
+
+  const options = [];
+  if (data) {
+    const testKeys = Object.keys(data);
+    for (let j = 0; j < testKeys.length; j += 1) {
+      // if necessary because otherwise you get errors with single values
+      if (typeof data[testKeys[j]] === 'object') {
+        options.push(<option value={testKeys[j]}>{testKeys[j]}</option>);
+      }
+    }
+  }
+
+  function changeTestIndex(e) {
+    const { value } = e.target;
+    setCreateTestIndex(value);
+  }
+
+  const ServerResp = styled.h3`
+  font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  `;
+
   if (active) {
     return (
-        <StyledPanel active={active} style={{ cursor: 'default' }}>
-          <div>
-            {data && <h3>Server Response</h3>}
-            {datacanvas}
-            {data && <Button enabled={true} onClick={createNewTest}>New Test</Button>}
-          </div>
+      <StyledPanel active={active} style={{ cursor: 'default' }}>
+        <div>
+          {data && <ServerResp>Server Response</ServerResp>}
+          {datacanvas}
+          {data
+            && <div>
+              <Button enabled={true} onClick={createNewTest}>New Test</Button>
+              <br />
+              <Button enabled onClick={createTestFromIndex}>Create Test From Index</Button>
+              <Select
+                name='createTestFromIndexDropdown'
+                id='createTestFromIndexDropdown'
+                multiple={false}
+                value={createTestIndex}
+                onChange={changeTestIndex}
+              >
+                {options}
+              </Select>
+            </div>}
           {mockupsListDisplay}
-        </StyledPanel>
+        </div>
+      </StyledPanel>
     );
   }
 

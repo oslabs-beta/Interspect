@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import io from 'socket.io-client';
 import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
-// import { smallData, testsData } from '../dummyData';
+import { TestsContext } from '../testsContext';
+
+const socket = io.connect('http://localhost:3001/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
@@ -13,9 +16,11 @@ const Panels = () => {
   const [postFetchTimes, setPostFetchTimes] = useState([]);
   const [hContentType, setContentType] = useState('');
 
+  const [tests, setTests] = useContext(TestsContext);
+
   const PanelsWrapper = styled.section`
     display: flex;
-    height: 80vh;
+    height: 100vh;
   `;
 
   // Create DataCanvas component for component composition to
@@ -29,10 +34,22 @@ const Panels = () => {
 
   const datacanvas = (
     <DataCanvas
-      treeId={'rawdata'}
+      treeId="rawdata"
       data={data}
-      options={dataTreeOptions} />
+      options={dataTreeOptions}
+    />
   );
+
+  socket.on('post_received', (postedData) => {
+    setData(postedData);
+    setTests([{
+      payload: postedData, status: '', name: 'Test #1',
+    }]);
+
+    // clear old performance metrics on new post
+    if (getFetchTimes.length) setGetFetchTimes([]);
+    if (postFetchTimes.length) setPostFetchTimes([]);
+  });
 
   return (
     <PanelsWrapper>
@@ -44,7 +61,7 @@ const Panels = () => {
         fetchTimes={getFetchTimes}
         setFetchTimes={setGetFetchTimes}
         setContentType={setContentType}
-        />
+      />
 
       <MockupsPanel
         onClickFunction={() => setActivePanel('test')}
@@ -54,11 +71,12 @@ const Panels = () => {
       />
 
       <DestinationPanel
-        onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
+        data={data}
         fetchTimes={postFetchTimes}
-        setFetchTimes={setPostFetchTimes}
         hContentType={hContentType}
+        onClickFunction={() => setActivePanel('dest')}
+        setFetchTimes={setPostFetchTimes}
       />
     </PanelsWrapper>
   );
