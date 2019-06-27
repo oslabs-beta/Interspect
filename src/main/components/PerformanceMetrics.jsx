@@ -12,6 +12,13 @@ const PerformanceWrapper = styled.div`
   align-items: center;
   padding: 1em;
   margin-bottom: 1em;
+  h3 {
+    color: #555B5E;
+    font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-feature-settings: 'ss18';
+    font-size: 1em;
+    font-weight: 400;
+  }
 `;
 
 const BarChart = Bar;
@@ -68,7 +75,7 @@ ms |
             {min}
             {' '}
 ms |
-            SD:
+            Standard Deviation:
             {' '}
             {Math.floor(Math.sqrt(variance))}
             {' '}
