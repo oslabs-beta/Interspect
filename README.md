@@ -1,7 +1,7 @@
 
 [![Build Status](https://travis-ci.com/oslabs-beta/apimocking.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
 # Interspect
-An API-mocking tool that helps you ensure data interoperability between microservices and arbitrary API endpoints. [Download the app](#) for macOS to get started.
+An API-mocking tool that helps you ensure data interoperability between microservices and arbitrary API endpoints. [Download the app](https://github.com/oslabs-beta/Interspect/releases/download/1.0.0/Interspect-macOS-x64.zip) for macOS to get started.
 
 ## Basic usage
 The app is split into three, distinct panels:
