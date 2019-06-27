@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdcj-oslabs/apimocking.git"
+    "url": "git+https://github.com/oslabs-beta/Interspect.git"
   },
   "keywords": [
     "microservices"
@@ -22,9 +22,9 @@
   "author": "Joe Pavlisko, Conor Sexton, Joel Rivera, Donald Blanc",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jdcj-oslabs/apimocking/issues"
+    "url": "https://github.com/oslabs-beta/Interspect/issues"
   },
-  "homepage": "https://github.com/jdcj-oslabs/apimocking#readme",
+  "homepage": "https://interspect.io/",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chart.js": "^1.1.1",
