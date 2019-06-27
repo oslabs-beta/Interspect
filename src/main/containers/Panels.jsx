@@ -71,11 +71,12 @@ const Panels = () => {
       />
 
       <DestinationPanel
-        onClickFunction={() => setActivePanel('dest')}
         active={(activePanel === 'dest')}
+        data={data}
         fetchTimes={postFetchTimes}
-        setFetchTimes={setPostFetchTimes}
         hContentType={hContentType}
+        onClickFunction={() => setActivePanel('dest')}
+        setFetchTimes={setPostFetchTimes}
       />
     </PanelsWrapper>
   );

@@ -46,6 +46,7 @@ const Button = styled.button`
     if (props.variation === 'positive') return '0 0 1px 2px #DEF0DB';
     return '0 0 1px 2px #96C1E9';
   }}
+  }
 `;
 
 export default Button;

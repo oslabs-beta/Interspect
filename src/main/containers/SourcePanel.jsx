@@ -13,11 +13,17 @@ const SourcePanel = (props) => {
   if (active) {
     return (
       <StyledPanel active={active} style={{ cursor: 'default' }}>
-        <RequestBar SourceOrDest='source' setData={setData} setFetchTimes={setFetchTimes} setContentType={setContentType} />
-        {datacanvas}
-        {(fetchTimes.length > 0)
-          && (fetchTimes.reduce(reducer) > 0)
-          && <PerformanceMetrics fetchTimes={fetchTimes} />}
+        <div>
+          <RequestBar
+            SourceOrDest='source'
+            setData={setData}
+            setFetchTimes={setFetchTimes}
+            setContentType={setContentType} />
+          {datacanvas}
+          {(fetchTimes.length > 0)
+            && (fetchTimes.reduce(reducer) > 0)
+            && <PerformanceMetrics fetchTimes={fetchTimes} />}
+        </div>
       </StyledPanel>
     );
   }
