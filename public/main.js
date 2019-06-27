@@ -5,7 +5,9 @@ const os = require('os');
 const bodyParser = require('body-parser');
 const expressApp = require('express')();
 const server = require('http').Server(expressApp);
-const {ipcMain} = require('electron')
+const {ipcMain, dialog} = require('electron');
+const fs = require('fs');
+
 
 if (isDev) {
   console.log('Running in development');
@@ -44,6 +46,7 @@ function createWindow() {
     try {
       if (request.headers['content-type'].includes('json')
         || request.headers['content-type'].includes('xml')) {
+          console.log(request.body);
         mainWindow.webContents.send('post_received', request.body);
         response.status(200);
         response.end();
@@ -76,6 +79,18 @@ function createWindow() {
 
   ipcMain.on('activate_server', (event, arg) => {
     server.listen(arg);
+  });
+
+  ipcMain.on('save_file', (event, arg) => {
+    console.log(event);
+    dialog.showSaveDialog(mainWindow, filePath => {
+      fs.writeFile(filePath, arg, (err) => {
+        if (err) {
+          console.log('ERROR SAVING:', err);
+          mainWindow.webContents.send('saving_error', err);
+        }
+      });
+    });
   })
 }
 

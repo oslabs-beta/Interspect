@@ -45,7 +45,13 @@ const Panels = () => {
     />
   );
 
-  ipcRenderer.on('post_received', (postedData) => {
+  ipcRenderer.on('saving_error', (error) => {
+    console.log(error);
+    alert(JSON.stringify(error));
+  });
+
+  ipcRenderer.on('post_received', (event, postedData) => {
+    // console.log('postedData', postedData);
     setData(postedData);
     setTests([{
       payload: postedData, status: '', name: 'Test #1',
