@@ -4,6 +4,7 @@ import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
 import Select from '../components/InlineSelect.jsx';
 import Mockup from '../components/Mockup.jsx';
+import styled from 'styled-components';
 
 
 // will need to get data from the get request to pass to the formatted view
@@ -71,11 +72,15 @@ const MockupsPanel = (props) => {
     setCreateTestIndex(value);
   }
 
+  const ServerResp = styled.h3`
+  font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  `;
+
   if (active) {
     return (
       <StyledPanel active={active} style={{ cursor: 'default' }}>
         <div>
-          {data && <h3>Server Response</h3>}
+          {data && <ServerResp>Server Response</ServerResp>}
           {datacanvas}
           {data
             && <div>

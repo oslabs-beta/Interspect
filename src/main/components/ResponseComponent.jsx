@@ -140,8 +140,9 @@ const ResponseComponent = (props) => {
     <ResponseWrapper>
       <Header>
         <h3>{ name }</h3>
-        <Icon didPass={didPass()}>{renderCheckmark()}</Icon>
-        { status || 'Ready to send' }
+        <Status didPass={didPass()}>{renderCheckmark()}
+          { status || 'Ready to send' }
+        </Status>
         <p>{(diff === undefined) ? '' : `Test created from subset from key: ${diff}`}</p>
         <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
       </Header>
