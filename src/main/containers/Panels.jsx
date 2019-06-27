@@ -43,7 +43,7 @@ const Panels = () => {
   socket.on('post_received', (postedData) => {
     setData(postedData);
     setTests([{
-      payload: postedData, status: '', name: '', diff: {},
+      payload: postedData, status: '', name: 'Test #1', diff: {},
     }]);
 
     // clear old performance metrics on new post
