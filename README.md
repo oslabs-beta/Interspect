@@ -1,5 +1,7 @@
 
-[![Build Status](https://travis-ci.com/oslabs-beta/apimocking.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
+[![Build Status](https://travis-ci.com/oslabs-beta/Interspect.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/oslabs-beta/Interspect/pulls)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 # Interspect
 An API-mocking tool that helps you ensure data interoperability between microservices and arbitrary API endpoints. [Download the app](https://github.com/oslabs-beta/Interspect/releases/download/1.0.0/Interspect-macOS-x64.zip) for macOS to get started.
 
@@ -45,6 +47,13 @@ Upon a successful request, you will be able to see returned status codes as well
 
 
 ----
+## Authors
+Interspect was created by:
+
+- Joe Pavlisko [@joepav](https://github.com/joepav)
+- Donald Blanc [@Donaldblanc](https://github.com/Donaldblanc)
+- Conor Sexton [@conorsexton](https://github.com/conorsexton)
+- Joel Rivera [@RealJoelRivera](https://github.com/RealJoelRivera)
 
 ## Contributing
 We welcome pull requests and new issues. There are also several open issues that are up for grabs. 
