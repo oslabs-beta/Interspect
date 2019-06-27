@@ -28,6 +28,7 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false,
     },
+    icon: './icon_png.png'
   });
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
