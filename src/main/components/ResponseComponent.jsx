@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ReactDiffViewer from 'react-diff-viewer';
 import styled from 'styled-components';
+import { ArrowRightCircle, CheckCircle, XCircle } from 'react-feather';
 import ResponseWrapper from './ResponseWrapper.jsx';
+
 
 // Styles
 const CardButton = styled.button`
@@ -34,14 +36,13 @@ const CardButton = styled.button`
   }
 `;
 
-const Icon = styled.span`
-  font-family: 'SF Pro Text';
-  margin-right: 0.625em;
-  color: ${(props) => {
-    if (props.didPass === 'pending') return '#555B5E';
-    if (props.didPass) return '#77B86B';
-    if (!props.didPass) return '#E5544C';
-  }};
+const Status = styled.div`
+  color: #292F32;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 0.625em;
+  }
 `;
 
 const diffColors = {
@@ -92,11 +93,10 @@ const ResponseComponent = (props) => {
   };
 
   const renderCheckmark = () => {
-    /* Download SF Symbols to view icons in app
-    (https://developer.apple.com/design/human-interface-guidelines/sf-symbols/)
-    (SVG icons to come) */
-    if (!status) return '􀍡';
-    return didPass() ? '􀁣' : '􀁡';
+    if (!status) return <ArrowRightCircle size={18} color="#555B5E" />;
+    return didPass()
+      ? <CheckCircle size={18} color="#77B86B" /> 
+      : <XCircle size={18} color="#E5544C"/>;
   };
 
   const renderExpectedStatus = () => {
@@ -139,11 +139,12 @@ const ResponseComponent = (props) => {
   return (
     <ResponseWrapper>
       <Header>
-        <h3>{name}</h3>
-        <Icon didPass={didPass()}>{renderCheckmark()}</Icon>
-        {status || 'Ready to send'}
+        <h3>{ name }</h3>
+        <Status didPass={didPass()}>{renderCheckmark()}
+          { status || 'Ready to send' }
+        </Status>
         <p>{(diff === undefined) ? '' : `Test created from subset from key: ${diff}`}</p>
-        <p>{status ? renderTestResult() : renderExpectedStatus()}</p>
+        <p>{ status ? renderTestResult() : renderExpectedStatus() }</p>
       </Header>
       {showDiff ? <a onClick={() => setShowDiff(false)}>Collapse Changes</a> : null}
       {showDiff
