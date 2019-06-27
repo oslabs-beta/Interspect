@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '../components/Button.jsx';
 import DataTree from '../components/DataTree.jsx';
 import EmptyState from '../components/EmptyState.jsx';
+import ToggleBox from '../components/ToggleBox.jsx';
 
 const DataCanvas = (props) => {
   const {
@@ -15,6 +16,7 @@ const DataCanvas = (props) => {
         <h2>Let’s get some data</h2>
         <p>To get started, send a request to any of your microservices <br/>or post http://localhost:3001/posturl</p>
         <Button title='Not yet functional'>Open Mockup</Button>
+        <ToggleBox />
       </EmptyState>
     );
   }

@@ -55,7 +55,9 @@ const MockupsPanel = (props) => {
   function createTestFromIndex() {
     const indexNum = document.querySelector('#indexNum').value;
     const testsClone = [...tests];
-    testsClone.push({ payload: data[indexNum], status: '', name: '', diff: data[indexNum] });
+    testsClone.push({
+      payload: data[indexNum], status: '', name: '', diff: data[indexNum],
+    });
     setTests(testsClone);
   }
 
