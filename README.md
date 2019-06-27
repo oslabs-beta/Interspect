@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/oslabs-beta/Interspect/blob/master/public/icon_png.png" width="48" />
+  <h1 align="center">Interspect</h1>
+</p>
 
 [![Build Status](https://travis-ci.com/oslabs-beta/Interspect.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/oslabs-beta/Interspect/pulls)
