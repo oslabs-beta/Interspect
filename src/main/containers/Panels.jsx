@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import io from 'socket.io-client';
 import SourcePanel from './SourcePanel.jsx';
 import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import { TestsContext } from '../testsContext';
+const {ipcRenderer} = require('electron')
 
-const socket = io.connect('http://localhost:3001/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
@@ -40,7 +39,7 @@ const Panels = () => {
     />
   );
 
-  socket.on('post_received', (postedData) => {
+  ipcRenderer.on('post_received', (postedData) => {
     setData(postedData);
     setTests([{
       payload: postedData, status: '', name: 'Test #1',
@@ -50,6 +49,10 @@ const Panels = () => {
     if (getFetchTimes.length) setGetFetchTimes([]);
     if (postFetchTimes.length) setPostFetchTimes([]);
   });
+
+  function saveData() {
+    ipcRenderer.send('save_data', {data, tests});
+  }
 
   return (
     <PanelsWrapper>

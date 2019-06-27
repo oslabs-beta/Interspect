@@ -5,7 +5,7 @@ const os = require('os');
 const bodyParser = require('body-parser');
 const expressApp = require('express')();
 const server = require('http').Server(expressApp);
-const io = require('socket.io')(server);
+const {ipcMain} = require('electron')
 
 if (isDev) {
   console.log('Running in development');
@@ -42,11 +42,11 @@ function createWindow() {
     mainWindow = null;
   });
 
-  const handleRequest = (request, response, socket) => {
+  const handleRequest = (request, response) => {
     try {
       if (request.headers['content-type'].includes('json')
         || request.headers['content-type'].includes('xml')) {
-        socket.emit('post_received', request.body);
+        mainWindow.webContents.send('post_received', request.body);
         response.status(200);
         response.end();
       } else {
@@ -59,28 +59,21 @@ function createWindow() {
     }
   };
 
-  const poster = io.on('connection', (socket) => {
-    console.log('a user connected');
 
-    expressApp.post('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.patch('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.put('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.delete('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
+  expressApp.post('/posturl', (request, response) => {
+    handleRequest(request, response);
   });
 
-  io.on('disconnect', () => {
-    console.log('a user disconnected');
+  expressApp.patch('/posturl', (request, response) => {
+    handleRequest(request, response);
+  });
+
+  expressApp.put('/posturl', (request, response) => {
+    handleRequest(request, response);
+  });
+
+  expressApp.delete('/posturl', (request, response) => {
+    handleRequest(request, response);
   });
 }
 
