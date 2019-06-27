@@ -73,7 +73,7 @@ const Header = styled.header`
 
 const ResponseComponent = (props) => {
   const {
-    status, expectedStatus, payload, data, name, index,
+    status, expectedStatus, payload, data, name, diff
   } = props;
 
   const [showDiff, setShowDiff] = useState(false);
@@ -127,26 +127,34 @@ const ResponseComponent = (props) => {
       : `Expected status code to be ${expectedStatus[0]}`;
   };
 
+  const originalValue = (diff === undefined) ?
+                         JSON.stringify(data, null, 2) :
+                         JSON.stringify(data[diff], null, 2);
+  const newValue = JSON.stringify(payload, null, 2);
+
   return (
     <ResponseWrapper>
       <Header>
         <h3>{name}</h3>
         <Icon didPass={didPass()}>{renderCheckmark()}</Icon>
         {status || 'Ready to send'}
+        <p>{(diff === undefined) ? '' : `Test created from subset from key: ${diff}`}</p>
         <p>{status ? renderTestResult() : renderExpectedStatus()}</p>
       </Header>
       {showDiff ? <a onClick={() => setShowDiff(false)}>Collapse Changes</a> : null}
       {showDiff
         ? <div className="diff">
           <ReactDiffViewer
-            oldValue={JSON.stringify(data, null, 2)}
-            newValue={JSON.stringify(payload, null, 2)}
+            oldValue={originalValue}
+            newValue={newValue}
             splitView={false}
             styles={diffColors}
             hideLineNumbers={true}
           />
         </div>
-        : <CardButton onClick={() => setShowDiff(true)}>Show Changes</CardButton>
+        : ((originalValue === newValue)
+           ? <CardButton> No Changes </CardButton>
+           : <CardButton onClick={() => setShowDiff(true)}> Show Changes </CardButton>)
       }
 
     </ResponseWrapper>
