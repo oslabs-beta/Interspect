@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://github.com/oslabs-beta/Interspect/blob/master/public/icon_png.png" width="128" />
-  <h1 align="center">Interspect</h1>
+  <h1 align="center"><a href="https://interspect.io/">Interspect</a></h1>
 </p>
 
 [![Build Status](https://travis-ci.com/oslabs-beta/Interspect.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
