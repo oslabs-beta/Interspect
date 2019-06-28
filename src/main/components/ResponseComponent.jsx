@@ -95,7 +95,7 @@ const ResponseComponent = (props) => {
   const renderCheckmark = () => {
     if (!status) return <ArrowRightCircle size={18} color="#555B5E" />;
     return didPass()
-      ? <CheckCircle size={18} color="#77B86B" /> 
+      ? <CheckCircle size={18} color="#77B86B" />
       : <XCircle size={18} color="#E5544C"/>;
   };
 
@@ -133,8 +133,8 @@ const ResponseComponent = (props) => {
   const newValue = JSON.stringify(payload, null, 2);
 
   const cardButton = (originalValue === newValue
-          ? <CardButton> No Changes </CardButton>
-          : <CardButton onClick={() => setShowDiff(true)}> Show Changes </CardButton>);
+    ? <CardButton> No Changes </CardButton>
+    : <CardButton onClick={() => setShowDiff(true)}> Show Changes </CardButton>);
 
   return (
     <ResponseWrapper>

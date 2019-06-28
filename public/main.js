@@ -5,7 +5,7 @@ const os = require('os');
 const bodyParser = require('body-parser');
 const expressApp = require('express')();
 const server = require('http').Server(expressApp);
-const {ipcMain, dialog} = require('electron');
+const { ipcMain, dialog } = require('electron');
 const fs = require('fs');
 
 
@@ -28,7 +28,7 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false,
     },
-    icon: './icon_png.png'
+    icon: './icon_png.png',
   });
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
@@ -46,7 +46,6 @@ function createWindow() {
     try {
       if (request.headers['content-type'].includes('json')
         || request.headers['content-type'].includes('xml')) {
-          console.log(request.body);
         mainWindow.webContents.send('post_received', request.body);
         response.status(200);
         response.end();
@@ -82,16 +81,42 @@ function createWindow() {
   });
 
   ipcMain.on('save_file', (event, arg) => {
-    console.log(event);
-    dialog.showSaveDialog(mainWindow, filePath => {
-      fs.writeFile(filePath, arg, (err) => {
-        if (err) {
-          console.log('ERROR SAVING:', err);
-          mainWindow.webContents.send('saving_error', err);
-        }
-      });
+    dialog.showSaveDialog(mainWindow, (filePath) => {
+      if (filePath) {
+        fs.writeFile(filePath, arg, (err) => {
+          if (err) {
+            mainWindow.webContents.send('saving_or_opening_error', err);
+          }
+        });
+      }
     });
-  })
+  });
+
+  ipcMain.on('open_file', (event, arg) => {
+    dialog.showOpenDialog(mainWindow, (filePath) => {
+      if (filePath) {
+        fs.readFile(filePath[0], (err, data) => {
+          if (err) {
+            mainWindow.webContents.send('saving_or_opening_error', err);
+          } else {
+            const parsedJSON = JSON.parse(data);
+
+            // Validate that the data stored in the file can be loaded into Interspect
+            const keys = Object.keys(parsedJSON).sort();
+            const validData = (typeof parsedJSON === 'object' && keys.length === 2
+              && keys[0] === 'data' && keys[1] === 'tests'
+              && typeof parsedJSON[keys[0]] === 'object'
+              && typeof parsedJSON[keys[1]] === 'object');
+            if (validData) mainWindow.webContents.send('opened_file', parsedJSON);
+            else {
+              mainWindow.webContents.send('saving_or_opening_error',
+                'Error opening: Invalid data structure');
+            }
+          }
+        });
+      }
+    });
+  });
 }
 
 app.on('ready', createWindow);

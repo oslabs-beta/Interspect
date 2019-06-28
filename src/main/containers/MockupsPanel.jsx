@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
 import Select from '../components/InlineSelect.jsx';
 import Mockup from '../components/Mockup.jsx';
-import styled from 'styled-components';
-const {ipcRenderer} = require('electron')
+
+const { ipcRenderer } = require('electron');
 
 
 // will need to get data from the get request to pass to the formatted view
@@ -74,7 +75,7 @@ const MockupsPanel = (props) => {
   }
 
   function saveFile(e) {
-    ipcRenderer.send('save_file', JSON.stringify({data, tests}));
+    ipcRenderer.send('save_file', JSON.stringify({ data, tests }));
   }
 
   const ServerResp = styled.h3`

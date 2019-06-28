@@ -5,7 +5,8 @@ import MockupsPanel from './MockupsPanel.jsx';
 import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import { TestsContext } from '../testsContext';
-const {ipcRenderer} = require('electron')
+
+const { ipcRenderer } = require('electron');
 
 
 const Panels = () => {
@@ -45,9 +46,8 @@ const Panels = () => {
     />
   );
 
-  ipcRenderer.on('saving_error', (error) => {
-    console.log(error);
-    alert(JSON.stringify(error));
+  ipcRenderer.on('saving_or_opening_error', (error, postedData) => {
+    alert(JSON.stringify(postedData || error));
   });
 
   ipcRenderer.on('post_received', (event, postedData) => {
@@ -62,9 +62,15 @@ const Panels = () => {
     if (postFetchTimes.length) setPostFetchTimes([]);
   });
 
-  function saveData() {
-    ipcRenderer.send('save_data', {data, tests});
-  }
+  ipcRenderer.on('opened_file', (event, savedData) => {
+    console.log(savedData);
+    setData(savedData.data);
+    setTests(savedData.tests);
+
+    // clear old performance metrics on new post
+    if (getFetchTimes.length) setGetFetchTimes([]);
+    if (postFetchTimes.length) setPostFetchTimes([]);
+  });
 
   return (
     <PanelsWrapper>
