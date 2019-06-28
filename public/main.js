@@ -9,11 +9,8 @@ const { ipcMain, dialog } = require('electron');
 const fs = require('fs');
 
 
-if (isDev) {
-  console.log('Running in development');
-} else {
-  console.log('Running in production');
-}
+if (isDev) console.log('Running in development');
+else console.log('Running in production');
 
 let mainWindow;
 
