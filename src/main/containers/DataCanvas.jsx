@@ -12,7 +12,7 @@ const DataCanvas = (props) => {
   if (!data) {
     return (
       <EmptyState>
-        <h2>Let’s get some data</h2>
+        <h2>Let’s get some data.....yeah...</h2>
         <p>To get started, send a request to any of your microservices <br/>or post JSON to http://localhost:3001/posturl</p>
         <Nodatasvg />
       </EmptyState>
