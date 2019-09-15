@@ -1,4 +1,4 @@
-import * as types from "./actionTypes.js.js";
+import * as types from "./actionTypes.js";
 
 
 // General Action Creators
@@ -7,6 +7,7 @@ export const activatePanel = (panelName) => ({
     payload: panelName,
 });
 // End of General Action Creators
+
 
 // Action Creators for Source Panel
 export const addToStage = () => ({
@@ -33,3 +34,28 @@ export const setAuthType = (authType) => ({
     payload: authType,
 })
 // End of Source Panel Action Creators
+
+
+// Mockups Panel Action Creators
+export const makeNewTest = () => ({
+    type: types.MAKE_NEW_TEST,
+});
+export const addTestToServer = () => ({
+    type: types.ADD_TEST_TO_SERVER,
+});
+export const toggleServer = () => ({
+    type: types.TOGGLE_SERVER,
+});
+export const editTest = (testName) => ({
+    type: types.EDIT_TEST,
+    payload: testName,
+});
+export const saveTest = (testName) => ({
+    type: types.SAVE_TEST,
+    payload: testName,
+});
+export const setTestName = (testName) => ({
+    type: types.SET_TEST_NAME,
+    payload: testName,
+})
+// End of Mockups Panel Action Creators
