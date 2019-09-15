@@ -1,6 +1,7 @@
 
-import * as types from "./actionTypes.js";
+import * as types from "./actionTypes.js.js";
 
+// Initial State for Source Panel
 const initialState = {
     source_active: true,
     source_uri: '',

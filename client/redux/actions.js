@@ -1,4 +1,4 @@
-import * as types from "./actionTypes.js";
+import * as types from "./actionTypes.js.js";
 
 
 // General Action Creators
@@ -6,6 +6,7 @@ export const activatePanel = (panelName) => ({
     type: types.ACTIVATE_PANEL,
     payload: panelName,
 });
+// End of General Action Creators
 
 // Action Creators for Source Panel
 export const addToStage = () => ({
@@ -31,3 +32,4 @@ export const setAuthType = (authType) => ({
     type: types.SET_AUTH_TYPE,
     payload: authType,
 })
+// End of Source Panel Action Creators
