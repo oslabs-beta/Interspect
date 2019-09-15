@@ -37,11 +37,17 @@ export const setAuthType = (authType) => ({
 
 
 // Mockups Panel Action Creators
-export const makeNewTest = () => ({
+export const makeNewTest = (testInfo) => ({
     type: types.MAKE_NEW_TEST,
+    payload: testInfo,
 });
-export const addTestToServer = () => ({
+export const addTestToServer = (testName) => ({
     type: types.ADD_TEST_TO_SERVER,
+    payload: testName,
+});
+export const removeTestFromServer = (testName) => ({
+    type: types.REMOVE_TEST_FROM_SERVER,
+    payload:testName
 });
 export const toggleServer = () => ({
     type: types.TOGGLE_SERVER,
@@ -54,8 +60,12 @@ export const saveTest = (testName) => ({
     type: types.SAVE_TEST,
     payload: testName,
 });
-export const setTestName = (testName) => ({
+export const setTestName = (testNameAndNewName) => ({
     type: types.SET_TEST_NAME,
+    payload: testNameAndNewName, // Array containing current name and new name
+});
+export const deleteTest = (testName) => ({
+    type: types.DELETE_TEST,
     payload: testName,
-})
+});
 // End of Mockups Panel Action Creators

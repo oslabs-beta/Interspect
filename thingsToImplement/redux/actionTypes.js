@@ -15,8 +15,10 @@ export const SET_AUTH_TYPE = "SET_AUTH_TYPE";
 // Action Types for Mockups Panel
 export const MAKE_NEW_TEST = "MAKE_NEW_TEST";
 export const ADD_TEST_TO_SERVER = "ADD_TEST_TO_SERVER";
+export const REMOVE_TEST_FROM_SERVER = "REMOVE_TEST_FROM_SERVER";
 export const TOGGLE_SERVER = "TOGGLE_SERVER";
 export const EDIT_TEST = "EDIT_TEST";
 export const SAVE_TEST = "SAVE_TEST";
 export const SET_TEST_NAME = "SET_TEST_NAME";
+export const DELETE_TEST = "DELETE_TEST";
 // End of Action Types for Mockups Panel
