@@ -11,6 +11,8 @@ const initialState = {
 
 const MockupsReducer = (state=initialState, action) => {
 
+
+
     switch(action.type) {
         case types.ACTIVATE_PANEL:
             let mockups_active;
@@ -22,38 +24,38 @@ const MockupsReducer = (state=initialState, action) => {
             };
 
         case types.MAKE_NEW_TEST:
-            const mockupsOnStage = state.mockupsOnStage;
+            // const mockupsOnStage = state.mockupsOnStage;
             const numMockups = state.numMockups + 1;
-            mockupsOnStage[`Test #${numMockups}`] = action.payload; // payload = JSON object
+            // mockupsOnStage[`Test #${numMockups}`] = action.payload; // payload = JSON object
 
             return {
                 ...state,
-                mockupsOnStage,
+                // mockupsOnStage,
                 numMockups,
             };
 
         case types.ADD_TEST_TO_SERVER:
-            const mockupsOnServer = state.mockupsOnServer;
-            const mockupsOnStage = state.mockupsOnStage;
-            mockupsOnServer[action.payload] = mockupsOnStage[action.payload];
-            delete mockupsOnStage[action.payload];
+            // const mockupsOnServer = state.mockupsOnServer;
+            // const mockupsOnStage = state.mockupsOnStage;
+            // mockupsOnServer[action.payload] = mockupsOnStage[action.payload];
+            // delete mockupsOnStage[action.payload];
 
             return {
                 ...state,
-                mockupsOnServer,
-                mockupsOnStage,
+                // mockupsOnServer,
+                // mockupsOnStage,
             };
 
         case types.REMOVE_TEST_FROM_SERVER:
-            const mockupsOnServer = state.mockupsOnServer;
-            const mockupsOnStage = state.mockupsOnStage;
-            mockupsOnStage[action.payload] = mockupsOnServer[action.payload];
-            delete mockupsOnServer[action.payload];
+            // const mockupsOnServer = state.mockupsOnServer;
+            // const mockupsOnStage = state.mockupsOnStage;
+            // mockupsOnStage[action.payload] = mockupsOnServer[action.payload];
+            // delete mockupsOnServer[action.payload];
 
             return {
                 ...state,
-                mockupsOnServer,
-                mockupsOnStage,
+                // mockupsOnServer,
+                // mockupsOnStage,
             };
 
         case types.TOGGLE_SERVER:
@@ -71,23 +73,23 @@ const MockupsReducer = (state=initialState, action) => {
         case types.SAVE_TEST:
 
         case types.SET_TEST_NAME:
-            const mockupsOnStage = state.mockupsOnStage;
-            const newName = action.payload[1];
-            const trackMockupOnStage = mockupsOnStage[action.payload[0]];
-            mockupsOnStage[newName] = trackMockupOnStage;
-            delete mockupsOnStage[action.payload[0]];
+            // const mockupsOnStage = state.mockupsOnStage;
+            // const newName = action.payload[1];
+            // const trackMockupOnStage = mockupsOnStage[action.payload[0]];
+            // mockupsOnStage[newName] = trackMockupOnStage;
+            // delete mockupsOnStage[action.payload[0]];
 
             return {
                 ...state,
-                mockupsOnStage,
+                // mockupsOnStage,
             }
 
         case types.DELETE_TEST:
-            const mockupsOnStage = state.mockupsOnStage;
-            delete mockupsOnStage[action.payload];
+            // const mockupsOnStage = state.mockupsOnStage;
+            // delete mockupsOnStage[action.payload];
             return {
                 ...state,
-                mockupsOnStage,
+                // mockupsOnStage,
             }
 
         default:

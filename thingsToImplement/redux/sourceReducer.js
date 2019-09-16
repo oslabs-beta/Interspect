@@ -15,7 +15,7 @@ const SourceReducer = (state=initialState, action) => {
 
     switch(action.type) {
         case types.ACTIVATE_PANEL:
-            const source_active;
+            let source_active;
             if (action.payload === "source") { source_active = true; }
             else { source_active = false; }
             return {

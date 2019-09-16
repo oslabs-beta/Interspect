@@ -1,14 +1,14 @@
 
-import {combineReducers} from 'react-redux';
+import {combineReducers} from 'redux';
 
 import SourceReducer from './sourceReducer.js';
 import MockupsReducer from './mockupsReducer.js';
 import DestinationReducer from './destinationReducer.js';
 
 const reducers = combineReducers({
-    source: SourceReducer,
-    mockups: MockupsReducer,
-    destination: DestinationReducer,
+    SourceReducer,
+    MockupsReducer,
+    DestinationReducer,
 });
 
 export default reducers;
