@@ -13,8 +13,8 @@ export const activatePanel = (panelName) => ({
 export const addToStage = () => ({
     type: types.ADD_TO_STAGE,
 });
-export const loadData = (data) => ({
-    type: types.LOAD_DATA,
+export const createBodyFromSource = (data) => ({
+    type: types.CREATE_BODY_FROM_SOURCE,
     payload: data,
 });
 export const setSourceURI = (uri) => ({
@@ -69,3 +69,12 @@ export const deleteTest = (testName) => ({
     payload: testName,
 });
 // End of Mockups Panel Action Creators
+
+// BodyItem Selector Action Creators
+export const BodyItemFilters = {
+    ALL_ITEMS: types.ALL_ITEMS,
+    CLONED_ITEMS: types.CLONED_ITEMS,
+    STAGED_ITEMS: types.STAGED_ITEMS,
+    HOSTED_ITEMS: types.HOSTED_ITEMS,
+}
+// End of BodyItem Selector Action Creators
