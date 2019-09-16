@@ -9,6 +9,7 @@ const styles = {
   overflow: 'auto',
   margin: '0.75em auto',
   padding: '1em',
+  border: '5px solid grey',
 };
 
 const DataTree = (props) => {
@@ -28,7 +29,7 @@ const DataTree = (props) => {
       {/* Tree gets rendered here after component mounts */}
       <ReactJson
         src={data}
-        theme='chalk'
+        theme='shapeshifter:inverted'
         iconStyle='circle'
         style={styles}
         collapsed={2}
