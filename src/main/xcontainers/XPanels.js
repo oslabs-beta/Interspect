@@ -5,6 +5,8 @@ import io from 'socket.io-client';
 import XSourcePanel from './XSourcePanel';
 import XMockupsPanel from './XMockupsPanel';
 import XDestinationPanel from './XDestinationPanel';
+import store from '../../../thingsToImplement/redux/reduxStore';
+import * as actions from '../../../thingsToImplement/redux/actions';
 
 const socket = io.connect('http://localhost:3001/');
 
@@ -51,13 +53,15 @@ const XPanels = () => {
 
 const mapStateToProps = () => {
   return {
-    placeholder: null,
+    source_active: store.source.source_active,
+    mockups_active: store.mockups.mockups_active,
+    destination_active: store.destination.destination_active,
   };
 };
 
 const mapDispatchToProps = () => {
   return {
-    placeholder: null,
+    activatePanel: (panelToActivate) => dispatch(actions.activatePanel(panelToActivate)),
   };
 };
 
