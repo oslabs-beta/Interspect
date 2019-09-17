@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import XSourcePanel from './XSourcePanel';
 import XMockupsPanel from './XMockupsPanel';
 import XDestinationPanel from './XDestinationPanel';
-import store from '../../../thingsToImplement/redux/reduxStore';
 import * as actions from '../../../thingsToImplement/redux/actions';
 
 // const socket = io.connect('http://localhost:3001/');
@@ -17,10 +16,10 @@ const XPanelsWrapper = styled.section`
 
 class XPanels extends Component {
 
-  constructor(props){
-    super(props);
-    // this.activatePanel = this.activatePanel.bind(this);
-  }
+  // constructor(props){
+  //   super(props);
+  //   // this.activatePanel = this.activatePanel.bind(this);
+  // }
   // const [activePanel, setActivePanel] = useState('source');
   // const [data, setData] = useState(undefined);
   // const [getFetchTimes, setGetFetchTimes] = useState([]);
