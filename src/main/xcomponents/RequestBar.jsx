@@ -4,25 +4,38 @@ import Form from './styledComponents/Form';
 import Input from './styledComponents/Input';
 import Select from './styledComponents/Select';
 
+
 const RequestBar = () => {
+    // let RequestBarValue = "";
     //handles all the input changes
-    const handleChange = () => {
-        // event.persist();
-        const inputValue = event.target.value;
-        console.log('inputValue => ', inputValue);
-        return inputValue;
+    let url= '';
+
+    const handleChange = (e) => {
+        url = e.target.value;
     }
+
+    const parseXmlToJson = (xml) => {
+        let json;
+        parseString(xml, (err, result) => {
+          json = result;
+          return result;
+        });
+        return json;
+      };
 
     const fetchData = (e) => {
         e.preventDefault();
-        e.persist();
-        console.log("Event Value", e.target);
-        const url = handleChange();
-        // console.log(url);
+        console.log("URL", url);
         fetch(url)
-        // .then(function (response) {
-        //     return response.json();
-        // })
+        // .then(res => console.log('content type', res.headers.get('content-type')))
+        .then(res => {
+            const val = res.headers.get('content-type');
+            if (val.includes('xml')) {
+                return res.text().then(xml => parseXmlToJson(xml));
+              }
+            console.log('val', val)
+            return res.json()
+        })
         .then(data => console.log('fetched data', data));
     }
 
@@ -36,4 +49,5 @@ const RequestBar = () => {
         </Form>
     )
 }
+
 export default RequestBar;
