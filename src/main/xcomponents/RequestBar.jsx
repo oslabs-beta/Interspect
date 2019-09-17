@@ -6,8 +6,6 @@ import Select from './styledComponents/Select';
 
 
 const RequestBar = () => {
-    // let RequestBarValue = "";
-    //handles all the input changes
     let url= '';
 
     const handleChange = (e) => {
@@ -27,7 +25,6 @@ const RequestBar = () => {
         e.preventDefault();
         console.log("URL", url);
         fetch(url)
-        // .then(res => console.log('content type', res.headers.get('content-type')))
         .then(res => {
             const val = res.headers.get('content-type');
             if (val.includes('xml')) {

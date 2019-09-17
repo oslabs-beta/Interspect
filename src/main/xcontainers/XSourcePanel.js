@@ -20,7 +20,16 @@ export default class SourcePanel extends Component {
   }
 }
 
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = () => {
+
+}
+
 SourcePanel.propTypes = {
   onClick: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
 }
+
