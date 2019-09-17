@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-// import RequestBar from '../components/RequestBar.jsx';
+import RequestBar from '../xcomponents/RequestBar';
 import PropTypes from 'prop-types';
 import StyledPanel from './StyledPanel.jsx';
-// import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 export default class SourcePanel extends Component {
   render() {
@@ -15,11 +14,11 @@ export default class SourcePanel extends Component {
         style={{ cursor: 'pointer' }}
         >
         <h1>Source</h1>
+        <RequestBar/>
       </StyledPanel>
     )
   }
 }
-
 
 SourcePanel.propTypes = {
   onClick: PropTypes.func.isRequired,
