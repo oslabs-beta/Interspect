@@ -46,7 +46,7 @@ SourcePanel.propTypes = {
   active: PropTypes.bool.isRequired,
 };
 
-export default connect(mapDispatchToProps)(SourcePanel);
+export default connect(null, mapDispatchToProps)(SourcePanel);
 
 
 // export default SourcePanel;

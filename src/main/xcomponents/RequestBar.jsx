@@ -5,10 +5,9 @@ import Form from './styledComponents/Form';
 import Input from './styledComponents/Input';
 import Select from './styledComponents/Select';
 
-
+let url = '';
+let XMLorJSON = '';
 const RequestBar = ({createBodyFromSource}) => {
-    let url = '';
-    let XMLorJSON = '';
 
     const handleChange = (e) => {
         url = e.target.value;
@@ -22,40 +21,39 @@ const RequestBar = ({createBodyFromSource}) => {
           return result;
         });
         return json;
-      };
+    };
 
     const fetchData = (e) => {
         e.preventDefault();
         console.log("URL from fetch", url);
-        // let urll = handleChange(e)
         fetch(url)
         .then(res => {
             const val = res.headers.get('content-type');
             if (val.includes('xml')) {
-                //XMLorJSON = 'XML';
+                XMLorJSON = 'XML';
                 return res.text().then(xml => parseXmlToJson(xml));
             }
             console.log('val', val)
-            //XMLorJSON = 'JSON';
+            XMLorJSON = 'JSON';
             return res.json();
         })
-        .then(data => console.log(data));
-        // .then(data => {
-        //     console.log(data);
-        //     const stringifiedData = JSON.stringify(data);
-        //     const newBodyItem = {
-        //         sourceRoute: url,
-        //         sourceMethod: 'GET',
-        //         sourceResponse: stringifiedData,
-        //         sourceResponseType: XMLorJSON,
-        //         customRoute: 'https://localhost:3000',
-        //         customMethod: 'GET',
-        //         customResponse: stringifiedData,
-        //         customResponseType: XMLorJSON,
-        //         collection: 'CLONED_ITEMS',
-        //     }
-        //     createBodyFromSource(newBodyItem);
-        // });
+        // .then(data => console.log(data));
+        .then(data => {
+            console.log(data);
+            const stringifiedData = JSON.stringify(data);
+            const newBodyItem = {
+                sourceRoute: url,
+                sourceMethod: 'GET',
+                sourceResponse: stringifiedData,
+                sourceResponseType: XMLorJSON,
+                customRoute: 'https://localhost:3000',
+                customMethod: 'GET',
+                customResponse: stringifiedData,
+                customResponseType: XMLorJSON,
+                collection: 'CLONED_ITEMS',
+            }
+            createBodyFromSource(newBodyItem);
+        });
     }
 
     return (
