@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import Button from './styledComponents/Button';
 import Form from './styledComponents/Form';
@@ -37,7 +36,6 @@ const RequestBar = ({createBodyFromSource}) => {
             XMLorJSON = 'JSON';
             return res.json();
         })
-        // .then(data => console.log(data));
         .then(data => {
             console.log(data);
             const stringifiedData = JSON.stringify(data);

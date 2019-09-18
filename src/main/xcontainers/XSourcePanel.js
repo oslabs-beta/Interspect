@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -28,12 +27,6 @@ class SourcePanel extends Component {
     );
   }
 }
-
-// const mapStateToProps = (state) => {
-//   return {
-//     bodyItems: state.BodyItemsReducer.bodyItems,
-//   };
-// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
