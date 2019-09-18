@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import {combineReducers} from 'redux';
 
 import SourceReducer from './sourceReducer.js';
@@ -14,10 +14,7 @@ const reducers = combineReducers({
     BodyItemsReducer
 });
 
-
-
 export default reducers;
 
 export const bodyItemsCollectionSelector = (state, filter) =>
     bodyItemSelectors.bodyItemsCollectionSelector(state.BodyItemsReducer, filter);
-

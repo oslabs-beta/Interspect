@@ -11,8 +11,6 @@ const initialState = {
 
 const MockupsReducer = (state=initialState, action) => {
 
-
-
     switch(action.type) {
         case types.ACTIVATE_PANEL:
             let mockups_active;

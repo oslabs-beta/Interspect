@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { parseString, Builder } from 'xml2js';
 import HeaderBar from './HeaderBar.jsx';
 import Form from './InlineForm.jsx';
@@ -8,7 +8,7 @@ import Button from './Button.jsx';
 import { TestsContext } from '../testsContext';
 
 
-const RequestBar = (props) => {
+const RequestBar = () => {
   const {
     SourceOrDest, setData, setFetchTimes, setContentType, contentType,
   } = props;
@@ -19,7 +19,7 @@ const RequestBar = (props) => {
   const [uri, setUri] = useState('');
   const [valid, setValid] = useState(false);
 
-  // header info
+  //header info
   const [headerType, setHeaderType] = useState('Authorization');
   const [authType, setType] = useState('Bearer Token');
   const [headerKey, setHeaderKey] = useState('');
@@ -29,7 +29,7 @@ const RequestBar = (props) => {
     const { name, value } = e.target;
     if (name === 'method') setSelected(value);
     else if (name === 'uri') setUri(value);
-
+    
     // Header info
     if (name === 'Authentication') setHeaderType(value);
     if (name === 'headerKey') setHeaderKey(`Bearer ${value}`);
@@ -41,7 +41,7 @@ const RequestBar = (props) => {
     e.preventDefault();
   };
 
-  // Extra fetches for performance metrics
+  //Extra fetches for performance metrics
   const fetchTimesList = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   function getPerformanceMetricsData(getOrPost, sendingObj) {
     let successfulFetchesCounter = 0;
@@ -134,29 +134,30 @@ const RequestBar = (props) => {
 
   return (
     <div>
-      <Form onSubmit={sendFetch} onInvalid={handleInvalid} bordered>
+      <Form bordered>
         {
           (SourceOrDest === 'source')
           && (
             <Select
               name='method'
-              id='fetchTypeInput'
-              multiple={false}
-              value={selected}
-              onChange={handleChange}
+              // id='fetchTypeInput'
+              // multiple={false}
+              // value={selected}
+              // onChange={handleChange}
             >
               <option value='GET'>GET</option>
             </Select>
           )
         }
         {
-          (SourceOrDest === 'dest')
-          && <Select
+          // (SourceOrDest === 'dest')
+          // && 
+          <Select
             name='method'
-            id='fetchTypeInput'
-            multiple={false}
-            value={selected}
-            onChange={handleChange}
+            // id='fetchTypeInput'
+            // multiple={false}
+            // value={selected}
+            // onChange={handleChange}
           >
             <option value='POST'>POST</option>
             <option value='PATCH'>PATCH</option>
@@ -164,10 +165,10 @@ const RequestBar = (props) => {
             <option value='DELETE'>DELETE</option>
           </Select>
         }
-        <Input bordered placeholder='Endpoint URI' name='uri' id='urlInput' type='url' onChange={handleChange} />
-        <Button enabled={valid} type='submit' value='Submit' variation="positive">Send</Button>
+        <Input bordered />
+        <Button type='submit' value='Submit' variation="positive"> Send </Button>
       </Form>
-      <HeaderBar header={headerType} authType={authType} handleChange={handleChange} />
+      {/* <HeaderBar header={headerType} authType={authType} handleChange={handleChange} /> */}
     </div>
   );
 };

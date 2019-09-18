@@ -1,5 +1,5 @@
+/* eslint-disable */
 import * as types from "./actionTypes.js";
-
 
 // General Action Creators
 export const activatePanel = (panelName) => ({
@@ -10,8 +10,9 @@ export const activatePanel = (panelName) => ({
 
 
 // Action Creators for Source Panel
-export const addToStage = () => ({
+export const addToStage = (bodyItem) => ({
     type: types.ADD_TO_STAGE,
+    payload: bodyItem,
 });
 export const createBodyFromSource = (data) => ({
     type: types.CREATE_BODY_FROM_SOURCE,

@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import styled from 'styled-components';
@@ -63,7 +64,7 @@ class XPanels extends Component {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     source_active: state.SourceReducer.source_active,
     mockups_active: state.MockupsReducer.mockups_active,
