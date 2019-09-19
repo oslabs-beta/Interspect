@@ -11,31 +11,37 @@ import Button from '../xcomponents/styledComponents/Button';
 class SourcePanel extends Component {
   constructor(props){
     super(props)
-    this.handleClick = this.handleClick.bind(this)
-    this.toggleBtn = this.toggleBtn.bind(this)
+    this.handleToggleRequestBtnClick = this.handleToggleRequestBtnClick.bind(this)
+    this.toggleRequestTypeBtn = this.toggleRequestTypeBtn.bind(this)
   }
-  handleClick(){
+  handleToggleRequestBtnClick(){
     this.props.toggleRequestType();
   }
-  toggleBtn(){
+  toggleRequestTypeBtn(){
     const btnText = this.props.requestIsGraphql === false ?  'GRAPHQL' : 'REST';
-    return <Button  onClick={ this.handleClick}>{btnText}</Button>
+    return <Button  onClick={ this.handleToggleRequestBtnClick}>{btnText}</Button>
+  }
+  handleSourcePanelClick() {
+    if (!this.props.active) {
+      this.props.onClick("source")
+    }
   }
   render() {
-    const { onClick, active } = this.props;
+    const { active } = this.props;
     const RequestBarSelection = this.props.requestIsGraphql ?
+
     <RequestBarGraphql createBodyFromSource={this.props.createBodyFromSource}/>
     : <RequestBar createBodyFromSource={this.props.createBodyFromSource}/>
 
     return (
 
       <StyledPanel
-        onClick={() => { onClick('source'); }}
+        onClick={() => { this.handleSourcePanelClick(); }}
         active={active}
         style={{ cursor: 'pointer' }}
       >
         <h1>Source</h1>
-        {this.toggleBtn()}
+        {this.toggleRequestTypeBtn()}
         {RequestBarSelection}
         <BodyItemsContainer
           collection='CLONED_ITEMS'
@@ -57,6 +63,3 @@ SourcePanel.propTypes = {
 };
 
 export default connect(null, mapDispatchToProps)(SourcePanel);
-
-
-// export default SourcePanel;

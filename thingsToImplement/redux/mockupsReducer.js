@@ -2,7 +2,7 @@
 import * as types from "./actionTypes.js";
 
 const initialState = {
-    mockups_active: false, // Sets panel to be focused or not
+    mockups_active: true, // Sets panel to be focused or not
     serverOn: false, // Sets Server to be on or off
     numMockups: 0, // Number of mockup in testList
     mockupsOnStage: {}, // Object of mockup objects on stage

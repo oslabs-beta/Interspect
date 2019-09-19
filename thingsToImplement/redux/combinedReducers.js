@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {combineReducers} from 'redux';
 
 import SourceReducer from './sourceReducer.js';

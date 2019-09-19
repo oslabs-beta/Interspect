@@ -5,12 +5,17 @@ import StyledPanel from './StyledPanel.jsx';
 // import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 
 export default class DestinationPanel extends Component {
+  handleDestinationPanelClick() {
+    if (!this.props.active) {
+      this.props.onClick("destination")
+    }
+  }
   render() {
     const { onClick, active } = this.props;
     return (
 
       <StyledPanel
-        onClick={()=> {onClick("destination")}}
+        onClick={()=> {this.handleDestinationPanelClick()}}
         active={active}
         style={{ cursor: 'pointer' }}
         >

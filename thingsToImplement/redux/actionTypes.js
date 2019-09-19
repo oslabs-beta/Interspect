@@ -40,6 +40,8 @@
     export const MODIFY_BODY_ITEM = "MODIFY_BODY_ITEM";
     export const DELETE_BODY_ITEM = "DELETE_BODY_ITEM";
     export const MOVE_BODY_ITEM = "MOVE_BODY_ITEM";
+    export const OPEN_BODY_ITEM_EDITOR = "OPEN_BODY_ITEM_EDITOR";
+    export const CLOSE_BODY_ITEM_EDITOR = "CLOSE_BODY_ITEM_EDITOR";
     // Selector Action Types
     export const ALL_ITEMS = "ALL_ITEMS";
     export const CLONED_ITEMS = "CLONED_ITEMS";
