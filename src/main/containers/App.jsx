@@ -1,9 +1,9 @@
 import { hot } from 'react-hot-loader/root';
 import { Provider } from 'react-redux';
-import store from '../../../thingsToImplement/redux/reduxStore'
-import styled from 'styled-components';
+import store from '../../../thingsToImplement/redux/reduxStore.js'
+// import styled from 'styled-components';
 import React, { Component } from 'react';
-import Panels from './Panels.jsx';
+// import Panels from './Panels.jsx';
 // import { TestsProvider } from '../testsContext';
 import XPanels from '../xcontainers/XPanels';
 

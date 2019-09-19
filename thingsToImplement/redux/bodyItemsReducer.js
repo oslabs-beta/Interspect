@@ -30,7 +30,7 @@ const initialState = {
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       sourceResponseType: 'JSON',
-      customRoute: 'PORT://routeMyAppGetsThisFrom',
+      customRoute: '/routeMyAppGetsThisFrom',
       customMethod: 'GET',
       customResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       customResponseType: 'JSON',
@@ -42,7 +42,7 @@ const initialState = {
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       sourceResponseType: 'JSON',
-      customRoute: 'PORT://routeMyAppGetsThisFrom/api/foo',
+      customRoute: '/routeMyAppGetsThisFrom/api/foo',
       customMethod: 'GET',
       customResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       customResponseType: 'JSON',
@@ -54,7 +54,7 @@ const initialState = {
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       sourceResponseType: 'JSON',
-      customRoute: 'PORT://routeMyAppGetsThisFrom/api/tomato',
+      customRoute: '/routeMyAppGetsThisFrom/api/tomato',
       customMethod: 'GET',
       customResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       customResponseType: 'JSON',
@@ -66,7 +66,7 @@ const initialState = {
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       sourceResponseType: 'JSON',
-      customRoute: 'PORT://routeMyAppGetsThisFrom/api/papapia',
+      customRoute: '/routeMyAppGetsThisFrom/api/papapia',
       customMethod: 'PUT',
       customResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
       customResponseType: 'JSON',
@@ -97,6 +97,17 @@ const bodyItemsReducer = (state = initialState, action) => {
       case types.DELETE_BODY_ITEM:
         delete bodyItems[action.payload];
         return {
+          ...state,
+          bodyItems
+        }
+      case types.MOVE_BODY_ITEM:
+        // id
+          // bodyId
+        // dest
+          //action.payload.destination
+        console.log("action.payload", action.payload);
+        bodyItems[action.payload.bodyItemId].collection = action.payload.destination;
+      return {
           ...state,
           bodyItems
         }

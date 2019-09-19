@@ -13,8 +13,10 @@ class BodyItemsContainer extends Component {
     return (
       <div>
         <BodyItems
+          collection = {this.props.collection}
           bodyItems = {this.props.bodyItems}
           modifyBodyItem = {this.props.modifyBodyItem}
+          moveBodyItem = {this.props.moveBodyItem}
           deleteBodyItem = {this.props.deleteBodyItem}
         />
       </div>
@@ -30,6 +32,7 @@ const mapDispatchToProps = dispatch => {
   return {
     modifyBodyItem: bodyItem => dispatch(actions.modifyBodyItem(bodyItem)),
     deleteBodyItem: bodyItemId => dispatch(actions.deleteBodyItem(bodyItemId)),
+    moveBodyItem: (bodyItemId, destination) => dispatch(actions.moveBodyItem(bodyItemId, destination)),
   };
 }
 

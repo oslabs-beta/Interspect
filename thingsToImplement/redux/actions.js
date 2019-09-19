@@ -81,6 +81,13 @@ export const deleteBodyItem = (data) => ({
     type: types.DELETE_BODY_ITEM,
     payload: data,
 });
+export const moveBodyItem = (id, dest) => ({
+    type: types.MOVE_BODY_ITEM,
+    payload: {
+        bodyItemId: id,
+        destination: dest
+    },
+});
 // End of BodyItem Action Creators
 
 // BodyItem Selector Action Creators

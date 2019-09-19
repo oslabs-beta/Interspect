@@ -10,6 +10,10 @@ const { spawn } = require('child_process');
 
 module.exports = {
   // original: entry: SRC_DIR + '/index.js'
+  externals: [
+    'fsevents',
+
+  ],
   entry: `${SRC_DIR}/main/index.js`,
   output: {
     path: OUTPUT_DIR,
@@ -50,6 +54,12 @@ module.exports = {
         use: 'mocha-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
+        resolve: {
+          aliasFields: ['main']
+        }
+      }
     ],
   },
   resolve: {

@@ -14,10 +14,12 @@ class BodyItems extends Component {
       const key = bodyKeys[i];
       bodyItemComponents.push(
         <BodyItem
+          collection={this.props.collection}
           key={`BodyItem-${key}`}
           bodyItemId={key}
           bodyItem={bodies[key]}
           modifyBodyItem={this.props.modifyBodyItem}
+          moveBodyItem = {this.props.moveBodyItem}
           deleteBodyItem={this.props.deleteBodyItem}
         />
       )
