@@ -20,7 +20,7 @@ function createWindow() {
   expressApp.use(bodyParser.urlencoded({ extended: true }));
   expressApp.use(bodyParser.json());
 
-  server.listen(3001);
+  server.listen(3002);
 
   mainWindow = new BrowserWindow({
     width: 1200,

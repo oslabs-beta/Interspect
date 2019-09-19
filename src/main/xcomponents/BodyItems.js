@@ -17,6 +17,7 @@ class BodyItems extends Component {
           key={`BodyItem-${key}`}
           bodyItemId={key}
           bodyItem={bodies[key]}
+          modifyBodyItem={this.props.modifyBodyItem}
         />
       )
     }

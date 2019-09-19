@@ -10,7 +10,6 @@ const RequestBar = ({createBodyFromSource}) => {
 
     const handleChange = (e) => {
         url = e.target.value;
-        console.log('url from handleChange', url);
     }
 
     const parseXmlToJson = (xml) => {
@@ -24,7 +23,6 @@ const RequestBar = ({createBodyFromSource}) => {
 
     const fetchData = (e) => {
         e.preventDefault();
-        console.log("URL from fetch", url);
         fetch(url)
         .then(res => {
             const val = res.headers.get('content-type');
@@ -32,12 +30,10 @@ const RequestBar = ({createBodyFromSource}) => {
                 XMLorJSON = 'XML';
                 return res.text().then(xml => parseXmlToJson(xml));
             }
-            console.log('val', val)
             XMLorJSON = 'JSON';
             return res.json();
         })
         .then(data => {
-            console.log(data);
             const stringifiedData = JSON.stringify(data);
             const newBodyItem = {
                 sourceRoute: url,
@@ -59,7 +55,9 @@ const RequestBar = ({createBodyFromSource}) => {
             <Select>
                 <option value='GET'> GET </option>
             </Select>
-            <Input onChange={handleChange}/>
+            <Input 
+            onChange={handleChange} 
+            />
             <Button type='submit' value='Submit' variation="positive"> Send </Button>
         </Form>
     )
