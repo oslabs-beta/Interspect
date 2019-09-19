@@ -28,6 +28,7 @@ export const DELETE_TEST = "DELETE_TEST";
     export const CREATE_BODY_FROM_SOURCE = "CREATE_BODY_FROM_SOURCE";
     export const MODIFY_BODY_ITEM = "MODIFY_BODY_ITEM";
     export const DELETE_BODY_ITEM = "DELETE_BODY_ITEM";
+    export const MOVE_BODY_ITEM = "MOVE_BODY_ITEM";
     // Selector Action Types
     export const ALL_ITEMS = "ALL_ITEMS";
     export const CLONED_ITEMS = "CLONED_ITEMS";

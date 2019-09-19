@@ -100,6 +100,17 @@ const bodyItemsReducer = (state = initialState, action) => {
           ...state,
           bodyItems
         }
+      case types.MOVE_BODY_ITEM:
+        // id
+          // bodyId
+        // dest
+          //action.payload.destination
+        console.log("action.payload", action.payload);
+        bodyItems[action.payload.bodyItemId].collection = action.payload.destination;
+      return {
+          ...state,
+          bodyItems
+        }
     default:
       return state;
   }
