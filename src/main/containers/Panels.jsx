@@ -7,7 +7,7 @@ import DestinationPanel from './DestinationPanel.jsx';
 import DataCanvas from './DataCanvas.jsx';
 import { TestsContext } from '../testsContext';
 
-const socket = io.connect('http://localhost:3001/');
+const socket = io.connect('http://localhost:3002/');
 
 const Panels = () => {
   const [activePanel, setActivePanel] = useState('source');
