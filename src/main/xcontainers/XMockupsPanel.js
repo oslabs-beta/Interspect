@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import StyledPanel from './StyledPanel.jsx';
 // import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
+import BodyItemsContainer from './BodyItemsContainer';
 
 export default class MockupsPanel extends Component {
   render() {
@@ -15,6 +16,13 @@ export default class MockupsPanel extends Component {
         style={{ cursor: 'pointer' }}
         >
         <h1>Mockups</h1>
+        {active ? (
+          <div>
+            <BodyItemsContainer  collection='HOSTED_ITEMS' />
+            <BodyItemsContainer  collection='STAGED_ITEMS' />
+          </div>
+
+         ) : null }
       </StyledPanel>
     )
   }

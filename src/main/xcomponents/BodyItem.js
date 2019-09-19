@@ -34,7 +34,7 @@ class BodyItem extends Component{
     return (
       <div>
         
-          <button class="body-item-delete-button" type="button" onClick={()=>{
+          <button className="body-item-delete-button" type="button" onClick={()=>{
             this.props.deleteBodyItem(bodyItem.bodyItemId);
           }}>
             <span aria-hidden="true">&times;</span>
