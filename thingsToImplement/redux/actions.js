@@ -14,10 +14,6 @@ export const addToStage = (bodyItem) => ({
     type: types.ADD_TO_STAGE,
     payload: bodyItem,
 });
-export const createBodyFromSource = (data) => ({
-    type: types.CREATE_BODY_FROM_SOURCE,
-    payload: data,
-});
 export const setSourceURI = (uri) => ({
     type: types.SET_SOURCE_URI,
     payload: uri,
@@ -70,6 +66,18 @@ export const deleteTest = (testName) => ({
     payload: testName,
 });
 // End of Mockups Panel Action Creators
+
+// BodyItem Action Creators
+export const createBodyFromSource = (data) => ({
+    type: types.CREATE_BODY_FROM_SOURCE,
+    payload: data,
+});
+
+export const modifyBodyItem = (data) => ({
+    type: types.MODIFY_BODY_ITEM,
+    payload: data,
+});
+// End of BodyItem Action Creators
 
 // BodyItem Selector Action Creators
 export const BodyItemFilters = {

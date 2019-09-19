@@ -4,14 +4,11 @@ export const ACTIVATE_PANEL = "ACTIVATE_PANEL";
 // End of General Action Types
 
 // Action Types for Source Panel
-export const CREATE_BODY_FROM_SOURCE = "CREATE_BODY_FROM_SOURCE";
-
 export const SET_SOURCE_URI = "SET_SOURCE_URI";
 export const SET_CONTENT_TYPE = "SET_CONTENT_TYPE";
 export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
 export const SET_AUTH_TYPE = "SET_AUTH_TYPE";
 export const ADD_TO_STAGE = "ADD_TO_STAGE";
-
 // End of Action Types for Source Panel
 
 // Action Types for Mockups Panel
@@ -26,8 +23,14 @@ export const DELETE_TEST = "DELETE_TEST";
 
 // End of Action Types for Destination Panel
 
-// Action Types for BodyItemContainer
-export const ALL_ITEMS = "ALL_ITEMS";
-export const CLONED_ITEMS = "CLONED_ITEMS";
-export const STAGED_ITEMS = "STAGED_ITEMS";
-export const HOSTED_ITEMS = "HOSTED_ITEMS";
+// Action Types for BodyItems
+    // Reducer Action Types
+    export const CREATE_BODY_FROM_SOURCE = "CREATE_BODY_FROM_SOURCE";
+    export const MODIFY_BODY_ITEM = "MODIFY_BODY_ITEM";
+    // Selector Action Types
+    export const ALL_ITEMS = "ALL_ITEMS";
+    export const CLONED_ITEMS = "CLONED_ITEMS";
+    export const STAGED_ITEMS = "STAGED_ITEMS";
+    export const HOSTED_ITEMS = "HOSTED_ITEMS";
+// End of Action Types for BodyItems
+
