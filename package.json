@@ -37,7 +37,7 @@
     "react-diff-viewer": "^1.1.0",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
-    "react-json-view": "^1.19.1",
+    "react-json-view": "latest",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "socket.io": "^2.2.0",

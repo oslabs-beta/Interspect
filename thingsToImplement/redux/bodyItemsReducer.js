@@ -22,7 +22,7 @@ import { BodyItemFilters } from './actions';
 
 
 const initialState = {
-  itemCount: 0,
+  itemCount: 10,
   bodyItems: {
     // 1: {
     //   sourceRoute: 'http://placewhereitemwasclonedfrom.com/api/poo',
@@ -36,6 +36,7 @@ const initialState = {
     //   collection: 'CLONED_ITEMS',
     // },
     2: {
+      bodyItemId:2,
       sourceRoute: 'http://placewhereitemwasclonedfrom.com/api/foo',
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
@@ -47,6 +48,7 @@ const initialState = {
       collection: 'STAGED_ITEMS',
     },
     3: {
+      bodyItemId:3,
       sourceRoute: 'http://placewhereitemwasclonedfrom.com/api/potato',
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
@@ -58,6 +60,7 @@ const initialState = {
       collection: 'STAGED_ITEMS',
     },
     4: {
+      bodyItemId:4,
       sourceRoute: 'http://placewhereitemwasclonedfrom.com/api/mamamia',
       sourceMethod: 'GET',
       sourceResponse: '{"data":[{"type":"articles","id":"1","attributes":{"title":"JSON:API paints my bikeshed!","body":"The shortest article. Ever.","created":"2015-05-22T14:56:29.000Z","updated":"2015-05-22T14:56:28.000Z"},"relationships":{"author":{"data":{"id":"42","type":"people"}}}}],"included":[{"type":"people","id":"42","attributes":{"name":"John","age":80,"gender":"male"}}]}',
@@ -90,6 +93,12 @@ const bodyItemsReducer = (state = initialState, action) => {
         ...state,
         bodyItems
       }
+      case types.DELETE_BODY_ITEM:
+        delete bodyItems[action.payload];
+        return {
+          ...state,
+          bodyItems
+        }
     default:
       return state;
   }

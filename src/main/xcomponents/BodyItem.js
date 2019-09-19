@@ -13,7 +13,9 @@ class BodyItem extends Component{
       overflow: 'auto',
       margin: '0.75em auto',
       padding: '1em',
-      border: '1px solid grey'
+      border: '1px solid grey',
+
+      
     };
     
     const changeObject = (src) => {
@@ -26,11 +28,18 @@ class BodyItem extends Component{
       }
       this.props.modifyBodyItem(modifiedBodyItem);
     };
-
-    const src = JSON.parse(this.props.bodyItem.customResponse);
+    const bodyItem = this.props.bodyItem;
+    const src = JSON.parse(bodyItem.customResponse);
     
     return (
       <div>
+        
+          <button class="body-item-delete-button" type="button" onClick={()=>{
+            this.props.deleteBodyItem(bodyItem.bodyItemId);
+          }}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        
         <ReactJson
             src={src}
             theme='shapeshifter:inverted'

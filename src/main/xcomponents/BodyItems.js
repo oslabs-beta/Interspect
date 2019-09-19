@@ -18,6 +18,7 @@ class BodyItems extends Component {
           bodyItemId={key}
           bodyItem={bodies[key]}
           modifyBodyItem={this.props.modifyBodyItem}
+          deleteBodyItem={this.props.deleteBodyItem}
         />
       )
     }

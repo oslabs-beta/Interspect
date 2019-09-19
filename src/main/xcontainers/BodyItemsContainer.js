@@ -15,6 +15,7 @@ class BodyItemsContainer extends Component {
         <BodyItems
           bodyItems = {this.props.bodyItems}
           modifyBodyItem = {this.props.modifyBodyItem}
+          deleteBodyItem = {this.props.deleteBodyItem}
         />
       </div>
     );
@@ -28,6 +29,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => {
   return {
     modifyBodyItem: bodyItem => dispatch(actions.modifyBodyItem(bodyItem)),
+    deleteBodyItem: bodyItemId => dispatch(actions.deleteBodyItem(bodyItemId)),
   };
 }
 
