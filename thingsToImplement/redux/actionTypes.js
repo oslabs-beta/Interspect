@@ -6,13 +6,11 @@
 
 
 // Action Types for Source Panel
-export const CREATE_BODY_FROM_SOURCE = "CREATE_BODY_FROM_SOURCE";
-
-export const SET_SOURCE_URI = "SET_SOURCE_URI";
-export const SET_CONTENT_TYPE = "SET_CONTENT_TYPE";
-export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
-export const SET_AUTH_TYPE = "SET_AUTH_TYPE";
-export const ADD_TO_STAGE = "ADD_TO_STAGE";
+    export const SET_SOURCE_URI = "SET_SOURCE_URI";
+    export const SET_CONTENT_TYPE = "SET_CONTENT_TYPE";
+    export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
+    export const SET_AUTH_TYPE = "SET_AUTH_TYPE";
+    export const ADD_TO_STAGE = "ADD_TO_STAGE";
 
 // End of Action Types for Source Panel
 

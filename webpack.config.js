@@ -7,12 +7,13 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const defaultInclude = [SRC_DIR];
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { spawn } = require('child_process');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   // original: entry: SRC_DIR + '/index.js'
   externals: [
     'fsevents',
-
+    nodeExternals()
   ],
   entry: `${SRC_DIR}/main/index.js`,
   output: {
