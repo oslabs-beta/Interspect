@@ -34,6 +34,8 @@ const RequestBar = ({createBodyFromSource}) => {
             return res.json();
         })
         .then(data => {
+            console.log(data);
+            
             const stringifiedData = JSON.stringify(data);
             const newBodyItem = {
                 sourceRoute: url,

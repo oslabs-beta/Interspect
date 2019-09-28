@@ -34,11 +34,11 @@ function createWindow() {
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
 
-  if (isDev) {
-    BrowserWindow.addDevToolsExtension(
-      path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.0.6_0'),
-    );
-  }
+  // if (isDev) {
+  //   BrowserWindow.addDevToolsExtension(
+  //     path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.0.6_0'),
+  //   );
+  // }
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
