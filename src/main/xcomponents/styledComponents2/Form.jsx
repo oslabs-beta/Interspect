@@ -25,7 +25,7 @@ const Form = styled.form`
     min-width: 0;
     border: none;
   border: 1px solid #D8D8D8;
-  color: white;
+  color: blue;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1em;
   line-height: 1em;
@@ -37,7 +37,7 @@ const Form = styled.form`
     border: none;
   border: 1px solid #D8D8D8;
 
-  color: white;
+  color: blue;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1em;
   line-height: 1em;
