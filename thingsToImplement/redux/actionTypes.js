@@ -4,6 +4,7 @@ export const ACTIVATE_PANEL = "ACTIVATE_PANEL";
 // End of General Action Types
 
 // Action Types for Source Panel
+export const TOGGLE_REQUEST_TYPE = "TOGGLE_REQUEST_TYPE";
 export const SET_SOURCE_URI = "SET_SOURCE_URI";
 export const SET_CONTENT_TYPE = "SET_CONTENT_TYPE";
 export const SET_AUTHORIZATION = "SET_AUTHORIZATION";

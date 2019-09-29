@@ -9,11 +9,7 @@ const Button = styled.button`
     return '#1F4E7A';
   }};
   border: none;
-  color: ${(props) => {
-    if (!props.enabled) return '#555B5E';
-    if (props.variation === 'positive') return '#DEF0DB';
-    return '#D9EDF2';
-  }};
+  color: white;
   border-radius: 3px;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   font-size: 1em;

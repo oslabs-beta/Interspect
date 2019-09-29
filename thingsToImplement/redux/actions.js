@@ -10,6 +10,10 @@ export const activatePanel = (panelName) => ({
 
 
 // Action Creators for Source Panel
+export const toggleRequestType = () => ({
+    type: types.TOGGLE_REQUEST_TYPE
+});
+
 export const addToStage = (bodyItem) => ({
     type: types.ADD_TO_STAGE,
     payload: bodyItem,

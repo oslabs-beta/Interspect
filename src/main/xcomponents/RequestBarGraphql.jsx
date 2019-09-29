@@ -56,7 +56,7 @@ const RequestBarGraphql = ({createBodyFromSource}) => {
 
     return (
         <Form onSubmit={getData}>
-   
+            
             <Input onChange={handleChange} />
             <Textarea onChange={handleChangeVal}></Textarea>
             <Button type='submit' value='Submit' variation="positive"> Send </Button>

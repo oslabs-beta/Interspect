@@ -8,6 +8,7 @@ const Form = styled.form`
   grid-gap: 15px;
   grid-template-columns: 600px;
   grid-template-rows: 50px 150px;
+  padding: px;
 
 
   button {
@@ -20,11 +21,10 @@ const Form = styled.form`
   }
   textarea {
     border-radius: 5px;
-    background-color: orange;
+    background-color: white;
     min-width: 0;
     border: none;
-  border-left: 1px solid #D8D8D8;
-  border-bottom: 1px solid #D8D8D8;
+  border: 1px solid #D8D8D8;
   color: white;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1em;
@@ -32,11 +32,11 @@ const Form = styled.form`
   }
   input {
     border-radius: 5px;
-    background-color: blue;
+    background-color: white;
     min-width: 0;
     border: none;
-  border-left: 1px solid #D8D8D8;
-  border-bottom: 1px solid #D8D8D8;
+  border: 1px solid #D8D8D8;
+
   color: white;
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 1em;

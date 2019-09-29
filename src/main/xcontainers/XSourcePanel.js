@@ -7,16 +7,28 @@ import StyledPanel from './StyledPanel.jsx';
 import BodyItemsContainer from './BodyItemsContainer';
 // import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 import * as actions from '../../../thingsToImplement/redux/actions';
+import Button from '../xcomponents/styledComponents2/Button';
 
+let count = 0
+let graphql = true
 class SourcePanel extends Component {
-  showGraphql(bool){
-    return bool
+  constructor(props){
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
+    this.toggleBtn = this.toggleBtn.bind(this)
+  }
+  handleClick(){
+    this.props.toggleRequestType();
+  }
+  toggleBtn(){
+    const btnText = this.props.requestIsGraphql === false ?  'GRAPHQL' : 'REST';
+    return <Button  onClick={ this.handleClick}>{btnText}</Button>
   }
   render() {
     const { onClick, active } = this.props;
-    // const RequestBarSelection = this.props.graphQLRequest ? 
-    // <RequestBarGraphql createBodyFromSource={this.props.createBodyFromSource}/>
-    // : <RequestBar createBodyFromSource={this.props.createBodyFromSource}/>
+    const RequestBarSelection = this.props.requestIsGraphql ? 
+    <RequestBarGraphql createBodyFromSource={this.props.createBodyFromSource}/>
+    : <RequestBar createBodyFromSource={this.props.createBodyFromSource}/>
     
     return (
 
@@ -26,10 +38,10 @@ class SourcePanel extends Component {
         style={{ cursor: 'pointer' }}
         >
         <h1>Source</h1>
-        <button >REST</button><button >GRAPHQL</button>
-        {/* <RequestBar createBodyFromSource={this.props.createBodyFromSource}/> */}
-        <RequestBarGraphql createBodyFromSource={this.props.createBodyFromSource}/>
-        {/* {RequestBarSelection} */}
+        {}
+        
+        {this.toggleBtn()}
+        {RequestBarSelection}
         <BodyItemsContainer
           collection='CLONED_ITEMS'
           // items={this.props.clonedItems}
