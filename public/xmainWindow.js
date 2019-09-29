@@ -45,7 +45,7 @@ function createWindow() {
 
     exApp.use('/', router);
 
-    exApp.get('*', (req, res) => {
+    exApp.use('*', (req, res) => {
       console.log("ERROR: CODE IS BROKEN");
       res.status(404).send('ERROR: CODE IS BROKEN');
     });
