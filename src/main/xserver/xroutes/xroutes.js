@@ -1,6 +1,5 @@
 
 let router = require("express").Router();
-const methods = ['get', 'post', 'patch', 'put', 'delete'];
 
 let urlFilePath = '';
 function setURLFilePath(url) {
@@ -26,6 +25,7 @@ function setURLFilePath(url) {
 // }
 
 const setDynamicRoutes = (req, res, next) => {
+  const methods = ['get', 'post', 'patch', 'put', 'delete'];
   const bodyItems = req.body.bodyItems;
   try {
     for (let i = 0; i < methods.length; i++) {
