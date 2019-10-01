@@ -59,27 +59,7 @@ function createWindow() {
       response.end();
     }
   };
-
-  const poster = io.on('connection', (socket) => {
-    console.log('a user connected');
-
-    expressApp.post('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.patch('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.put('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-
-    expressApp.delete('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
-  });
-
+x
   io.on('disconnect', () => {
     console.log('a user disconnected');
   });

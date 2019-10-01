@@ -25,23 +25,32 @@ const RequestBarGraphql = ({createBodyFromSource}) => {
         console.log('url',url);
         console.log('val',val);
         
-        axios({method: 'post',
-                url: url,
-                data:{
-                    'query':val
-                }
-            })
+        
+              fetch(url, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  query: val,
+                }),
+              })
+                .then(response => {
+                  return response.json()
+                })
+  
+          
     
         .then(response => {
             console.log(response);
             
-            const stringifiedData = JSON.stringify(response);
+            const stringifiedData = response;
             const newBodyItem = {
                 sourceRoute: url,
                 sourceMethod: 'POST',
                 sourceResponse: stringifiedData,
                 sourceResponseType: '',
-                customRoute: 'http://localhost:55274',
+                customRoute: '',
                 customMethod: 'POST',
                 customResponse: stringifiedData,
                 customResponseType: '',
