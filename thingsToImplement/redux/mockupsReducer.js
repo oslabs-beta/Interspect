@@ -7,6 +7,7 @@ const initialState = {
     numMockups: 0, // Number of mockup in testList
     mockupsOnStage: {}, // Object of mockup objects on stage
     mockupsOnServer: {}, // Object of mockup objects being used in server
+    port: 3000, // port to use for localhost server (can be changed if port was used)
 }
 
 const MockupsReducer = (state=initialState, action) => {
@@ -60,7 +61,7 @@ const MockupsReducer = (state=initialState, action) => {
             let serverOn;
             if (action.payload) { serverOn = true; }
             else { serverOn = false; }
-            
+
             return {
                 ...state,
                 serverOn,
@@ -88,6 +89,12 @@ const MockupsReducer = (state=initialState, action) => {
             return {
                 ...state,
                 // mockupsOnStage,
+            }
+
+        case types.SET_PORT:
+            return {
+                ...state,
+                port: action.payload,
             }
 
         default:
