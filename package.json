@@ -3,7 +3,7 @@
   "productName": "Interspect",
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
-  "main": "public/main.js",
+  "main": "public/xmainWindow.js",
   "scripts": {
     "test": "mocha",
     "start": "ELECTRON_IS_DEV=0 electron .",
@@ -29,7 +29,7 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "chart.js": "^1.1.1",
-    "electron": "^5.0.2",
+    "electron": "^6.0.10",
     "electron-is-dev": "^1.1.0",
     "electron-reload": "^1.5.0",
     "express": "^4.16.4",
@@ -72,6 +72,7 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.6.0"
+    "webpack-dev-server": "^3.6.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }

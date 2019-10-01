@@ -42,7 +42,8 @@ const RequestBar = ({createBodyFromSource}) => {
                 sourceMethod: 'GET',
                 sourceResponse: stringifiedData,
                 sourceResponseType: XMLorJSON,
-                customRoute: 'https://localhost:3000',
+                // customRoute: 'https://localhost:3000',
+                customRoute: '/',
                 customMethod: 'GET',
                 customResponse: stringifiedData,
                 customResponseType: XMLorJSON,
@@ -57,8 +58,8 @@ const RequestBar = ({createBodyFromSource}) => {
             <Select>
                 <option value='GET'> GET </option>
             </Select>
-            <Input 
-            onChange={handleChange} 
+            <Input
+            onChange={handleChange}
             />
             <Button type='submit' value='Submit' variation="positive"> Send </Button>
         </Form>
