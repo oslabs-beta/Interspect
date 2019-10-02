@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
   "main": "public/xmainWindow.js",
+  "jest": {
+    "verbose": true
+  },
   "scripts": {
     "test": "mocha",
+    "tests": "jest --verbose",
     "start": "ELECTRON_IS_DEV=0 electron .",
     "build": "webpack  --mode production",
     "dev": "webpack-dev-server --watch --hot --inline --mode development",
@@ -32,6 +36,7 @@
     "electron-is-dev": "^1.1.0",
     "electron-reload": "^1.5.0",
     "express": "^4.16.4",
+    "jest": "^24.9.0",
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-diff-viewer": "^1.1.0",

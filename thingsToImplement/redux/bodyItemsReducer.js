@@ -22,7 +22,7 @@ import { BodyItemFilters } from './actions';
 
 
 const initialState = {
-  itemCount: 10,
+  itemCount: 4,
   bodyItems: {
     1: {
       bodyItemId:1,
