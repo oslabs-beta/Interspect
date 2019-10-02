@@ -1,5 +1,7 @@
 import bodyItemReducer from "../thingsToImplement/redux/bodyItemsReducer" 
-
+import { stat } from "fs";
+//.toBe just checks that a value is what you expect. It uses === to check strict equality.
+//.toEqual when you want to check that two objects have the same value, loosly equal
 describe('Body Item Reducer', () => {
     let state;
     beforeEach (() => {
@@ -59,7 +61,7 @@ describe('Body Item Reducer', () => {
     })
 
     //should return a default state when given an undefined input
-    describe('default state', () => {
+    describe('Default state', () => {
         it('should return a default state when given an undefined input', () => {
           expect(bodyItemReducer(state, { type: undefined })).toEqual(state);
         });
@@ -67,7 +69,7 @@ describe('Body Item Reducer', () => {
 
     //should return the initial state without dublication
 
-    describe('unrecognized action types', () => {
+    describe('Unrecognized action types', () => {
         it('should return the original state without any duplication', () => {
             const action = { type: 'fcvbnm' };
             expect(bodyItemReducer(state, action)).toEqual(state)
@@ -108,31 +110,124 @@ describe('Body Item Reducer', () => {
             expect(anotherState.itemCount).toEqual(6)
         })
         it('Add a new BodyItem in Redux store', () => {
-            //1.without restructuring 
+            //1. Without restructuring 
             // const bodyItemss = bodyItemReducer(state, action)
             // expect(bodyItemss.bodyItems[5]).toEqual(data)
 
-            //2.with destructuring
+            //2. With destructuring
             const {bodyItems} = bodyItemReducer(state, action)
             expect(bodyItems[5]).toEqual(data)
         })
-        //In redux we never mutate the data, if something changes we copy the data structure
 
-        it('returns a state object not strictly equal to the original', () =>{
+        it('Returns a state object not strictly equal to the original', () =>{
             expect(bodyItemReducer(state, action)).not.toBe(state)
         })
 
-        it('includes a bodyItem not strictly equal to the original', () => {
+        it('Includes a bodyItem not strictly equal to the original', () => {
             const {bodyItems} = bodyItemReducer(state, action);
-            expect(bodyItems).toBe(state.bodyItems);
+            expect(bodyItems).not.toBe(state.bodyItems);
+            // expect(state.bodyItems).toEqual(bodyItems);
         });
     })
 
-    // describe('Modify Body Item', () => {
-    //     it()
-    // })
+    describe('Modify Body Item', () => {
+        let data = {
+            BodyItem: {
+                bodyItemId:3,
+                sourceRoute: 'https://www.swapi.co/api/people/1',
+                sourceMethod: 'GET',
+                sourceResponse: {
 
-    //describe - modify data
-    //describe - delete Body item
-    //describe - delete Body item
+                },
+                sourceResponseType: 'XML',
+                customRoute: 'https://localhost:3000',
+                customMethod: 'GET',
+                customResponse: {},
+                customResponseType: 'JSON',
+                collection: 'CLONED_ITEMS',
+            }
+        }
+        const action = {
+            type: 'MODIFY_BODY_ITEM',
+            payload: data.BodyItem,
+        }
+        it('Modifies body item', () => {
+            expect(bodyItemReducer(state, action).bodyItems[3]).not.toEqual(state.bodyItems[3])
+        })
+
+        it('Does not duplicate other body items in the body items list', () => {
+            expect(bodyItemReducer(state, action).itemCount).toEqual(state.itemCount)
+        })
+
+        it('Does not mutate other body items in the body items list', () => {
+            expect (bodyItemReducer(state, action).bodyItems[1]).toEqual(state.bodyItems[1])
+            expect (bodyItemReducer(state, action).bodyItems[2]).toEqual(state.bodyItems[2])
+            expect (bodyItemReducer(state, action).bodyItems[4]).toEqual(state.bodyItems[4])
+        })
+    })
+
+    describe('Delete Body Item', () => {
+        let data = {
+            bodyItemId:3,
+            BodyItem: {
+            sourceRoute: 'https://www.swapi.co/api/people/1',
+            sourceMethod: 'GET',
+            sourceResponse: {
+
+            },
+            sourceResponseType: 'JSON',
+            customRoute: 'https://localhost:3000',
+            customMethod: 'GET',
+            customResponse: {},
+            customResponseType: 'JSON',
+            collection: 'CLONED_ITEMS',
+            }
+        }
+        const action = {
+            type: 'DELETE_BODY_ITEM',
+            payload: data,
+        }
+
+        it('Original state must not equal to updated state', () => { 
+            expect(bodyItemReducer(state, action)).not.toBe(state);
+        })  
+
+        it('does not mutate or duplicate other body items in the body items list', () => {
+            expect (bodyItemReducer(state, action).bodyItems[1]).toEqual(state.bodyItems[1])
+            expect (bodyItemReducer(state, action).bodyItems[2]).toEqual(state.bodyItems[2])
+            expect (bodyItemReducer(state, action).bodyItems[4]).toEqual(state.bodyItems[4])
+        })
+
+        it('When deleting the bodyItem the itemsCount should not be changed', () => {
+            expect(bodyItemReducer(state, action).itemCount).toBe(state.itemCount)
+        })
+    })
+
+    describe('Move Body Item', () => {
+
+        const dest = {
+            bodyItemId: 1,
+            destination: 'STAGED_ITEMS'
+        }
+
+        let action = {
+            type: 'MOVE_BODY_ITEM',
+            payload: dest,
+        }
+
+        it('Original state must not equal to updated state', () => { 
+            expect(bodyItemReducer(state, action)).not.toBe(state);
+        })  
+
+        it('Move body item from Source Panel to Mock Panel', () => {
+            expect(bodyItemReducer(state, action).bodyItems[1].collection).not.toEqual('CLONED_ITEMS')
+            expect(bodyItemReducer(state, action).bodyItems[1].collection).not.toEqual('HOSTED_ITEMS')
+        })
+
+        it('The rest of the bodyItems should remain the same spot', () => {
+            expect (bodyItemReducer(state, action).bodyItems[2]).toEqual(state.bodyItems[2])
+            expect (bodyItemReducer(state, action).bodyItems[3]).toEqual(state.bodyItems[3])
+            expect (bodyItemReducer(state, action).bodyItems[4]).toEqual(state.bodyItems[4])
+        })
+    })
 })
