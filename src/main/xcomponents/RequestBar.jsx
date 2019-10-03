@@ -34,15 +34,12 @@ const RequestBar = ({createBodyFromSource}) => {
             return res.json();
         })
         .then(data => {
-            console.log(data);
-            
             const stringifiedData = JSON.stringify(data);
             const newBodyItem = {
                 sourceRoute: url,
                 sourceMethod: 'GET',
                 sourceResponse: stringifiedData,
                 sourceResponseType: XMLorJSON,
-                // customRoute: 'https://localhost:3000',
                 customRoute: '/',
                 customMethod: 'GET',
                 customResponse: stringifiedData,

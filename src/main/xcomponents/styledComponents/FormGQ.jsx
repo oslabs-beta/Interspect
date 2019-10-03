@@ -42,7 +42,6 @@ const Form = styled.form`
   font-size: 1em;
   line-height: 1em;
   }
-  span {}
 `;
 
 export default Form;

@@ -8,9 +8,6 @@ import BodyItemsContainer from './BodyItemsContainer';
 // import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 import * as actions from '../../../thingsToImplement/redux/actions';
 import Button from '../xcomponents/styledComponents/Button';
-
-let count = 0
-let graphql = true
 class SourcePanel extends Component {
   constructor(props){
     super(props)
@@ -26,25 +23,22 @@ class SourcePanel extends Component {
   }
   render() {
     const { onClick, active } = this.props;
-    const RequestBarSelection = this.props.requestIsGraphql ? 
+    const RequestBarSelection = this.props.requestIsGraphql ?
     <RequestBarGraphql createBodyFromSource={this.props.createBodyFromSource}/>
     : <RequestBar createBodyFromSource={this.props.createBodyFromSource}/>
-    
+
     return (
 
       <StyledPanel
         onClick={() => { onClick('source'); }}
         active={active}
         style={{ cursor: 'pointer' }}
-        >
+      >
         <h1>Source</h1>
-        {}
-        
         {this.toggleBtn()}
         {RequestBarSelection}
         <BodyItemsContainer
           collection='CLONED_ITEMS'
-          // items={this.props.clonedItems}
         />
       </StyledPanel>
     );
