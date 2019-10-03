@@ -10,9 +10,6 @@ const exApp = express();
 const server = require('http').Server(exApp);
 // require('electron-reload')(__dirname);
 
-
-
-
 let PORT = 3000;
 let serverIsOn = false;
 // let itemsToSend; //(FOR DESTINATION PANEL)

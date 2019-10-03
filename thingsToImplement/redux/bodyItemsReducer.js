@@ -76,7 +76,8 @@ const initialState = {
 };
 
 const bodyItemsReducer = (state = initialState, action) => {
-  const {bodyItems} = state;  
+  // Deep clone of bodyItems:
+  const bodyItems = JSON.parse(JSON.stringify(state.bodyItems))
   switch (action.type) {
     case types.CREATE_BODY_FROM_SOURCE:
       const newCount = state.itemCount + 1;
@@ -88,7 +89,7 @@ const bodyItemsReducer = (state = initialState, action) => {
         bodyItems,
       };
     case types.MODIFY_BODY_ITEM:
-      const id = action.payload.bodyItemId;
+      const id = action.payload.bodyItemId; // 3
       bodyItems[id] = action.payload;
       return {
         ...state,
@@ -115,7 +116,6 @@ const bodyItemsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export default bodyItemsReducer;
 
