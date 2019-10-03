@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { bodyItemsCollectionSelector } from '../../../thingsToImplement/redux/combinedReducers';
 import BodyItems from '../xcomponents/BodyItems';
 import * as actions from '../../../thingsToImplement/redux/actions';
-import BodyItemGraphql from '../xcomponents/BodyItemGraphql'
 
 
 class BodyItemsContainer extends Component {

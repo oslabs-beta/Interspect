@@ -7,7 +7,7 @@ import StyledPanel from './StyledPanel.jsx';
 import BodyItemsContainer from './BodyItemsContainer';
 // import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
 import * as actions from '../../../thingsToImplement/redux/actions';
-import Button from '../xcomponents/styledComponents2/Button';
+import Button from '../xcomponents/styledComponents/Button';
 
 let count = 0
 let graphql = true

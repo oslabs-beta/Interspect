@@ -1,11 +1,9 @@
 import React from 'react';
-import Button from './styledComponents2/Button';
-import Form from './styledComponents2/Form';
-import Input from './styledComponents2/Input';
-import Textarea from './styledComponents2/Textarea';
-import Select from './styledComponents2/Select';
-import Span from './styledComponents2/Span';
-import axios from 'axios'
+import Button from './styledComponents/Button';
+import Form from './styledComponents/FormGQ.jsx';
+import Input from './styledComponents/Input';
+import Textarea from './styledComponents/Textarea';
+
 
 let url = '';
 let val = '';
@@ -22,8 +20,6 @@ const RequestBarGraphql = ({createBodyFromSource}) => {
 
     const getData = (e) => {
         e.preventDefault();
-        console.log('url',url);
-        console.log('val',val);
         
         
               fetch(url, {
@@ -42,9 +38,9 @@ const RequestBarGraphql = ({createBodyFromSource}) => {
           
     
         .then(response => {
-            console.log(response);
-            
-            const stringifiedData = response;
+       
+            console.log("responze", response);
+            const stringifiedData = JSON.stringify(response);
             const newBodyItem = {
                 sourceRoute: url,
                 sourceMethod: 'POST',
@@ -56,9 +52,10 @@ const RequestBarGraphql = ({createBodyFromSource}) => {
                 customResponseType: '',
                 collection: 'CLONED_ITEMS',
             }
+            console.log("NBI: ",newBodyItem)
             createBodyFromSource(newBodyItem);
         }).catch(err=>{
-            console.log(err);
+            console.log("err:", err);
             
         })
     }
