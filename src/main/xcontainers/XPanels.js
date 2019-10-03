@@ -51,12 +51,12 @@ class XPanels extends Component {
           toggleRequestType={this.props.toggleRequestType}
           requestIsGraphql={this.props.requestIsGraphql}
         />
-  
+
         <XMockupsPanel
           active={this.props.mockups_active}
           onClick={this.props.activatePanel}
         />
-  
+
         <XDestinationPanel
           active={this.props.destination_active}
           onClick={this.props.activatePanel}

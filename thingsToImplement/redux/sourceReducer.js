@@ -1,10 +1,9 @@
-
 import * as types from "./actionTypes.js";
 
 // Initial State for Source Panel
 const initialState = {
   requestIsGraphql: false,
-  source_active: true,
+  source_active: false,
   source_uri: '',
   data: {},
   contentType: 'JSON',
@@ -52,8 +51,6 @@ const SourceReducer = (state=initialState, action) => {
     default:
       return state;
   }
-
-
 }
 
 export default SourceReducer;

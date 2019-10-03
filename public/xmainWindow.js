@@ -3,20 +3,17 @@ const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
-
 const express = require('express');
 const {router} = require('../src/main/xserver/xroutes/xroutes.js');
 const exApp = express();
 const server = require('http').Server(exApp);
 require('electron-reload')(__dirname);
-
-
+const { default: installExtension, REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } = require('electron-devtools-installer');
 
 
 let PORT = 3000;
 let serverIsOn = false;
 // let itemsToSend; //(FOR DESTINATION PANEL)
-
 
 let mainWindow;
 function createWindow() {
@@ -32,12 +29,10 @@ function createWindow() {
   });
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../../dist/index.html`);
-
-  // if (isDev) {
-  //   BrowserWindow.addDevToolsExtension(
-  //     path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.0.6_0'),
-  //   );
-  // }
+  if (isDev) {
+    installExtension(REACT_DEVELOPER_TOOLS);
+    installExtension(REDUX_DEVTOOLS);
+  }
 
   // if (serverIsOn) {
     exApp.use(express.urlencoded({ encoded: true }))
