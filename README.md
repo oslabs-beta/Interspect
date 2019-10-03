@@ -34,7 +34,7 @@ The Mock Library is where all of your response data is stored after saving it fr
 ![Screenshot of mock panel with edit mode](/assets/screenshots/edit-modal.png)
 
 #### Running the Mock Server
-When you finish editing your data, you can send it to the Mock Server section, where you can test your custom routes that you set up when editing your response data. This can be done by making a request to the route using `curl`, or through the `Postman` application. Upon a successful test, you should get the responses that you set up during editing.
+When you finish editing your data, you can send it to the Mock Server section, where you can test your custom routes that you set up when editing your response data on http://localhost:3000. This can be done by making a request to the route using `curl`, or the `Postman` application. Upon a successful test, you should get the responses that you set up during editing.
 
 ![Screenshot of a curl request to a custom route](/assets/screenshots/curl-request.png)
 
