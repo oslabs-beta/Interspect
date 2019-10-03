@@ -40,7 +40,6 @@ const RequestBar = ({createBodyFromSource}) => {
                 sourceMethod: 'GET',
                 sourceResponse: stringifiedData,
                 sourceResponseType: XMLorJSON,
-                // customRoute: 'https://localhost:3000',
                 customRoute: '/',
                 customMethod: 'GET',
                 customResponse: stringifiedData,

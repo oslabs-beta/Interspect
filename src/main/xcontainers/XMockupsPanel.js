@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-// import RequestBar from '../components/RequestBar.jsx';
 import PropTypes from 'prop-types';
 import StyledPanel from './StyledPanel.jsx';
-// import PerformanceMetrics from '../components/PerformanceMetrics.jsx';
-import BodyItemsContainer from './BodyItemsContainer';
-import styled from 'styled-components';
 
-const CollectionTitle = styled.div` 
+import styled from 'styled-components';
+import BodyItemsContainer from './BodyItemsContainer';
+
+const CollectionTitle = styled.div`
   text-align: center;
 `;
 export default class MockupsPanel extends Component {
+  handleMockupsPanelClick() {
+    if (!this.props.active) {
+      this.props.onClick("mockups")
+    }
+  }
   render() {
     const { onClick, active } = this.props;
     return (
 
       <StyledPanel
-        onClick={()=> {onClick("mockups")}}
+        onClick={()=> {this.handleMockupsPanelClick()}}
         active={active}
         style={{ cursor: 'pointer' }}
         >

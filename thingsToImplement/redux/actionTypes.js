@@ -6,12 +6,12 @@
 
 
 // Action Types for Source Panel
+    export const TOGGLE_REQUEST_TYPE = "TOGGLE_REQUEST_TYPE";
     export const SET_SOURCE_URI = "SET_SOURCE_URI";
     export const SET_CONTENT_TYPE = "SET_CONTENT_TYPE";
     export const SET_AUTHORIZATION = "SET_AUTHORIZATION";
     export const SET_AUTH_TYPE = "SET_AUTH_TYPE";
     export const ADD_TO_STAGE = "ADD_TO_STAGE";
-
 // End of Action Types for Source Panel
 
 
@@ -40,6 +40,8 @@
     export const MODIFY_BODY_ITEM = "MODIFY_BODY_ITEM";
     export const DELETE_BODY_ITEM = "DELETE_BODY_ITEM";
     export const MOVE_BODY_ITEM = "MOVE_BODY_ITEM";
+    export const OPEN_BODY_ITEM_EDITOR = "OPEN_BODY_ITEM_EDITOR";
+    export const CLOSE_BODY_ITEM_EDITOR = "CLOSE_BODY_ITEM_EDITOR";
     // Selector Action Types
     export const ALL_ITEMS = "ALL_ITEMS";
     export const CLONED_ITEMS = "CLONED_ITEMS";

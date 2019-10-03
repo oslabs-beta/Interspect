@@ -1,9 +1,9 @@
-
 import * as types from "./actionTypes.js";
 
 // Initial State for Source Panel
 const initialState = {
-  source_active: true,
+  requestIsGraphql: false,
+  source_active: false,
   source_uri: '',
   data: {},
   contentType: 'JSON',
@@ -12,8 +12,13 @@ const initialState = {
 }
 
 const SourceReducer = (state=initialState, action) => {
-
   switch(action.type) {
+    case types.TOGGLE_REQUEST_TYPE:
+      let requestIsGraphql = !state.requestIsGraphql;
+      return {
+        ...state,
+        requestIsGraphql,
+      };
     case types.ACTIVATE_PANEL:
       let source_active;
       if (action.payload === "source") { source_active = true; }
@@ -46,8 +51,6 @@ const SourceReducer = (state=initialState, action) => {
     default:
       return state;
   }
-
-
 }
 
 export default SourceReducer;

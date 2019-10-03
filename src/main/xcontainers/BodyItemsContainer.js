@@ -5,19 +5,20 @@ import { bodyItemsCollectionSelector } from '../../../thingsToImplement/redux/co
 import BodyItems from '../xcomponents/BodyItems';
 import * as actions from '../../../thingsToImplement/redux/actions';
 
-
 class BodyItemsContainer extends Component {
 
   render() {
-    // TODO: Remove this prop drill of modifyBodyItem reducer, and implement in edit modal instead, once that is made
     return (
       <div>
+        
         <BodyItems
           collection = {this.props.collection}
           bodyItems = {this.props.bodyItems}
           modifyBodyItem = {this.props.modifyBodyItem}
           moveBodyItem = {this.props.moveBodyItem}
           deleteBodyItem = {this.props.deleteBodyItem}
+          openBodyItem = {this.props.openBodyItem}
+          closeBodyItem = {this.props.closeBodyItem}
         />
       </div>
     );
@@ -33,6 +34,8 @@ const mapDispatchToProps = dispatch => {
     modifyBodyItem: bodyItem => dispatch(actions.modifyBodyItem(bodyItem)),
     deleteBodyItem: bodyItemId => dispatch(actions.deleteBodyItem(bodyItemId)),
     moveBodyItem: (bodyItemId, destination) => dispatch(actions.moveBodyItem(bodyItemId, destination)),
+    openBodyItem: bodyItemid => dispatch(actions.openBodyItem(bodyItemid)),
+    closeBodyItem: bodyItemid => dispatch(actions.closeBodyItem(bodyItemid)),
   };
 }
 

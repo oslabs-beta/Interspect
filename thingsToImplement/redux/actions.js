@@ -1,4 +1,3 @@
-/* eslint-disable */
 import * as types from "./actionTypes.js";
 
 // General Action Creators
@@ -10,6 +9,10 @@ export const activatePanel = (panelName) => ({
 
 
 // Action Creators for Source Panel
+export const toggleRequestType = () => ({
+    type: types.TOGGLE_REQUEST_TYPE
+});
+
 export const addToStage = (bodyItem) => ({
     type: types.ADD_TO_STAGE,
     payload: bodyItem,
@@ -87,6 +90,14 @@ export const moveBodyItem = (id, dest) => ({
         bodyItemId: id,
         destination: dest
     },
+});
+export const openBodyItem = (id) => ({
+    type: types.OPEN_BODY_ITEM_EDITOR,
+    payload: id
+});
+export const closeBodyItem = (id) => ({
+    type: types.CLOSE_BODY_ITEM_EDITOR,
+    payload: id
 });
 // End of BodyItem Action Creators
 

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import BodyItem from './BodyItem';
-
 // import PropTypes from 'prop-types';
 
 class BodyItems extends Component {
-
   render() {
-    // Object.keys(this.props.bodyItems).length
+
     let bodyItemComponents = [];
     const bodies = this.props.bodyItems;
     const bodyKeys = Object.keys(bodies);
@@ -21,6 +19,8 @@ class BodyItems extends Component {
           modifyBodyItem={this.props.modifyBodyItem}
           moveBodyItem = {this.props.moveBodyItem}
           deleteBodyItem={this.props.deleteBodyItem}
+          openBodyItem = {this.props.openBodyItem}
+          closeBodyItem = {this.props.closeBodyItem}
         />
       )
     }

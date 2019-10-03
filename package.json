@@ -30,6 +30,7 @@
   },
   "homepage": "https://interspect.io/",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "chart.js": "^1.1.1",
     "electron": "^6.0.10",
@@ -37,11 +38,13 @@
     "electron-reload": "^1.5.0",
     "express": "^4.16.4",
     "jest": "^24.9.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-diff-viewer": "^1.1.0",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
+    "react-icons": "^3.7.0",
     "react-json-view": "latest",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
@@ -49,6 +52,7 @@
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.3.1",
     "supertest": "^4.0.2",
+    "styled-react-modal": "^2.0.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
@@ -64,6 +68,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "css-loader": "^2.1.1",
+    "electron-devtools-installer": "^2.2.4",
     "electron-packager": "^14.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
