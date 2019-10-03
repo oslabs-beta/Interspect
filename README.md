@@ -15,24 +15,28 @@ The app is split into two, distinct panels:
 ### Source
 This is where you can define a data source that will become the foundation for your data mockups.
 
-![Screenshot of source panel](/assets/screenshots/source-panel.png)
+![Screenshot of source panel](/assets/screenshots/rest-source.png)
 
 #### Send a GET request
 If your microservice supports `GET` requests, add your endpoint to the request bar and hit send. You’ll then be able to view the response data, which you can then send over to the Mockups panel. If the response is not what you wanted or you made a mistake, you can easily remove the response by clicking the 'X' sitting at the top right of every response.
 
 #### Accpeted data types
-Interspect works with `JSON` and `XML`-formatted data
+Interspect works with `JSON`, `XML`, and `GraphQL`-formatted data. For `GraphQL` requests, click the button in the top left corner of the Source panel, and another textbox will appear. This is where you'll write out the schema for your `GraphQL` request. To switch back to REST api requests, simply click the button again.
+
+![Screenshot of source panel with GraphQL setting](/assets/screenshots/graphql-source.png)
 
 ### Mockups
 In the mockups panel, you can create new data scenarios from your source data. There are two sections: a Mock Library and Mock Server.
 
-![Screenshot of mockups panel](/assets/screenshots/mockups-panel.png)
-
 #### Editing Data In the Mock Library
-The Mock Library is where all of your response data is stored after saving it from the Source panel. You can edit your data by clicking on the clipboard icon, or delete your data by clicking on the 'X' icon as you please in this section. Upon clicking the clipboard icon, a pop-up will appear where you can change what's inside the response data, as well as setup a mock request by defining a custom route specified method type (i.e. GET, POST, PUT, PATCH, DELETE), and fake response data to be returned depending on whether your mock request is successful. 
+The Mock Library is where all of your response data is stored after saving it from the Source panel. You can edit your data by clicking on the clipboard icon, or delete your data by clicking on the 'X' icon as you please in this section. Upon clicking the clipboard icon, a pop-up will appear where you can edit what's inside the response data, as well as setup a mock request by defining a custom route with a specified method type (i.e. GET, POST, PUT, PATCH, DELETE), and fake response data to be returned depending on whether your mock request was successful or not. 
+
+![Screenshot of mock panel with edit mode](/assets/screenshots/edit-modal.png)
 
 #### Running the Mock Server
-When you finish editing your data, you can send it to the Mock Server section, where you can test your custom routes that you set up when editing your response data. Upon a successful test, you should get responses that you also set up during editing.
+When you finish editing your data, you can send it to the Mock Server section, where you can test your custom routes that you set up when editing your response data. This can be done by making a request to the route using `curl`, or through the `Postman` application. Upon a successful test, you should get the responses that you set up during editing.
+
+![Screenshot of a curl request to a custom route](/assets/screenshots/curl-request.png)
 
 
 ----
