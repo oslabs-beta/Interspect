@@ -18,7 +18,7 @@ class SourcePanel extends Component {
     this.props.toggleRequestType();
   }
   toggleRequestTypeBtn(){
-    const btnText = this.props.requestIsGraphql === false ?  'GRAPHQL' : 'REST';
+    const btnText = this.props.requestIsGraphql === false ?  'SWITCH TO GRAPHQL' : 'SWITCH TO REST';
     return <Button  onClick={ this.handleToggleRequestBtnClick}>{btnText}</Button>
   }
   handleSourcePanelClick() {
