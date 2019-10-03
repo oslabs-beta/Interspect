@@ -8,7 +8,7 @@ const express = require('express');
 const {router} = require('../src/main/xserver/xroutes/xroutes.js');
 const exApp = express();
 const server = require('http').Server(exApp);
-// require('electron-reload')(__dirname);
+require('electron-reload')(__dirname);
 
 
 

@@ -18,19 +18,19 @@ import * as types from './actionTypes.js';
 //   if (action.type === types.HOSTED_ITEMS) setItemsToSend(action.payload);
 //   return next(action);
 // }
-const getBodyItemURL = store => next => action => {
-  if (action.type === types.CREATE_BODY_FROM_SOURCE && action.payload.customRoute) setURLFilePath(action.payload.customRoute);
-  console.log("Got URL", action.payload.customRoute);
-  return next(action);
-}
+// const getBodyItemURL = store => next => action => {
+//   if (action.type === types.CREATE_BODY_FROM_SOURCE && action.payload.customRoute) setURLFilePath(action.payload.customRoute);
+//   console.log("Got URL", action.payload.customRoute);
+//   return next(action);
+// }
 
 const store = createStore(
   reducers,
-  applyMiddleware(
-    // savePort,
-    // getServerStatus,
-    // getItemsToSend,
-    getBodyItemURL
-  ),
+  // applyMiddleware(
+  //   // savePort,
+  //   // getServerStatus,
+  //   // getItemsToSend,
+  //   getBodyItemURL
+  // ),
 );
 export default store;

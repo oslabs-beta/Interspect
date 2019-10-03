@@ -48,6 +48,8 @@ class XPanels extends Component {
         <XSourcePanel
           active={this.props.source_active}
           onClick={this.props.activatePanel}
+          toggleRequestType={this.props.toggleRequestType}
+          requestIsGraphql={this.props.requestIsGraphql}
         />
   
         <XMockupsPanel
@@ -69,12 +71,14 @@ const mapStateToProps = (state, ownProps) => {
     source_active: state.SourceReducer.source_active,
     mockups_active: state.MockupsReducer.mockups_active,
     destination_active: state.DestinationReducer.destination_active,
+    requestIsGraphql: state.SourceReducer.requestIsGraphql,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     activatePanel: (panelToActivate) => dispatch(actions.activatePanel(panelToActivate)),
+    toggleRequestType: () => dispatch(actions.toggleRequestType()),
   };
 };
 

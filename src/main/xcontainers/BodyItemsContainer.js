@@ -12,6 +12,7 @@ class BodyItemsContainer extends Component {
     // TODO: Remove this prop drill of modifyBodyItem reducer, and implement in edit modal instead, once that is made
     return (
       <div>
+        
         <BodyItems
           collection = {this.props.collection}
           bodyItems = {this.props.bodyItems}
