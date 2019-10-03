@@ -57,10 +57,10 @@ class XPanels extends Component {
           onClick={this.props.activatePanel}
         />
 
-        <XDestinationPanel
+        {/* <XDestinationPanel
           active={this.props.destination_active}
           onClick={this.props.activatePanel}
-        />
+        /> */}
       </XPanelsWrapper>
     );
   }

@@ -60,6 +60,7 @@ class BodyItemDetails extends Component {
         customRoute
       }
       this.props.modifyBodyItem(modifiedBodyItem);
+      this.props.updateBodyItemMockServer();
     }
     const changeCustomResponse = (src) => {
       const customResponse = JSON.stringify(src.updated_src);
@@ -69,6 +70,7 @@ class BodyItemDetails extends Component {
         customResponse
       }
       this.props.modifyBodyItem(modifiedBodyItem);
+      this.props.updateBodyItemMockServer();
     };
 
     const changeMethod = (e) => {
@@ -84,6 +86,7 @@ class BodyItemDetails extends Component {
       console.log("modifiedBodyItem: ", modifiedBodyItem);
       console.log("this.props.bodyItem: ", this.props.bodyItem);
       this.props.modifyBodyItem(modifiedBodyItem);
+      this.props.updateBodyItemMockServer();
     }
 
     const StyledEditButton = styled(TiEdit)`

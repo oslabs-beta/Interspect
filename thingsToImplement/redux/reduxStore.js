@@ -1,10 +1,9 @@
-
-import {createStore, applyMiddleware, compose} from 'redux';
-import reducers from './combinedReducers.js';
+import { createStore, applyMiddleware, compose } from "redux";
+import reducers from "./combinedReducers.js";
+import thunk from "redux-thunk";
 // const {setPort, setItemsToSend, setServerOn} = require('../../public/xmainWindow.js');
 // import {setURLFilePath} from '../../src/main/xserver/xroutes/xroutes.js';
 // import * as types from './actionTypes.js';
-
 
 // const savePort = store => next => action => {
 //   if (action.type === types.SET_PORT) setPort(action.payload);
@@ -27,11 +26,12 @@ const store = createStore(
   reducers,
   composeEnhancers(
     applyMiddleware(
+      thunk,
       // savePort,
       // getServerStatus,
       // getItemsToSend,
       // getBodyItemURL
     )
-  ),
+  )
 );
 export default store;
