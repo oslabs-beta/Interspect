@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bodyItemsCollectionSelector } from '../../../thingsToImplement/redux/combinedReducers';
+import { bodyItemsCollectionSelector, bodyItemsServerExporter } from '../../../thingsToImplement/redux/combinedReducers';
 import BodyItems from '../xcomponents/BodyItems';
 import * as actions from '../../../thingsToImplement/redux/actions';
 
@@ -10,7 +10,7 @@ class BodyItemsContainer extends Component {
   render() {
     return (
       <div>
-        
+
         <BodyItems
           collection = {this.props.collection}
           bodyItems = {this.props.bodyItems}
@@ -19,6 +19,7 @@ class BodyItemsContainer extends Component {
           deleteBodyItem = {this.props.deleteBodyItem}
           openBodyItem = {this.props.openBodyItem}
           closeBodyItem = {this.props.closeBodyItem}
+          updateBodyItemMockServer = {this.props.updateBodyItemMockServer}
         />
       </div>
     );
@@ -36,6 +37,7 @@ const mapDispatchToProps = dispatch => {
     moveBodyItem: (bodyItemId, destination) => dispatch(actions.moveBodyItem(bodyItemId, destination)),
     openBodyItem: bodyItemid => dispatch(actions.openBodyItem(bodyItemid)),
     closeBodyItem: bodyItemid => dispatch(actions.closeBodyItem(bodyItemid)),
+    updateBodyItemMockServer: () => dispatch(actions.updateBodyItemMockServer()),
   };
 }
 

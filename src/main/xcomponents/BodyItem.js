@@ -25,11 +25,15 @@ class BodyItem extends Component {
       padding: '1em',
       border: '1px solid grey',
     };
+    const updateBodyItemMockServer = () => {
+      this.props.updateBodyItemMockServer();
+    }
     const saveButton = (
       <Button
         variation='positive'
         enabled
         onClick={() => {
+          updateBodyItemMockServer();
           this.props.moveBodyItem(bodyItem.bodyItemId, "STAGED_ITEMS");
         }}
       >
@@ -42,6 +46,7 @@ class BodyItem extends Component {
         variation='positive'
         enabled
         onClick={()=> {
+          updateBodyItemMockServer();
           this.props.moveBodyItem(bodyItem.bodyItemId, "HOSTED_ITEMS")
         }}
       >Add To Server</Button>
@@ -52,7 +57,9 @@ class BodyItem extends Component {
         variation='negative'
         enabled
         onClick={()=> {
-          this.props.moveBodyItem(bodyItem.bodyItemId, "STAGED_ITEMS")
+          // This update will be useless until we are able to actually remove mocks from the server, but I'll leave it here for that eventuality
+          updateBodyItemMockServer();
+          this.props.moveBodyItem(bodyItem.bodyItemId, "STAGED_ITEMS");
         }}
       >Remove from Server
 
@@ -72,6 +79,7 @@ class BodyItem extends Component {
         customResponse
       }
       this.props.modifyBodyItem(modifiedBodyItem);
+      updateBodyItemMockServer();
     };
     const bodyItem = this.props.bodyItem;
     const src = JSON.parse(bodyItem.customResponse);
@@ -103,6 +111,7 @@ class BodyItem extends Component {
               collection={this.props.collection}
               openBodyItem = {this.props.openBodyItem}
               closeBodyItem = {this.props.closeBodyItem}
+              updateBodyItemMockServer = {this.props.updateBodyItemMockServer}
             />)
           }
           <StyledCloseButton onClick={()=>{
