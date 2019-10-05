@@ -3,7 +3,7 @@
   "productName": "Interspect",
   "version": "1.0.0",
   "description": "An tool to test communication between your microservices",
-  "main": "public/main.js",
+  "main": "public/xmainWindow.js",
   "scripts": {
     "test": "mocha",
     "start": "ELECTRON_IS_DEV=0 electron .",
@@ -26,17 +26,21 @@
   },
   "homepage": "https://interspect.io/",
   "dependencies": {
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "chart.js": "^1.1.1",
-    "electron": "^5.0.2",
+    "electron": "^6.0.10",
     "electron-is-dev": "^1.1.0",
+    "electron-reload": "^1.5.0",
     "express": "^4.16.4",
     "react": "^16.8.6",
     "react-chartjs": "^1.2.0",
     "react-diff-viewer": "^1.1.0",
     "react-dom": "^16.8.6",
     "react-feather": "^1.1.6",
-    "react-json-view": "^1.19.1",
+    "react-json-view": "latest",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "styled-components": "^4.3.1",
@@ -68,6 +72,7 @@
     "style-loader": "^0.23.1",
     "webpack": "^4.33.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.6.0"
+    "webpack-dev-server": "^3.6.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
