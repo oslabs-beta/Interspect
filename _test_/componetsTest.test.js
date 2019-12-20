@@ -84,7 +84,10 @@ test('for WrapperDiv', () => {
     const wrapperDiv = shallow(<WrapperDiv />)
     expect(wrapperDiv).toMatchSnapshot()
 })
-
+test('for WrapperLove', () => {
+    const wrapperDiv = shallow(<WrapperDiv />)
+    expect(wrapperDiv).toMatchSnapshot()
+})
 
 
 
