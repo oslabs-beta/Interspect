@@ -21,6 +21,7 @@ class BodyItems extends Component {
           deleteBodyItem={this.props.deleteBodyItem}
           openBodyItem = {this.props.openBodyItem}
           closeBodyItem = {this.props.closeBodyItem}
+          updateBodyItemMockServer = {this.props.updateBodyItemMockServer}
         />
       )
     }
