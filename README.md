@@ -10,44 +10,33 @@
 Interspect is an API-mocking tool that helps you ensure data interoperability between microservices and arbitrary API endpoints. [Download the app](https://github.com/oslabs-beta/Interspect/releases/download/1.0.0/Interspect-macOS-x64.zip) for macOS to get started.
 
 ## Basic usage
-The app is split into three, distinct panels:
+The app is split into two, distinct panels:
 
 ### Source
-This is where you can define a data source that will become the foundation for your data mockups. There are a couple ways to get data  into the application.
+This is where you can define a data source that will become the foundation for your data mockups.
 
-![Screenshot of source panel](/assets/screenshots/source-panel.png)
+![Screenshot of source panel](/assets/screenshots/rest-source.png)
 
 #### Send a GET request
-If your microservice supports `GET` requests, add your endpoint to the request bar and hit send. You’ll then be able to view the response data, along with basic performance metrics for the request.
-
-#### Send data to Interspect
-You can also send data to the source panel at `http://localhost:3001/posturl` with `POST`, `PUT`, `PATCH`, or `DELETE`.
-
-**Note:** The open socket may timeout after extended use. There’s an [open issue](https://github.com/oslabs-beta/Interspect/issues/94) to resolve (and we welcome contributions 😉)
+If your microservice supports `GET` requests, add your endpoint to the request bar and hit send. You’ll then be able to view the response data, which you can then send over to the Mockups panel. If the response is not what you wanted or you made a mistake, you can easily remove the response by clicking the 'X' sitting at the top right of every response.
 
 #### Accpeted data types
-Interspect works with `JSON` and `XML`-formatted data
+Interspect works with `JSON`, `XML`, and `GraphQL`-formatted data. For `GraphQL` requests, click the button in the top left corner of the Source panel, and another textbox will appear. This is where you'll write out the schema for your `GraphQL` request. To switch back to REST api requests, simply click the button again.
+
+![Screenshot of source panel with GraphQL setting](/assets/screenshots/graphql-source.png)
 
 ### Mockups
-In the mockups panel, you can create new data scenarios from your source data. Each data tree is editable so you can delete, update, or add new data.
+In the mockups panel, you can create new data scenarios from your source data. There are two sections: a Mock Library and Mock Server.
 
-![Screenshot of mockups panel](/assets/screenshots/mockups-panel.png)
+#### Editing Data In the Mock Library
+The Mock Library is where all of your response data is stored after saving it from the Source panel. You can edit your data by clicking on the clipboard icon, or delete your data by clicking on the 'X' icon as you please in this section. Upon clicking the clipboard icon, a pop-up will appear where you can edit what's inside the response data, as well as setup a mock request by defining a custom route with a specified method type (i.e. GET, POST, PUT, PATCH, DELETE), and fake response data to be returned depending on whether your mock request was successful or not. 
 
-If your data source is a collection, you can also create new mockups from a specific index or key.
+![Screenshot of mock panel with edit mode](/assets/screenshots/edit-modal.png)
 
-#### Creating test assertions
-You can add test assertions to any mockup as well. Simply click **Edit Test Assertions** and choose a specific status code or status code range that you expect to receive when sending your mockup to your destination microservice.
+#### Making Requests to the Mock Server
+When you finish editing your data, you can send it to the Mock Server section, where you can test your custom routes that you set up when editing your response data on http://localhost:3000. This can be done by making a request to the route using `curl`, or the `Postman` application. Upon a successful test, you should get the responses that you set up during editing.
 
-While only status code assertions are supported at launch, we welcome contributions to add additional test domains.
-
-### Destination
-In the third panel, you can enter a destination endpoint for your mock data. When you send your request, each mockup you created will be sent in sequence to the destination endpoint. 
-
-![Screenshot of destination panel](/assets/screenshots/destination-panel.png)
-
-Upon a successful request, you will be able to see returned status codes as well as the result of any test assertions and basic performance metrics. 
-
-**Note:** HTTP Requests in the destination panel are sent 10 times to get an average of the total request time. At launch, this behavior cannot be turned off, but a [preference will be added in a future version](https://github.com/oslabs-beta/Interspect/issues/95).
+![Screenshot of a curl request to a custom route](/assets/screenshots/curl-request.png)
 
 
 ----
@@ -58,6 +47,10 @@ Interspect was created by:
 - Donald Blanc [@Donaldblanc](https://github.com/Donaldblanc)
 - Conor Sexton [@conorsexton](https://github.com/conorsexton)
 - Joel Rivera [@RealJoelRivera](https://github.com/RealJoelRivera)
+- Will Magee [@wmagee03](https://github.com/wmagee03)
+- Natia Khomasuridze [@Natia94](https://github.com/Natia94)
+- David Neuahaus [@neuhausneuhaus](https://github.com/neuhausneuhaus)
+- Derek Cross [@derekcrosslu](https://github.com/derekcrosslu)
 
 ## Contributing
 We welcome pull requests and new issues. There are also several open issues that are up for grabs. 
