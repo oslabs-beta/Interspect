@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`for Form 1`] = `ShallowWrapper {}`;
+
+exports[`for FormGQ 1`] = `ShallowWrapper {}`;
+
+exports[`for FormGQ 2`] = `ShallowWrapper {}`;
+
+exports[`for Input 1`] = `ShallowWrapper {}`;
+
+exports[`for ItemDetailsArea 1`] = `ShallowWrapper {}`;
+
+exports[`for LeftColumn 1`] = `ShallowWrapper {}`;
+
+exports[`for ModalSelect 1`] = `ShallowWrapper {}`;
+
+exports[`for ModalWrapper 1`] = `ShallowWrapper {}`;
+
+exports[`for ModelInput 1`] = `ShallowWrapper {}`;
+
+exports[`for RightColumn 1`] = `ShallowWrapper {}`;
+
+exports[`for Select 1`] = `ShallowWrapper {}`;
+
+exports[`for TextArea 1`] = `ShallowWrapper {}`;
+
+exports[`for WrapperDiv 1`] = `ShallowWrapper {}`;
+
+exports[`it has a button 1`] = `ShallowWrapper {}`;
