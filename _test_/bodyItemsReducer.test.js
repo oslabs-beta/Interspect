@@ -1,5 +1,4 @@
 import bodyItemReducer from "../thingsToImplement/redux/bodyItemsReducer" 
-import { stat } from "fs";
 //.toBe just checks that a value is what you expect. It uses === to check strict equality.
 //.toEqual when you want to check that two objects have the same value, loosly equal
 describe('Body Item Reducer', () => {

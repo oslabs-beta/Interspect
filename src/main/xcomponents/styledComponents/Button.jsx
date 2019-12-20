@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-let backgroundColor;
+//let backgroundColor;
 
 const Button = styled.button`
   background-color: ${(props) => {
