@@ -3,7 +3,7 @@
   <h1 align="center"><a href="https://interspect.io/">Interspect</a></h1>
 </p>
 
-[![Build Status](https://travis-ci.com/oslabs-beta/Interspect.svg?branch=master)](https://travis-ci.com/oslabs-beta/apimocking)
+[![Build Status](https://travis-ci.com/oslabs-beta/Interspect.svg?branch=master)](https://travis-ci.com/github/oslabs-beta/interspect)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/oslabs-beta/Interspect/pulls)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
