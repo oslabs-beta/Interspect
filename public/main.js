@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+require('electron-reload')(__dirname);
 const isDev = require('electron-is-dev');
 const path = require('path');
 const os = require('os');
@@ -35,7 +36,7 @@ function createWindow() {
 
   if (isDev) {
     BrowserWindow.addDevToolsExtension(
-      path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/3.6.0_0'),
+      path.join(os.homedir(), './Library/Application Support/Google/Chrome/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.0.6_0'),
     );
   }
   mainWindow.on('closed', () => {

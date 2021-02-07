@@ -20,9 +20,9 @@ const SourcePanel = (props) => {
             setFetchTimes={setFetchTimes}
             setContentType={setContentType} />
           {datacanvas}
-          {(fetchTimes.length > 0)
+          {/* {(fetchTimes.length > 0)
             && (fetchTimes.reduce(reducer) > 0)
-            && <PerformanceMetrics fetchTimes={fetchTimes} />}
+            && <PerformanceMetrics fetchTimes={fetchTimes} />} */}
         </div>
       </StyledPanel>
     );
