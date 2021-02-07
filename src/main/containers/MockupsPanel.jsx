@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import StyledPanel from './StyledPanel.jsx';
 import { TestsContext } from '../testsContext';
 import Button from '../components/Button.jsx';
 import Select from '../components/InlineSelect.jsx';
 import Mockup from '../components/Mockup.jsx';
-import styled from 'styled-components';
+
+const { ipcRenderer } = require('electron');
 
 
 // will need to get data from the get request to pass to the formatted view
@@ -72,6 +74,10 @@ const MockupsPanel = (props) => {
     setCreateTestIndex(value);
   }
 
+  function saveFile(e) {
+    ipcRenderer.send('save_file', JSON.stringify({ data, tests }));
+  }
+
   const ServerResp = styled.h3`
   font-family: 'Halyard Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   `;
@@ -96,6 +102,8 @@ const MockupsPanel = (props) => {
               >
                 {options}
               </Select>
+              <br />
+              <Button enabled onClick={saveFile}>Save Work as JSON</Button>
             </div>}
           {mockupsListDisplay}
         </div>

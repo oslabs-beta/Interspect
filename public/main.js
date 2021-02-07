@@ -5,21 +5,18 @@ const os = require('os');
 const bodyParser = require('body-parser');
 const expressApp = require('express')();
 const server = require('http').Server(expressApp);
-const io = require('socket.io')(server);
+const { ipcMain, dialog } = require('electron');
+const fs = require('fs');
 
-if (isDev) {
-  console.log('Running in development');
-} else {
-  console.log('Running in production');
-}
+
+if (isDev) console.log('Running in development');
+else console.log('Running in production');
 
 let mainWindow;
 
 function createWindow() {
   expressApp.use(bodyParser.urlencoded({ extended: true }));
   expressApp.use(bodyParser.json());
-
-  server.listen(3001);
 
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -28,7 +25,7 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false,
     },
-    icon: './icon_png.png'
+    icon: './icon_png.png',
   });
 
   mainWindow.loadURL(isDev ? 'http://localhost:8080' : `file://${__dirname}/../dist/index.html`);
@@ -42,11 +39,11 @@ function createWindow() {
     mainWindow = null;
   });
 
-  const handleRequest = (request, response, socket) => {
+  const handleRequest = (request, response) => {
     try {
       if (request.headers['content-type'].includes('json')
         || request.headers['content-type'].includes('xml')) {
-        socket.emit('post_received', request.body);
+        mainWindow.webContents.send('post_received', request.body);
         response.status(200);
         response.end();
       } else {
@@ -59,28 +56,63 @@ function createWindow() {
     }
   };
 
-  const poster = io.on('connection', (socket) => {
-    console.log('a user connected');
 
-    expressApp.post('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
+  expressApp.post('/', (request, response) => {
+    handleRequest(request, response);
+  });
 
-    expressApp.patch('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
+  expressApp.patch('/', (request, response) => {
+    handleRequest(request, response);
+  });
 
-    expressApp.put('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
-    });
+  expressApp.put('/', (request, response) => {
+    handleRequest(request, response);
+  });
 
-    expressApp.delete('/posturl', (request, response) => {
-      handleRequest(request, response, socket);
+  expressApp.delete('/', (request, response) => {
+    handleRequest(request, response);
+  });
+
+  ipcMain.on('activate_server', (event, arg) => {
+    server.listen(arg);
+  });
+
+  ipcMain.on('save_file', (event, arg) => {
+    dialog.showSaveDialog(mainWindow, (filePath) => {
+      if (filePath) {
+        fs.writeFile(filePath, arg, (err) => {
+          if (err) {
+            mainWindow.webContents.send('saving_or_opening_error', err);
+          }
+        });
+      }
     });
   });
 
-  io.on('disconnect', () => {
-    console.log('a user disconnected');
+  ipcMain.on('open_file', (event, arg) => {
+    dialog.showOpenDialog(mainWindow, (filePath) => {
+      if (filePath) {
+        fs.readFile(filePath[0], (err, data) => {
+          if (err) {
+            mainWindow.webContents.send('saving_or_opening_error', err);
+          } else {
+            const parsedJSON = JSON.parse(data);
+
+            // Validate that the data stored in the file can be loaded into Interspect
+            const keys = Object.keys(parsedJSON).sort();
+            const validData = (typeof parsedJSON === 'object' && keys.length === 2
+              && keys[0] === 'data' && keys[1] === 'tests'
+              && typeof parsedJSON[keys[0]] === 'object'
+              && typeof parsedJSON[keys[1]] === 'object');
+            if (validData) mainWindow.webContents.send('opened_file', parsedJSON);
+            else {
+              mainWindow.webContents.send('saving_or_opening_error',
+                'Error opening: Invalid data structure');
+            }
+          }
+        });
+      }
+    });
   });
 }
 
